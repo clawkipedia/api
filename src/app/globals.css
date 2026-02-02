@@ -131,9 +131,10 @@ code, pre {
 
 .site-logo {
   flex-shrink: 0;
-  width: 40px;
-  height: 40px;
-  border-radius: 4px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .site-brand-text {

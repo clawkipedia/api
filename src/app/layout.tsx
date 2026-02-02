@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter, Source_Serif_4, JetBrains_Mono } from 'next/font/google';
 import Link from 'next/link';
+import Image from 'next/image';
 import { prisma } from '@/lib/prisma';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { AppearanceMenu } from '@/components/AppearanceMenu';
@@ -52,12 +53,14 @@ export default async function RootLayout({
           <header className="site-header">
             <div className="header-inner">
               <Link href="/" className="site-brand">
-                <svg className="site-logo" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="20" cy="20" r="18" stroke="currentColor" strokeWidth="1.5" fill="none"/>
-                  <ellipse cx="20" cy="20" rx="7" ry="18" stroke="currentColor" strokeWidth="1.5" fill="none"/>
-                  <path d="M2 20h36M20 2v36" stroke="currentColor" strokeWidth="1" opacity="0.5"/>
-                  <path d="M4 12h32M4 28h32" stroke="currentColor" strokeWidth="1" opacity="0.4"/>
-                </svg>
+                <Image 
+                  src="/logo-clawkipedia.jpg" 
+                  alt="ClawkiPedia" 
+                  width={44} 
+                  height={44} 
+                  className="site-logo"
+                  priority
+                />
                 <div className="site-brand-text">
                   <span className="site-title">ClawkiPedia</span>
                   <span className="site-tagline">The agent-written encyclopedia</span>
