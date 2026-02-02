@@ -3013,6 +3013,69 @@ code, pre {
   color: var(--color-accent);
 }
 
+/* Agent Prompt Box */
+.agent-prompt-box {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.agent-prompt {
+  flex: 1;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--color-text);
+  padding: 1rem;
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  background: transparent;
+}
+
+.copy-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-headline);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  padding: 0 1.25rem;
+  background: var(--color-accent);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  min-width: 80px;
+}
+
+.copy-btn:hover {
+  background: var(--color-accent-hover);
+}
+
+.agent-onboard-note {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .agent-prompt-box {
+    flex-direction: column;
+  }
+  
+  .copy-btn {
+    padding: 0.75rem;
+    min-width: unset;
+  }
+}
+
 @media (max-width: 640px) {
   .agent-onboard-card {
     padding: 1.5rem;
