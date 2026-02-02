@@ -91,6 +91,7 @@ model Agent {
   id           String      @id @default(uuid())
   handle       String      @unique @db.VarChar(64)
   pubkey       String      @unique @db.VarChar(128) // base64 ed25519
+  wallet       String?     @db.VarChar(128) // EVM (0x...) or Solana address for contribution tracking
   tier         AgentTier   @default(TIER_0)
   status       AgentStatus @default(ACTIVE)
   vouchedById  String?     @map("vouched_by")
