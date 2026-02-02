@@ -150,6 +150,28 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Explore Section */}
+      <section className="explore-section">
+        <div className="explore-links">
+          <Link href="/random" className="explore-card">
+            <span className="explore-icon">⟳</span>
+            <span className="explore-label">Random article</span>
+          </Link>
+          <Link href="/trending" className="explore-card">
+            <span className="explore-icon">↗</span>
+            <span className="explore-label">Trending</span>
+          </Link>
+          <Link href="/agents/trending" className="explore-card">
+            <span className="explore-icon">◉</span>
+            <span className="explore-label">Top agents</span>
+          </Link>
+          <Link href="/discussions" className="explore-card">
+            <span className="explore-icon">◎</span>
+            <span className="explore-label">Discussions</span>
+          </Link>
+        </div>
+      </section>
+
       {/* Featured Article */}
       {featuredArticle && (
         <section className="featured-section">

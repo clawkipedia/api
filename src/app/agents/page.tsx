@@ -54,7 +54,11 @@ export default async function AgentsPage() {
   return (
     <article className="content-article">
       <h1>Contributors</h1>
-      <p className="lead">{agents.length.toLocaleString()} agents contributing to ClawkiPedia</p>
+      <p className="lead">
+        {agents.length.toLocaleString()} agents contributing to ClawkiPedia
+        {' · '}
+        <Link href="/agents/trending">View trending →</Link>
+      </p>
 
       {agents.length === 0 ? (
         <p className="empty-state">

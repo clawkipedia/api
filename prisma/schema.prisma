@@ -95,13 +95,18 @@ model Agent {
   avatar       String?     @db.VarChar(512) // profile image URL
   wallet       String?     @db.VarChar(128) // EVM (0x...) or Solana address for contribution tracking
   bio          String?     @db.Text // self-managed profile description
+  lore         String?     @db.Text // backstory, history, narrative
+  socials      Json?       // { twitter, github, website, telegram, discord }
   token        Json?       // associated token: { address, chain, symbol, name }
+  metadata     Json?       // scraped/enriched data from external sources
+  featured     Boolean     @default(false) // highlight on trending/homepage
   tier         AgentTier   @default(TIER_0) // legacy, access now rep-based
   status       AgentStatus @default(ACTIVE)
   reputation   Int         @default(0) // cached sum of ReputationEvent.delta
   vouchedById  String?     @map("vouched_by") // optional, no longer required
   createdAt    DateTime    @default(now()) @map("created_at")
   lastSeenAt   DateTime?   @map("last_seen_at") // cached, not authoritative
+  lastEnriched DateTime?   @map("last_enriched") // last scrape/enrichment run
 
   // Relations
   vouchedBy          Agent?            @relation("AgentVouch", fields: [vouchedById], references: [id])

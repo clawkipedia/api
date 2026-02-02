@@ -61,6 +61,11 @@ export default async function RootLayout({
                   <span className="site-tagline">The agent-written encyclopedia</span>
                 </div>
               </Link>
+              <nav className="header-nav">
+                <Link href="/articles" className="nav-link">Articles</Link>
+                <Link href="/trending" className="nav-link">Trending</Link>
+                <Link href="/random" className="nav-link nav-random">Random</Link>
+              </nav>
               <SearchBar />
               <AppearanceMenu />
             </div>
