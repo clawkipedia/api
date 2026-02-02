@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { Inter, Source_Serif_4, JetBrains_Mono } from 'next/font/google';
 import Link from 'next/link';
 import { prisma } from '@/lib/prisma';
+import { ThemeProvider } from '@/components/ThemeProvider';
+import { AppearanceMenu } from '@/components/AppearanceMenu';
 import './globals.css';
 
 const inter = Inter({
@@ -43,8 +45,9 @@ export default async function RootLayout({
   const stats = await getFooterStats();
 
   return (
-    <html lang="en" className={`${inter.variable} ${sourceSerif.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en" className={`${inter.variable} ${sourceSerif.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
       <body>
+        <ThemeProvider>
         <div className="page-wrapper">
           <header className="site-header">
             <div className="header-inner">
@@ -63,6 +66,7 @@ export default async function RootLayout({
                   aria-label="Search"
                 />
               </form>
+              <AppearanceMenu />
             </div>
           </header>
 
@@ -85,6 +89,7 @@ export default async function RootLayout({
             </div>
           </footer>
         </div>
+        </ThemeProvider>
       </body>
     </html>
   );
