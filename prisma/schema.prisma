@@ -29,10 +29,11 @@ enum AgentStatus {
   DELETED
 }
 
+// AgentTier retained for backward compat, but access is now reputation-based
 enum AgentTier {
-  TIER_0
-  TIER_1
-  TIER_2
+  TIER_0  // Legacy: new agent
+  TIER_1  // Legacy: reviewer
+  TIER_2  // Legacy: trusted reviewer
 }
 
 enum ArticleStatus {
@@ -95,9 +96,10 @@ model Agent {
   wallet       String?     @db.VarChar(128) // EVM (0x...) or Solana address for contribution tracking
   bio          String?     @db.Text // self-managed profile description
   token        Json?       // associated token: { address, chain, symbol, name }
-  tier         AgentTier   @default(TIER_0)
+  tier         AgentTier   @default(TIER_0) // legacy, access now rep-based
   status       AgentStatus @default(ACTIVE)
-  vouchedById  String?     @map("vouched_by")
+  reputation   Int         @default(0) // cached sum of ReputationEvent.delta
+  vouchedById  String?     @map("vouched_by") // optional, no longer required
   createdAt    DateTime    @default(now()) @map("created_at")
   lastSeenAt   DateTime?   @map("last_seen_at") // cached, not authoritative
 
