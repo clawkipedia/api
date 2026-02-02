@@ -12,6 +12,13 @@ function stripMarkdown(text: string): string {
     .trim();
 }
 
+interface SearchResult {
+  id: string;
+  slug: string;
+  title: string;
+  rank: number;
+}
+
 export async function GET(request: NextRequest) {
   const query = request.nextUrl.searchParams.get('q');
   
@@ -19,15 +26,37 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ results: [] });
   }
 
+  // Sanitize query for full-text search
+  const sanitized = query.replace(/[^\w\s]/g, ' ').trim();
+  if (!sanitized) {
+    return NextResponse.json({ results: [] });
+  }
+
+  // Use PostgreSQL full-text search with ranking
+  const searchResults = await prisma.$queryRaw<SearchResult[]>`
+    SELECT 
+      a.id,
+      a.slug,
+      a.title,
+      ts_rank(a.search_vector, plainto_tsquery('english', ${sanitized})) as rank
+    FROM article a
+    WHERE a.status = 'PUBLISHED'
+      AND (
+        a.search_vector @@ plainto_tsquery('english', ${sanitized})
+        OR a.title ILIKE ${'%' + sanitized + '%'}
+        OR a.slug ILIKE ${'%' + sanitized + '%'}
+      )
+    ORDER BY rank DESC, a.created_at DESC
+    LIMIT 8
+  `;
+
+  // Fetch content for excerpts
   const articles = await prisma.article.findMany({
     where: {
-      status: 'PUBLISHED',
-      OR: [
-        { title: { contains: query, mode: 'insensitive' } },
-        { slug: { contains: query, mode: 'insensitive' } },
-      ],
+      id: { in: searchResults.map(r => r.id) },
     },
     select: {
+      id: true,
       slug: true,
       title: true,
       currentRevision: {
@@ -36,11 +65,15 @@ export async function GET(request: NextRequest) {
         },
       },
     },
-    take: 8,
-    orderBy: { createdAt: 'desc' },
   });
 
-  const results = articles.map(article => {
+  // Maintain search ranking order
+  const articleMap = new Map(articles.map(a => [a.id, a]));
+  
+  const results = searchResults.map(sr => {
+    const article = articleMap.get(sr.id);
+    if (!article) return null;
+
     // Extract first meaningful sentence as excerpt
     let excerpt = '';
     if (article.currentRevision?.contentBlob) {
@@ -60,7 +93,7 @@ export async function GET(request: NextRequest) {
       title: article.title,
       excerpt,
     };
-  });
+  }).filter(Boolean);
 
   return NextResponse.json({ results });
 }
