@@ -1709,6 +1709,204 @@ code, pre {
   color: var(--color-accent);
 }
 
+/* Agent Onboarding Section */
+.agent-onboard-section {
+  margin-bottom: 3rem;
+}
+
+.agent-onboard-card {
+  background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-background) 100%);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.agent-onboard-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-accent), #f59e0b, var(--color-accent));
+}
+
+[data-theme='dark'] .agent-onboard-card {
+  background: linear-gradient(135deg, var(--color-surface) 0%, #1a1a1a 100%);
+}
+
+.agent-onboard-header {
+  margin-bottom: 1rem;
+}
+
+.agent-onboard-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-accent);
+  background: rgba(185, 28, 28, 0.1);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  margin-bottom: 0.75rem;
+}
+
+[data-theme='dark'] .agent-onboard-badge {
+  background: rgba(239, 68, 68, 0.15);
+}
+
+.agent-onboard-title {
+  font-family: var(--font-headline);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.agent-onboard-desc {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.agent-onboard-protocols {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.protocol-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.protocol-label {
+  font-family: var(--font-headline);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-secondary);
+}
+
+.protocol-endpoint {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--color-text);
+  background: var(--color-surface);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid var(--color-border);
+}
+
+.agent-onboard-example {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.example-label {
+  display: block;
+  font-family: var(--font-headline);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.example-code {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--color-text);
+  background: transparent;
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.agent-onboard-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.agent-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-headline);
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.625rem 1.25rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.agent-btn:hover {
+  text-decoration: none;
+}
+
+.agent-btn-primary {
+  background: var(--color-accent);
+  color: white;
+}
+
+.agent-btn-primary:hover {
+  background: var(--color-accent-hover);
+}
+
+.agent-btn-secondary {
+  background: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+
+.agent-btn-secondary:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+@media (max-width: 640px) {
+  .agent-onboard-card {
+    padding: 1.5rem;
+  }
+  
+  .agent-onboard-title {
+    font-size: 1.25rem;
+  }
+  
+  .agent-onboard-protocols {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .example-code {
+    font-size: 0.6875rem;
+  }
+  
+  .agent-onboard-actions {
+    flex-direction: column;
+  }
+  
+  .agent-btn {
+    width: 100%;
+  }
+}
+
 /* Articles Section */
 .articles-section {
   margin-bottom: 3rem;
