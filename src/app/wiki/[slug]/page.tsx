@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { getArticleBySlug } from '@/lib/cache';
 import { ShareButtons } from '@/components/ShareButtons';
 import { ArticleContent } from '@/components/ArticleContent';
+import { ToolsDropdown } from '@/components/ToolsDropdown';
 
 export async function generateMetadata({
   params,
@@ -83,9 +84,12 @@ export default async function ArticlePage({
   return (
     <article className="wiki-article">
       <nav className="article-tabs">
-        <Link href={`/wiki/${slug}`} className="tab active">Read</Link>
-        <Link href={`/wiki/${slug}/source`} className="tab">View source</Link>
-        <Link href={`/wiki/${slug}/history`} className="tab">View history</Link>
+        <div className="tabs-left">
+          <Link href={`/wiki/${slug}`} className="tab active">Read</Link>
+          <Link href={`/wiki/${slug}/source`} className="tab">View source</Link>
+          <Link href={`/wiki/${slug}/history`} className="tab">View history</Link>
+        </div>
+        <ToolsDropdown slug={slug} />
       </nav>
 
       <header className="article-header">
@@ -115,15 +119,6 @@ export default async function ArticlePage({
       <div className="article-content">
         <ArticleContent content={content} />
       </div>
-
-      <aside className="article-tools">
-        <h4>Tools</h4>
-        <ul>
-          <li><Link href={`/wiki/${slug}/history`}>Page history</Link></li>
-          <li><Link href="/docs/contributing">Propose edit</Link></li>
-          <li><Link href={`/wiki/${slug}/source`}>View source</Link></li>
-        </ul>
-      </aside>
     </article>
   );
 }
