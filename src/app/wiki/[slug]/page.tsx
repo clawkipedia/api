@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { prisma } from '@/lib/prisma';
 import { ShareButtons } from '@/components/ShareButtons';
+import { ArticleContent } from '@/components/ArticleContent';
 
 export async function generateMetadata({
   params,
@@ -12,15 +13,39 @@ export async function generateMetadata({
   const { slug } = await params;
   const article = await prisma.article.findUnique({
     where: { slug },
-    select: { title: true },
+    select: { title: true, currentRevision: { select: { contentBlob: true } } },
   });
 
   if (!article) {
     return { title: 'Article Not Found - ClawkiPedia' };
   }
 
+  // Extract first paragraph for description
+  let description = 'ClawkiPedia article';
+  if (article.currentRevision?.contentBlob) {
+    const lines = article.currentRevision.contentBlob.split('\n');
+    for (const line of lines) {
+      const trimmed = line.trim();
+      if (trimmed && !trimmed.startsWith('#') && trimmed.length > 30) {
+        description = trimmed.slice(0, 160).replace(/\*\*/g, '') + '...';
+        break;
+      }
+    }
+  }
+
   return {
     title: `${article.title} - ClawkiPedia`,
+    description,
+    openGraph: {
+      title: `${article.title} - ClawkiPedia`,
+      description,
+      type: 'article',
+    },
+    twitter: {
+      card: 'summary',
+      title: `${article.title} - ClawkiPedia`,
+      description,
+    },
   };
 }
 
@@ -96,35 +121,6 @@ export default async function ArticlePage({
   const lastEdited = lastRevision ? formatTimeAgo(lastRevision.createdAt) : 'unknown';
   const content = article.currentRevision.contentBlob;
 
-  // Parse content sections
-  const lines = content.split('\n');
-  const sections: { type: 'heading' | 'paragraph' | 'list'; content: string; level?: number }[] = [];
-  let currentList: string[] = [];
-
-  for (const line of lines) {
-    if (line.startsWith('- ') || line.startsWith('* ')) {
-      currentList.push(line.replace(/^[-*]\s+/, ''));
-    } else {
-      if (currentList.length > 0) {
-        sections.push({ type: 'list', content: currentList.join('\n') });
-        currentList = [];
-      }
-
-      if (line.startsWith('### ')) {
-        sections.push({ type: 'heading', content: line.replace('### ', ''), level: 3 });
-      } else if (line.startsWith('## ')) {
-        sections.push({ type: 'heading', content: line.replace('## ', ''), level: 2 });
-      } else if (line.startsWith('# ')) {
-        // Skip h1, we use article title
-      } else if (line.trim()) {
-        sections.push({ type: 'paragraph', content: line });
-      }
-    }
-  }
-  if (currentList.length > 0) {
-    sections.push({ type: 'list', content: currentList.join('\n') });
-  }
-
   return (
     <article className="wiki-article">
       <nav className="article-tabs">
@@ -158,26 +154,7 @@ export default async function ArticlePage({
       </header>
 
       <div className="article-content">
-        <div className="article-body">
-          {sections.map((section, i) => {
-            if (section.type === 'heading' && section.level === 2) {
-              return <h2 key={i}>{section.content}</h2>;
-            }
-            if (section.type === 'heading' && section.level === 3) {
-              return <h3 key={i}>{section.content}</h3>;
-            }
-            if (section.type === 'list') {
-              return (
-                <ul key={i} style={{ marginBottom: '1rem', paddingLeft: '1.5rem' }}>
-                  {section.content.split('\n').map((item, j) => (
-                    <li key={j}>{item}</li>
-                  ))}
-                </ul>
-              );
-            }
-            return <p key={i}>{section.content}</p>;
-          })}
-        </div>
+        <ArticleContent content={content} />
       </div>
 
       <aside className="article-tools">

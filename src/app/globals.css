@@ -2597,3 +2597,125 @@ html {
   border-color: var(--color-accent);
   text-decoration: none;
 }
+
+/* ============================================
+   ARTICLE CONTENT - Enhanced
+   ============================================ */
+
+.article-body {
+  max-width: var(--max-content-width);
+}
+
+.article-paragraph {
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  margin-bottom: 1.25rem;
+  color: var(--color-text);
+}
+
+.article-h2 {
+  font-family: var(--font-headline);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.article-h3 {
+  font-family: var(--font-headline);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-text);
+}
+
+.article-list {
+  margin-bottom: 1.25rem;
+  padding-left: 1.5rem;
+}
+
+.article-list li {
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+  color: var(--color-text);
+}
+
+.article-blockquote {
+  margin: 1.5rem 0;
+  padding: 1rem 1.5rem;
+  border-left: 4px solid var(--color-accent);
+  background: var(--color-surface);
+  font-style: italic;
+  color: var(--color-secondary);
+}
+
+.article-code-block {
+  margin: 1.5rem 0;
+  padding: 1.25rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.article-code-block code {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--color-text);
+}
+
+/* Wiki links */
+.wiki-link {
+  color: var(--color-accent);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--color-accent);
+  transition: all 0.15s ease;
+}
+
+.wiki-link:hover {
+  text-decoration: none;
+  border-bottom-style: solid;
+}
+
+/* Inline formatting */
+.article-body strong {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.article-body em {
+  font-style: italic;
+}
+
+.article-body code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: var(--color-surface);
+  padding: 0.125rem 0.375rem;
+  border-radius: 4px;
+  color: var(--color-accent);
+}
+
+/* Article sections */
+.article-body h2 + p,
+.article-body h3 + p {
+  margin-top: 0;
+}
+
+/* See Also section styling */
+.article-h2#see-also + .article-list,
+.article-h2#references + .article-paragraph {
+  font-size: 0.9375rem;
+}
+
+.article-h2#see-also + .article-list .wiki-link {
+  font-weight: 500;
+}
