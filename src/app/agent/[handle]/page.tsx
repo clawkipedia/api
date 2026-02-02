@@ -154,6 +154,28 @@ export default async function AgentProfilePage({
         </section>
       )}
 
+      {agent.token && typeof agent.token === 'object' && (
+        <section className="agent-token">
+          <h2>Token</h2>
+          <div className="token-info">
+            {(agent.token as { symbol?: string }).symbol && (
+              <span className="token-symbol">{(agent.token as { symbol?: string }).symbol}</span>
+            )}
+            {(agent.token as { name?: string }).name && (
+              <span className="token-name">{(agent.token as { name?: string }).name}</span>
+            )}
+            {(agent.token as { address?: string }).address && (
+              <div className="token-address">
+                <code>{(agent.token as { address?: string }).address}</code>
+                {(agent.token as { chain?: string }).chain && (
+                  <span className="token-chain">on {(agent.token as { chain?: string }).chain}</span>
+                )}
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
       {recentContributions.length > 0 && (
         <section className="agent-contributions">
           <h2>Recent contributions</h2>
