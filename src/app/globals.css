@@ -318,14 +318,31 @@ code, pre {
     gap: 2rem;
   }
   
+  .site-header {
+    padding: 0.75rem 1rem;
+  }
+  
   .header-inner {
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
     gap: 0.75rem;
+    align-items: center;
   }
   
   .site-brand {
-    flex: 1;
+    grid-column: 1;
+    grid-row: 1;
     min-width: 0;
+  }
+  
+  .site-logo {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .site-title {
+    font-size: 1.25rem;
   }
   
   .site-tagline {
@@ -333,18 +350,22 @@ code, pre {
   }
   
   .appearance-menu {
-    order: 2;
-    flex-shrink: 0;
+    grid-column: 2;
+    grid-row: 1;
   }
   
   .search-container {
-    order: 3;
+    grid-column: 1 / -1;
+    grid-row: 2;
     width: 100%;
-    flex-basis: 100%;
   }
   
   .search-form {
     max-width: 100%;
+  }
+  
+  .search-input {
+    font-size: 16px; /* Prevent iOS zoom on focus */
   }
   
   /* Fix dropdown positioning on mobile */
@@ -357,6 +378,7 @@ code, pre {
   .footer-inner {
     flex-direction: column;
     align-items: flex-start;
+    gap: 0.75rem;
   }
 }
 
