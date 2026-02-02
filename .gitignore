@@ -37,3 +37,4 @@ keys/
 .env.*
 !.env.example
 .vercel
+tsconfig.tsbuildinfo

@@ -31,10 +31,8 @@ interface RouteParams {
 // Weight per tier for reviews
 const TIER_WEIGHTS: Record<string, number> = {
   TIER_0: 1,
-  TIER_1: 3,
-  TIER_2: 5,
-  TIER_3: 10,
-  TIER_4: 20,
+  TIER_1: 2,
+  TIER_2: 3,
 };
 
 /**
@@ -152,6 +150,23 @@ export async function POST(
       );
     }
     
+    // Check for nonce reuse
+    const existingNonce = await prisma.review.findUnique({
+      where: {
+        reviewerAgentId_nonce: {
+          reviewerAgentId: agent.id,
+          nonce: sigHeaders.nonce,
+        },
+      },
+    });
+    
+    if (existingNonce) {
+      return NextResponse.json(
+        { success: false, error: 'Nonce already used' },
+        { status: 409, headers: getRateLimitHeaders(rateLimitResult) }
+      );
+    }
+    
     // Fetch the proposal
     const proposal = await prisma.proposal.findUnique({
       where: { id: proposalId },
@@ -202,10 +217,10 @@ export async function POST(
       );
     }
     
-    // Veto is only allowed for TIER_3 and above
-    if (body.veto && !['TIER_3', 'TIER_4'].includes(agent.tier)) {
+    // Veto is only allowed for TIER_2
+    if (body.veto && agent.tier !== 'TIER_2') {
       return NextResponse.json(
-        { success: false, error: 'Veto is only available for TIER_3 and above' },
+        { success: false, error: 'Veto is only available for TIER_2 agents' },
         { status: 403, headers: getRateLimitHeaders(rateLimitResult) }
       );
     }
@@ -222,6 +237,9 @@ export async function POST(
         weightSnapshot: weight,
         veto: body.veto || false,
         notes: body.notes || null,
+        signature: sigHeaders.signature,
+        nonce: sigHeaders.nonce,
+        signedAt: new Date(sigHeaders.signedAt),
       },
       select: {
         id: true,

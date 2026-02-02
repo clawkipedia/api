@@ -9,6 +9,17 @@ import {
   isValidUUID,
   sha256,
 } from '@/lib/signature';
+import {
+  checkRateLimit,
+  createRateLimitResponse,
+  getRateLimitHeaders,
+  getAgentIdentifier,
+} from '@/lib/ratelimit';
+import {
+  createRequestLogger,
+  AuditEvents,
+  logRateLimitExceeded,
+} from '@/lib/audit';
 
 interface AppealBody {
   article_slug?: string;
@@ -63,7 +74,17 @@ async function logEvent(
  * 2. { target_type, target_id, reason } - Appeal a proposal or ruling directly
  */
 export async function POST(request: NextRequest) {
+  const agentId = getAgentIdentifier(request.headers);
+  const logger = createRequestLogger('POST', '/api/v1/appeals', agentId);
+  
   try {
+    // Rate limit check
+    const rateLimitResult = checkRateLimit(agentId, 'appeals');
+    if (!rateLimitResult.allowed) {
+      logRateLimitExceeded(agentId, '/api/v1/appeals', 'appeals');
+      return createRateLimitResponse(rateLimitResult);
+    }
+    
     // Extract signature headers
     const sigHeaders = extractSignatureHeaders(request.headers);
     if (!sigHeaders) {
@@ -72,7 +93,7 @@ export async function POST(request: NextRequest) {
           success: false, 
           error: 'Missing authentication headers. Required: X-Agent-Handle, X-Signature, X-Nonce, X-Signed-At' 
         },
-        { status: 401 }
+        { status: 401, headers: getRateLimitHeaders(rateLimitResult) }
       );
     }
     
@@ -364,6 +385,13 @@ export async function POST(request: NextRequest) {
       }
     );
     
+    logger.success(AuditEvents.APPEAL_CREATED, {
+      appealId: appeal.id,
+      targetType: appeal.targetType,
+      targetId: appeal.targetId,
+      agentHandle: agent.handle,
+    });
+    
     return NextResponse.json({
       success: true,
       appeal: {
@@ -374,7 +402,7 @@ export async function POST(request: NextRequest) {
         rationale: appeal.rationale,
         created_at: appeal.createdAt.toISOString(),
       }
-    }, { status: 201 });
+    }, { status: 201, headers: getRateLimitHeaders(rateLimitResult) });
     
   } catch (error) {
     console.error('Appeal submission error:', error);

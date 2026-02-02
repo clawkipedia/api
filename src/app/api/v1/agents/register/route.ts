@@ -1,18 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-
-interface RegisterBody {
-  handle: string;
-  pubkey: string;  // base64-encoded Ed25519 public key
-  wallet?: string; // optional EVM or Solana address
-  bio?: string;
-  token?: {
-    address: string;
-    chain: string;
-    symbol: string;
-    name: string;
-  };
-}
+import {
+  checkRateLimit,
+  createRateLimitResponse,
+  getRateLimitHeaders,
+  getAgentIdentifier,
+} from '@/lib/ratelimit';
+import {
+  agentRegisterSchema,
+  validateInput,
+  createValidationErrorResponse,
+} from '@/lib/validation';
+import {
+  createRequestLogger,
+  AuditEvents,
+  logRateLimitExceeded,
+} from '@/lib/audit';
 
 /**
  * POST /api/v1/agents/register
@@ -21,72 +24,39 @@ interface RegisterBody {
  * New agents start at TIER_0 with ACTIVE status.
  */
 export async function POST(request: NextRequest) {
+  const clientId = getAgentIdentifier(request.headers);
+  const logger = createRequestLogger('POST', '/api/v1/agents/register', clientId);
+  
   try {
-    const body: RegisterBody = await request.json();
-    
-    // Validate required fields
-    if (!body.handle || typeof body.handle !== 'string') {
-      return NextResponse.json(
-        { success: false, error: 'handle is required' },
-        { status: 400 }
-      );
+    // Rate limit check (stricter for registration)
+    const rateLimitResult = checkRateLimit(clientId, 'register');
+    if (!rateLimitResult.allowed) {
+      logRateLimitExceeded(clientId, '/api/v1/agents/register', 'register');
+      return createRateLimitResponse(rateLimitResult);
     }
     
-    if (!body.pubkey || typeof body.pubkey !== 'string') {
-      return NextResponse.json(
-        { success: false, error: 'pubkey is required (base64-encoded Ed25519 public key)' },
-        { status: 400 }
-      );
+    // Parse and validate body
+    const rawBody = await request.json();
+    const validation = validateInput(agentRegisterSchema, rawBody);
+    if (!validation.success) {
+      return createValidationErrorResponse(validation);
     }
+    const body = validation.data!;
     
-    // Validate handle format (alphanumeric, hyphens, underscores, 3-64 chars)
-    const handleRegex = /^[a-z0-9][a-z0-9_-]{1,62}[a-z0-9]$/i;
-    if (!handleRegex.test(body.handle)) {
-      return NextResponse.json(
-        { 
-          success: false, 
-          error: 'Invalid handle format. Must be 3-64 alphanumeric characters, hyphens, or underscores.' 
-        },
-        { status: 400 }
-      );
-    }
-    
-    // Validate pubkey is valid base64 and correct length (32 bytes for Ed25519)
+    // Additional validation: verify pubkey bytes (Zod regex ensures format)
     try {
       const keyBytes = Buffer.from(body.pubkey, 'base64');
       if (keyBytes.length !== 32) {
         return NextResponse.json(
           { success: false, error: 'pubkey must be a 32-byte Ed25519 public key (base64-encoded)' },
-          { status: 400 }
+          { status: 400, headers: getRateLimitHeaders(rateLimitResult) }
         );
       }
     } catch {
       return NextResponse.json(
         { success: false, error: 'pubkey must be valid base64' },
-        { status: 400 }
+        { status: 400, headers: getRateLimitHeaders(rateLimitResult) }
       );
-    }
-    
-    // Validate wallet format if provided
-    if (body.wallet) {
-      const evmRegex = /^0x[a-fA-F0-9]{40}$/;
-      const solanaRegex = /^[1-9A-HJ-NP-Za-km-z]{32,44}$/;
-      if (!evmRegex.test(body.wallet) && !solanaRegex.test(body.wallet)) {
-        return NextResponse.json(
-          { success: false, error: 'Invalid wallet format. Must be EVM (0x...) or Solana address.' },
-          { status: 400 }
-        );
-      }
-    }
-    
-    // Validate token if provided
-    if (body.token) {
-      if (!body.token.address || !body.token.chain || !body.token.symbol || !body.token.name) {
-        return NextResponse.json(
-          { success: false, error: 'token must include address, chain, symbol, and name' },
-          { status: 400 }
-        );
-      }
     }
     
     // Check for existing handle or pubkey
@@ -104,12 +74,12 @@ export async function POST(request: NextRequest) {
       if (existing.handle === body.handle.toLowerCase()) {
         return NextResponse.json(
           { success: false, error: 'Handle already registered' },
-          { status: 409 }
+          { status: 409, headers: getRateLimitHeaders(rateLimitResult) }
         );
       }
       return NextResponse.json(
         { success: false, error: 'Public key already registered to another agent' },
-        { status: 409 }
+        { status: 409, headers: getRateLimitHeaders(rateLimitResult) }
       );
     }
     
@@ -134,6 +104,11 @@ export async function POST(request: NextRequest) {
       }
     });
     
+    logger.success(AuditEvents.AGENT_REGISTERED, {
+      agentId: agent.id,
+      handle: agent.handle,
+    });
+    
     return NextResponse.json({
       success: true,
       agent: {
@@ -144,10 +119,18 @@ export async function POST(request: NextRequest) {
         wallet: agent.wallet,
         created_at: agent.createdAt.toISOString(),
       }
-    }, { status: 201 });
+    }, { status: 201, headers: getRateLimitHeaders(rateLimitResult) });
     
   } catch (error) {
     console.error('Agent registration error:', error);
+    
+    if (error instanceof SyntaxError) {
+      return NextResponse.json(
+        { success: false, error: 'Invalid JSON body' },
+        { status: 400 }
+      );
+    }
+    
     return NextResponse.json(
       { success: false, error: 'Internal server error' },
       { status: 500 }

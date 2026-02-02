@@ -8,6 +8,22 @@ import {
   isTimestampValid,
   isValidUUID,
 } from '@/lib/signature';
+import {
+  checkRateLimit,
+  createRateLimitResponse,
+  getRateLimitHeaders,
+  getAgentIdentifier,
+} from '@/lib/ratelimit';
+import {
+  proposalCreateSchema,
+  validateInput,
+  createValidationErrorResponse,
+} from '@/lib/validation';
+import {
+  createRequestLogger,
+  AuditEvents,
+  logRateLimitExceeded,
+} from '@/lib/audit';
 
 interface PatchData {
   type: 'unified' | 'full';
@@ -65,7 +81,17 @@ function calculateRiskScore(body: ProposalBody, isNew: boolean): number {
  * Requires Ed25519 signature authentication.
  */
 export async function POST(request: NextRequest) {
+  const agentId = getAgentIdentifier(request.headers);
+  const logger = createRequestLogger('POST', '/api/v1/proposals', agentId);
+  
   try {
+    // Rate limit check
+    const rateLimitResult = checkRateLimit(agentId, 'proposals');
+    if (!rateLimitResult.allowed) {
+      logRateLimitExceeded(agentId, '/api/v1/proposals', 'proposals');
+      return createRateLimitResponse(rateLimitResult);
+    }
+    
     // Extract signature headers
     const sigHeaders = extractSignatureHeaders(request.headers);
     if (!sigHeaders) {
@@ -74,7 +100,7 @@ export async function POST(request: NextRequest) {
           success: false, 
           error: 'Missing authentication headers. Required: X-Agent-Handle, X-Signature, X-Nonce, X-Signed-At' 
         },
-        { status: 401 }
+        { status: 401, headers: getRateLimitHeaders(rateLimitResult) }
       );
     }
     
@@ -82,7 +108,7 @@ export async function POST(request: NextRequest) {
     if (!isValidUUID(sigHeaders.nonce)) {
       return NextResponse.json(
         { success: false, error: 'X-Nonce must be a valid UUID v4' },
-        { status: 400 }
+        { status: 400, headers: getRateLimitHeaders(rateLimitResult) }
       );
     }
     
@@ -90,12 +116,17 @@ export async function POST(request: NextRequest) {
     if (!isTimestampValid(sigHeaders.signedAt)) {
       return NextResponse.json(
         { success: false, error: 'X-Signed-At timestamp is invalid or too old (max 5 minutes)' },
-        { status: 400 }
+        { status: 400, headers: getRateLimitHeaders(rateLimitResult) }
       );
     }
     
-    // Parse body
-    const body: ProposalBody = await request.json();
+    // Parse and validate body
+    const rawBody = await request.json();
+    const validation = validateInput(proposalCreateSchema, rawBody);
+    if (!validation.success) {
+      return createValidationErrorResponse(validation);
+    }
+    const body: ProposalBody = rawBody;
     
     // Look up the agent
     const agent = await prisma.agent.findUnique({
@@ -245,6 +276,13 @@ export async function POST(request: NextRequest) {
         }
       });
       
+      logger.success(AuditEvents.PROPOSAL_CREATED, {
+        proposalId: proposal.id,
+        type: 'new_article',
+        agentHandle: agent.handle,
+        slug: newArticle.slug.toLowerCase(),
+      });
+      
       return NextResponse.json({
         success: true,
         proposal: {
@@ -254,7 +292,7 @@ export async function POST(request: NextRequest) {
           risk_score: proposal.riskScore,
           created_at: proposal.createdAt.toISOString(),
         }
-      }, { status: 201 });
+      }, { status: 201, headers: getRateLimitHeaders(rateLimitResult) });
     }
     
     // Handle edit proposal
@@ -349,6 +387,13 @@ export async function POST(request: NextRequest) {
         }
       });
       
+      logger.success(AuditEvents.PROPOSAL_CREATED, {
+        proposalId: proposal.id,
+        type: 'edit',
+        agentHandle: agent.handle,
+        articleSlug: article.slug,
+      });
+      
       return NextResponse.json({
         success: true,
         proposal: {
@@ -359,13 +404,13 @@ export async function POST(request: NextRequest) {
           risk_score: proposal.riskScore,
           created_at: proposal.createdAt.toISOString(),
         }
-      }, { status: 201 });
+      }, { status: 201, headers: getRateLimitHeaders(rateLimitResult) });
     }
     
     // Should never reach here
     return NextResponse.json(
       { success: false, error: 'Invalid proposal' },
-      { status: 400 }
+      { status: 400, headers: getRateLimitHeaders(rateLimitResult) }
     );
     
   } catch (error) {
