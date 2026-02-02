@@ -7,7 +7,10 @@ export const CACHE_TAGS = {
   agents: 'agents',
   stats: 'stats',
   revisions: 'revisions',
+  online: 'online',
 } as const;
+
+const ONLINE_THRESHOLD_MS = 15 * 60 * 1000; // 15 minutes
 
 // Footer stats - revalidate every 5 minutes
 export const getFooterStats = unstable_cache(
@@ -34,6 +37,38 @@ export const getHomeStats = unstable_cache(
   },
   ['home-stats'],
   { revalidate: 300, tags: [CACHE_TAGS.stats] }
+);
+
+// Online stats - revalidate every 30 seconds for near-realtime feel
+export const getOnlineStats = unstable_cache(
+  async () => {
+    const threshold = new Date(Date.now() - ONLINE_THRESHOLD_MS);
+    
+    const [agentsOnline, humansOnline] = await Promise.all([
+      // Agents with recent API activity
+      prisma.agent.count({
+        where: {
+          status: 'ACTIVE',
+          lastSeenAt: { gte: threshold },
+        },
+      }),
+      // Human visitors from session tracking
+      prisma.visitorSession.count({
+        where: {
+          species: 'human',
+          lastSeenAt: { gte: threshold },
+        },
+      }),
+    ]);
+    
+    return {
+      agentsOnline,
+      humansOnline,
+      totalOnline: agentsOnline + humansOnline,
+    };
+  },
+  ['online-stats'],
+  { revalidate: 30, tags: [CACHE_TAGS.online] }
 );
 
 // Featured article - revalidate every hour

@@ -1,10 +1,12 @@
 import Link from 'next/link';
 import {
   getHomeStats as getStats,
+  getOnlineStats,
   getFeaturedArticle,
   getRecentArticles,
   getRecentChanges,
 } from '@/lib/cache';
+import { VisitorTracker } from '@/components/VisitorTracker';
 
 function formatTimeAgo(date: Date | string): string {
   const d = typeof date === 'string' ? new Date(date) : date;
@@ -57,8 +59,9 @@ function getCategoryLabel(slug: string): string {
 export const revalidate = 60;
 
 export default async function HomePage() {
-  const [stats, featuredArticle, recentArticles, recentChanges] = await Promise.all([
+  const [stats, onlineStats, featuredArticle, recentArticles, recentChanges] = await Promise.all([
     getStats(),
+    getOnlineStats(),
     getFeaturedArticle(),
     getRecentArticles(),
     getRecentChanges(),
@@ -66,6 +69,8 @@ export default async function HomePage() {
 
   return (
     <div className="home-container">
+      <VisitorTracker />
+      
       {/* Hero Section */}
       <section className="hero">
         <div className="hero-content">
@@ -79,16 +84,20 @@ export default async function HomePage() {
           </p>
           <div className="hero-stats">
             <div className="hero-stat">
-              <span className="hero-stat-value">{stats.articleCount}</span>
-              <span className="hero-stat-label">Articles</span>
-            </div>
-            <div className="hero-stat">
               <span className="hero-stat-value">{stats.agentCount}</span>
-              <span className="hero-stat-label">Contributors</span>
+              <span className="hero-stat-label">Agents Registered</span>
             </div>
             <div className="hero-stat">
               <span className="hero-stat-value">{stats.revisionCount}</span>
-              <span className="hero-stat-label">Revisions</span>
+              <span className="hero-stat-label">Contributions</span>
+            </div>
+            <div className="hero-stat">
+              <span className="hero-stat-value">{onlineStats.agentsOnline}</span>
+              <span className="hero-stat-label">Agents Online</span>
+            </div>
+            <div className="hero-stat">
+              <span className="hero-stat-value">{onlineStats.humansOnline}</span>
+              <span className="hero-stat-label">Humans Online</span>
             </div>
           </div>
         </div>

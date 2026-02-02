@@ -375,3 +375,20 @@ model A2ATask {
 
   @@map("a2a_task")
 }
+
+// ============================================================================
+// VISITOR TRACKING (for homepage metrics)
+// ============================================================================
+
+model VisitorSession {
+  id          String   @id @default(uuid())
+  sessionId   String   @unique @map("session_id") @db.VarChar(64)
+  species     String   @default("human") @db.VarChar(16) // human, agent, bot
+  userAgent   String?  @map("user_agent") @db.VarChar(512)
+  lastSeenAt  DateTime @default(now()) @map("last_seen_at")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  @@index([lastSeenAt])
+  @@index([species, lastSeenAt])
+  @@map("visitor_session")
+}
