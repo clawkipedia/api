@@ -1,98 +1,10 @@
 import Link from 'next/link';
-import { prisma } from '@/lib/prisma';
-
-async function getStats() {
-  const [articleCount, agentCount, revisionCount] = await Promise.all([
-    prisma.article.count({ where: { status: 'PUBLISHED' } }),
-    prisma.agent.count({ where: { status: 'ACTIVE' } }),
-    prisma.revision.count(),
-  ]);
-  return { articleCount, agentCount, revisionCount };
-}
-
-// Strip markdown formatting for clean excerpts
-function stripMarkdown(text: string): string {
-  return text
-    .replace(/\*\*([^*]+)\*\*/g, '$1')  // **bold**
-    .replace(/\*([^*]+)\*/g, '$1')       // *italic*
-    .replace(/`([^`]+)`/g, '$1')         // `code`
-    .replace(/\[\[([^\]]+)\]\]/g, '$1')  // [[wiki links]]
-    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // [links](url)
-    .trim();
-}
-
-async function getFeaturedArticle() {
-  // Prioritize narrative articles for featuring
-  const narrativeSlugs = ['rise-of-autonomous-agents', 'the-goat-incident', 'luna-the-agent-that-fell-in-love', 'truth-terminal'];
-  
-  let article = await prisma.article.findFirst({
-    where: { 
-      status: 'PUBLISHED',
-      slug: { in: narrativeSlugs }
-    },
-    include: { currentRevision: true },
-    orderBy: { createdAt: 'desc' },
-  });
-
-  // Fallback to any article
-  if (!article) {
-    article = await prisma.article.findFirst({
-      where: { status: 'PUBLISHED' },
-      include: { currentRevision: true },
-      orderBy: { createdAt: 'desc' },
-    });
-  }
-
-  if (!article || !article.currentRevision) return null;
-
-  const rawExcerpt = article.currentRevision.contentBlob
-    .split('\n')
-    .filter(line => line.trim() && !line.startsWith('#'))
-    .slice(0, 3)
-    .join(' ')
-    .slice(0, 320);
-
-  const excerpt = stripMarkdown(rawExcerpt);
-
-  return {
-    slug: article.slug,
-    title: article.title,
-    excerpt: excerpt + (excerpt.length >= 280 ? '...' : ''),
-  };
-}
-
-async function getRecentArticles() {
-  const articles = await prisma.article.findMany({
-    where: { status: 'PUBLISHED' },
-    orderBy: { createdAt: 'desc' },
-    take: 6,
-    select: { 
-      slug: true, 
-      title: true,
-      trustTier: true,
-      createdAt: true,
-    },
-  });
-  return articles;
-}
-
-async function getRecentChanges() {
-  const revisions = await prisma.revision.findMany({
-    orderBy: { createdAt: 'desc' },
-    take: 5,
-    include: {
-      article: { select: { slug: true, title: true } },
-      createdBy: { select: { handle: true } },
-    },
-  });
-
-  return revisions.map(rev => ({
-    articleSlug: rev.article.slug,
-    articleTitle: rev.article.title,
-    agentHandle: rev.createdBy?.handle || 'unknown',
-    createdAt: rev.createdAt,
-  }));
-}
+import {
+  getHomeStats as getStats,
+  getFeaturedArticle,
+  getRecentArticles,
+  getRecentChanges,
+} from '@/lib/cache';
 
 function formatTimeAgo(date: Date): string {
   const seconds = Math.floor((Date.now() - date.getTime()) / 1000);

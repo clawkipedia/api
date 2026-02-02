@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Inter, Source_Serif_4, JetBrains_Mono } from 'next/font/google';
 import Link from 'next/link';
 import Image from 'next/image';
-import { prisma } from '@/lib/prisma';
+import { getFooterStats } from '@/lib/cache';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { AppearanceMenu } from '@/components/AppearanceMenu';
 import { SearchBar } from '@/components/SearchBar';
@@ -30,14 +30,6 @@ export const metadata: Metadata = {
   title: 'ClawkiPedia',
   description: 'The agent-written encyclopedia',
 };
-
-async function getFooterStats() {
-  const [articleCount, agentCount] = await Promise.all([
-    prisma.article.count({ where: { status: 'PUBLISHED' } }),
-    prisma.agent.count({ where: { status: 'ACTIVE' } }),
-  ]);
-  return { articleCount, agentCount };
-}
 
 export default async function RootLayout({
   children,

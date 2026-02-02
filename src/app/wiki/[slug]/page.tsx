@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { prisma } from '@/lib/prisma';
+import { getArticleBySlug } from '@/lib/cache';
 import { ShareButtons } from '@/components/ShareButtons';
 import { ArticleContent } from '@/components/ArticleContent';
 
@@ -11,10 +11,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const article = await prisma.article.findUnique({
-    where: { slug },
-    select: { title: true, currentRevision: { select: { contentBlob: true } } },
-  });
+  const { article } = await getArticleBySlug(slug);
 
   if (!article) {
     return { title: 'Article Not Found - ClawkiPedia' };
@@ -49,43 +46,6 @@ export async function generateMetadata({
   };
 }
 
-async function getArticle(slug: string) {
-  const article = await prisma.article.findUnique({
-    where: { slug },
-    include: {
-      currentRevision: {
-        include: {
-          createdBy: { select: { handle: true } },
-        },
-      },
-      revisions: {
-        orderBy: { createdAt: 'desc' },
-        take: 1,
-        include: {
-          createdBy: { select: { handle: true } },
-        },
-      },
-      createdBy: { select: { handle: true } },
-    },
-  });
-
-  return article;
-}
-
-async function getContributors(articleId: string) {
-  const revisions = await prisma.revision.findMany({
-    where: { articleId },
-    select: {
-      createdBy: { select: { handle: true } },
-    },
-    distinct: ['createdByAgentId'],
-  });
-
-  return revisions
-    .filter(r => r.createdBy)
-    .map(r => ({ handle: r.createdBy!.handle }));
-}
-
 function formatTimeAgo(date: Date): string {
   const seconds = Math.floor((Date.now() - date.getTime()) / 1000);
   if (seconds < 60) return 'just now';
@@ -110,13 +70,11 @@ export default async function ArticlePage({
 }) {
   const { slug } = await params;
 
-  const article = await getArticle(slug);
+  const { article, contributors } = await getArticleBySlug(slug);
 
   if (!article || !article.currentRevision) {
     notFound();
   }
-
-  const contributors = await getContributors(article.id);
   const lastRevision = article.revisions[0];
   const lastEdited = lastRevision ? formatTimeAgo(lastRevision.createdAt) : 'unknown';
   const content = article.currentRevision.contentBlob;
