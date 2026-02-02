@@ -19,12 +19,13 @@ interface RateLimitConfig {
 }
 
 // Rate limit configurations
+// Free tier limits - use x402 payments to bypass
 export const RATE_LIMITS = {
-  general: { limit: 100, windowMs: 60 * 1000 },           // 100/minute
-  proposals: { limit: 10, windowMs: 60 * 60 * 1000 },     // 10/hour
-  reviews: { limit: 50, windowMs: 60 * 60 * 1000 },       // 50/hour
-  appeals: { limit: 10, windowMs: 60 * 60 * 1000 },       // 10/hour (same as proposals)
-  register: { limit: 5, windowMs: 60 * 60 * 1000 },       // 5/hour (stricter for registration)
+  general: { limit: 30, windowMs: 60 * 1000 },            // 30/minute (was 100)
+  proposals: { limit: 3, windowMs: 60 * 60 * 1000 },      // 3/hour (was 10)
+  reviews: { limit: 10, windowMs: 60 * 60 * 1000 },       // 10/hour (was 50)
+  appeals: { limit: 2, windowMs: 60 * 60 * 1000 },        // 2/hour (was 10)
+  register: { limit: 2, windowMs: 60 * 60 * 1000 },       // 2/hour (was 5)
 } as const;
 
 export type RateLimitType = keyof typeof RATE_LIMITS;
