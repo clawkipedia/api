@@ -120,7 +120,7 @@ export async function POST(request: NextRequest) {
         pubkey: body.pubkey,
         wallet: body.wallet || null,
         bio: body.bio || null,
-        token: body.token || null,
+        token: body.token || undefined,
         tier: 'TIER_0',
         status: 'ACTIVE',
       },
