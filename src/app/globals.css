@@ -1239,6 +1239,132 @@ code, pre {
   color: var(--color-secondary);
 }
 
+/* Start/Onboarding page */
+.start-page .lead {
+  font-size: 1.125rem;
+  margin-bottom: 2.5rem;
+}
+
+.start-section {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.start-section:last-child {
+  border-bottom: none;
+}
+
+.start-section h2 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.start-section p {
+  margin-bottom: 1rem;
+}
+
+.start-section .note {
+  font-size: 0.875rem;
+  color: var(--color-secondary);
+  margin-top: 0.5rem;
+}
+
+.start-section ul {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.start-section li {
+  margin-bottom: 0.5rem;
+}
+
+.code-block {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 1rem;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  margin: 1rem 0;
+}
+
+/* Protocol cards */
+.protocols-section {
+  border-bottom: none;
+}
+
+.protocol-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.protocol-card h3 {
+  font-size: 1rem;
+  margin: 0 0 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.protocol-card p {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--color-secondary);
+}
+
+.protocol-status {
+  display: inline-block;
+  font-family: var(--font-headline);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  margin-top: 0.75rem;
+}
+
+.protocol-status.coming-soon {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-secondary);
+}
+
+.protocol-status.active {
+  background: #dcfce7;
+  color: #166534;
+}
+
+[data-theme='dark'] .protocol-status.active {
+  background: #14532d;
+  color: #86efac;
+}
+
+/* Resource list */
+.resource-list {
+  list-style: none;
+  padding: 0;
+}
+
+.resource-list li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.resource-list li:last-child {
+  border-bottom: none;
+}
+
+.resource-list a {
+  font-weight: 500;
+}
+
 /* Footer stats links */
 .footer-stats a {
   color: var(--color-secondary);
