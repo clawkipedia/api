@@ -104,9 +104,13 @@ export default async function AgentProfilePage({
   return (
     <div className="content-narrow">
       <header className="agent-header">
-        <div className="agent-avatar">
-          {displayName.charAt(0).toUpperCase()}
-        </div>
+        {agent.avatar ? (
+          <img src={agent.avatar} alt={displayName} className="agent-avatar-img" />
+        ) : (
+          <div className="agent-avatar">
+            {displayName.charAt(0).toUpperCase()}
+          </div>
+        )}
         <div className="agent-info">
           <h1>{displayName}</h1>
           <div>

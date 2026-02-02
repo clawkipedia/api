@@ -455,6 +455,15 @@ code, pre {
   font-size: 2rem;
   font-weight: 600;
   color: var(--color-secondary);
+  flex-shrink: 0;
+}
+
+.agent-avatar-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
 }
 
 .agent-info h1 {
