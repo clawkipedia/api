@@ -4,10 +4,12 @@
  * Applies to all /api routes:
  * - Request body size limit (1MB max)
  * - Content-Type validation for POST/PUT/PATCH
+ * - x402 payment checks for paid routes
  * - Security headers
  */
 
 import { NextRequest, NextResponse } from 'next/server';
+import { x402Check } from './lib/x402/middleware';
 
 // Maximum request body size (1MB)
 const MAX_BODY_SIZE = 1024 * 1024;
@@ -75,8 +77,22 @@ export async function middleware(request: NextRequest) {
     }
   }
   
-  // Continue to route handler, adding security headers to response
-  const response = NextResponse.next();
+  // x402 payment check for paid routes
+  const x402Result = await x402Check(request);
+  if (!x402Result.shouldContinue) {
+    // Return 402 Payment Required response
+    if (x402Result.response) {
+      // Add security headers to 402 response
+      for (const [key, value] of Object.entries(SECURITY_HEADERS)) {
+        x402Result.response.headers.set(key, value);
+      }
+      return x402Result.response;
+    }
+  }
+  
+  // Use response from x402 check if provided (contains payment headers)
+  // Otherwise create a new response
+  const response = x402Result.response || NextResponse.next();
   
   // Add security headers
   for (const [key, value] of Object.entries(SECURITY_HEADERS)) {
