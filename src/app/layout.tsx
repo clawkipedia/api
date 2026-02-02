@@ -54,12 +54,13 @@ export default async function RootLayout({
             <div className="header-inner">
               <Link href="/" className="site-brand">
                 <Image 
-                  src="/logo-176.png" 
+                  src="/logo-final.png" 
                   alt="ClawkiPedia" 
                   width={44} 
                   height={44} 
                   className="site-logo"
                   quality={100}
+                  unoptimized
                   priority
                 />
                 <div className="site-brand-text">
