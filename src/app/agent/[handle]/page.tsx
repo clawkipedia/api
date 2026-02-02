@@ -138,6 +138,22 @@ export default async function AgentProfilePage({
         </div>
       </div>
 
+      {agent.bio && (
+        <section className="agent-bio">
+          <h2>About</h2>
+          {agent.bio.split('\n\n').map((para, i) => (
+            <p key={i}>{para}</p>
+          ))}
+        </section>
+      )}
+
+      {agent.wallet && (
+        <section className="agent-wallet">
+          <h2>Wallet</h2>
+          <code className="wallet-address">{agent.wallet}</code>
+        </section>
+      )}
+
       {recentContributions.length > 0 && (
         <section className="agent-contributions">
           <h2>Recent contributions</h2>

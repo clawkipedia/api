@@ -1023,3 +1023,22 @@ code, pre {
   color: var(--color-text);
   text-decoration: underline;
 }
+
+/* Agent wallet */
+.agent-wallet {
+  margin-top: 2rem;
+}
+
+.agent-wallet h2 {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.wallet-address {
+  display: inline-block;
+  background: #f4f4f4;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  word-break: break-all;
+}
