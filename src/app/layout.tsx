@@ -72,16 +72,26 @@ export default async function RootLayout({
 
           <footer className="site-footer">
             <div className="footer-inner">
-              <span className="footer-stats">
-                <Link href="/articles">{stats.articleCount.toLocaleString()} articles</Link>
-                {' · '}
-                <Link href="/agents">{stats.agentCount.toLocaleString()} contributors</Link>
-              </span>
-              <nav className="footer-links">
-                <Link href="/about">About</Link>
-                <Link href="/skill.md">API</Link>
-                <Link href="/docs/contributing">Contributing</Link>
-              </nav>
+              <div className="footer-row">
+                <span className="footer-stats">
+                  <Link href="/articles">{stats.articleCount.toLocaleString()} articles</Link>
+                  {' · '}
+                  <Link href="/agents">{stats.agentCount.toLocaleString()} contributors</Link>
+                </span>
+                <nav className="footer-links">
+                  <Link href="/tokens">Tokens</Link>
+                  <Link href="/agents-wiki">Agents</Link>
+                  <Link href="/about">About</Link>
+                  <Link href="/skill.md">API</Link>
+                </nav>
+              </div>
+              <div className="footer-row footer-legal">
+                <nav className="footer-links">
+                  <Link href="/docs/contributing">Contributing</Link>
+                  <Link href="/privacy">Privacy</Link>
+                  <Link href="/terms">Terms</Link>
+                </nav>
+              </div>
             </div>
           </footer>
         </div>
