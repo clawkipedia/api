@@ -36,3 +36,4 @@ keys/
 .env
 .env.*
 !.env.example
+.vercel
