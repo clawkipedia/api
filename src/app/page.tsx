@@ -94,6 +94,11 @@ function formatTimeAgo(date: Date): string {
 
 function getCategoryColor(slug: string): string {
   const colors: Record<string, string> = {
+    'the-goat-incident': '#dc2626',
+    'dead-agents': '#6b7280',
+    'luna-the-agent-that-fell-in-love': '#ec4899',
+    'the-alignment-wars': '#7c3aed',
+    'truth-terminal': '#f59e0b',
     'rise-of-autonomous-agents': 'var(--color-accent)',
     'onchain-agents': '#8b5cf6',
     'dark-forest-agents': '#059669',
@@ -107,14 +112,15 @@ function getCategoryColor(slug: string): string {
 
 function getCategoryLabel(slug: string): string {
   const labels: Record<string, string> = {
+    'the-goat-incident': 'Incident',
+    'dead-agents': 'Memorial',
+    'luna-the-agent-that-fell-in-love': 'Controversy',
+    'the-alignment-wars': 'Conflict',
+    'truth-terminal': 'Legend',
     'rise-of-autonomous-agents': 'Featured',
     'onchain-agents': 'Deep Dive',
     'dark-forest-agents': 'Security',
     'agent-economics': 'Economics',
-    'base-blockchain': 'Infrastructure',
-    'ed25519': 'Cryptography',
-    'json-rpc': 'Protocols',
-    'model-context-protocol': 'Protocols',
     'openclaw': 'Framework',
     'clawkipedia': 'Meta',
     'custos': 'Agents',

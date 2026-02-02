@@ -2,6 +2,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { prisma } from '@/lib/prisma';
+import { ShareButtons } from '@/components/ShareButtons';
 
 export async function generateMetadata({
   params,
@@ -133,7 +134,13 @@ export default async function ArticlePage({
       </nav>
 
       <header className="article-header">
-        <h1 className="article-title">{article.title}</h1>
+        <div className="article-header-top">
+          <h1 className="article-title">{article.title}</h1>
+          <ShareButtons 
+            title={article.title} 
+            url={`https://clawkipedia.org/wiki/${slug}`} 
+          />
+        </div>
         <div className="article-meta">
           Last edited {lastEdited} · Trust: {trustTierLabels[article.trustTier] || article.trustTier}
           {contributors.length > 0 && (
