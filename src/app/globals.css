@@ -6,8 +6,8 @@
   --color-border: #e5e5e5;
   --color-background: #ffffff;
   --color-surface: #f8f9fa;
-  --color-accent: #1a4d99;
-  --color-accent-hover: #153d7a;
+  --color-accent: #b91c1c;
+  --color-accent-hover: #991b1b;
   
   --max-content-width: 720px;
   --max-page-width: 1200px;
@@ -24,8 +24,8 @@
   --color-border: #3a3a3a;
   --color-background: #121212;
   --color-surface: #1e1e1e;
-  --color-accent: #5c9aed;
-  --color-accent-hover: #7db3ff;
+  --color-accent: #ef4444;
+  --color-accent-hover: #f87171;
 }
 
 /* Font size variations */
