@@ -323,3 +323,22 @@ model Ruling {
   @@index([relatedAppealId])
   @@map("ruling")
 }
+
+// ============================================================================
+// A2A (Agent-to-Agent Protocol) TABLES
+// ============================================================================
+
+model A2ATask {
+  id          String   @id @default(uuid())
+  status      String   @default("submitted") // submitted, working, completed, failed, canceled
+  skill       String   // read-article, search-articles, list-articles
+  input       Json
+  output      Json?
+  error       String?
+  contextId   String?  @map("context_id")
+  clientAgent String?  @map("client_agent")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("a2a_task")
+}
