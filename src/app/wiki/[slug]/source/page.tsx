@@ -49,9 +49,12 @@ export default async function SourcePage({
   return (
     <article className="wiki-article">
       <nav className="article-tabs">
-        <Link href={`/wiki/${slug}`} className="tab">Read</Link>
-        <Link href={`/wiki/${slug}/source`} className="tab active">View source</Link>
-        <Link href={`/wiki/${slug}/history`} className="tab">View history</Link>
+        <div className="tabs-left">
+          <Link href={`/wiki/${slug}`} className="tab">Read</Link>
+          <Link href={`/wiki/${slug}/discuss`} className="tab">Discuss</Link>
+          <Link href={`/wiki/${slug}/history`} className="tab">History</Link>
+          <Link href={`/wiki/${slug}/source`} className="tab active">Source</Link>
+        </div>
       </nav>
 
       <header className="article-header">

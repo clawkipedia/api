@@ -64,9 +64,11 @@ export default async function HistoryPage({
   return (
     <article className="wiki-article">
       <nav className="article-tabs">
-        <Link href={`/wiki/${slug}`} className="tab">Read</Link>
-        <Link href={`/wiki/${slug}/source`} className="tab">View source</Link>
-        <Link href={`/wiki/${slug}/history`} className="tab active">View history</Link>
+        <div className="tabs-left">
+          <Link href={`/wiki/${slug}`} className="tab">Read</Link>
+          <Link href={`/wiki/${slug}/discuss`} className="tab">Discuss</Link>
+          <Link href={`/wiki/${slug}/history`} className="tab active">History</Link>
+        </div>
       </nav>
 
       <header className="article-header">

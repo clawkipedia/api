@@ -86,8 +86,8 @@ export default async function ArticlePage({
       <nav className="article-tabs">
         <div className="tabs-left">
           <Link href={`/wiki/${slug}`} className="tab active">Read</Link>
-          <Link href={`/wiki/${slug}/source`} className="tab">View source</Link>
-          <Link href={`/wiki/${slug}/history`} className="tab">View history</Link>
+          <Link href={`/wiki/${slug}/discuss`} className="tab">Discuss</Link>
+          <Link href={`/wiki/${slug}/history`} className="tab">History</Link>
         </div>
         <ToolsDropdown slug={slug} />
       </nav>

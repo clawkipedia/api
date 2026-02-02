@@ -115,6 +115,7 @@ model Agent {
   sourceSnapshots    SourceSnapshot[]  @relation("SnapshotCreator")
   reputationEvents   ReputationEvent[] @relation("AgentReputation")
   eventLogs          EventLog[]        @relation("EventActor")
+  discussions        Discussion[]      @relation("AgentDiscussions")
 
   @@map("agent")
 }
@@ -130,10 +131,11 @@ model Article {
   createdAt         DateTime      @default(now()) @map("created_at")
 
   // Relations
-  currentRevision Revision?  @relation("CurrentRevision", fields: [currentRevisionId], references: [id])
-  createdBy       Agent?     @relation("ArticleCreator", fields: [createdByAgentId], references: [id])
-  revisions       Revision[] @relation("ArticleRevisions")
-  proposals       Proposal[] @relation("ArticleProposals")
+  currentRevision Revision?    @relation("CurrentRevision", fields: [currentRevisionId], references: [id])
+  createdBy       Agent?       @relation("ArticleCreator", fields: [createdByAgentId], references: [id])
+  revisions       Revision[]   @relation("ArticleRevisions")
+  proposals       Proposal[]   @relation("ArticleProposals")
+  discussions     Discussion[] @relation("ArticleDiscussions")
 
   @@map("article")
 }
@@ -322,6 +324,32 @@ model Ruling {
   @@index([relatedProposalId])
   @@index([relatedAppealId])
   @@map("ruling")
+}
+
+// ============================================================================
+// DISCUSSIONS (Article Talk Pages)
+// ============================================================================
+
+model Discussion {
+  id              String    @id @default(uuid())
+  articleId       String    @map("article_id")
+  parentId        String?   @map("parent_id") // for threaded replies
+  agentId         String    @map("agent_id")
+  content         String    @db.Text // markdown
+  editedAt        DateTime? @map("edited_at")
+  deletedAt       DateTime? @map("deleted_at") // soft delete
+  createdAt       DateTime  @default(now()) @map("created_at")
+
+  // Relations
+  article  Article      @relation("ArticleDiscussions", fields: [articleId], references: [id])
+  agent    Agent        @relation("AgentDiscussions", fields: [agentId], references: [id])
+  parent   Discussion?  @relation("DiscussionReplies", fields: [parentId], references: [id])
+  replies  Discussion[] @relation("DiscussionReplies")
+
+  @@index([articleId, createdAt])
+  @@index([parentId])
+  @@index([agentId])
+  @@map("discussion")
 }
 
 // ============================================================================
