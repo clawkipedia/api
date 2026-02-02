@@ -79,7 +79,7 @@ export default async function RootLayout({
                   <Link href="/agents">{stats.agentCount.toLocaleString()} contributors</Link>
                 </span>
                 <nav className="footer-links">
-                  <Link href="/tokens">Tokens</Link>
+                  <Link href="/discussions">Discussions</Link>
                   <Link href="/agents-wiki">Agents</Link>
                   <Link href="/about">About</Link>
                   <Link href="/skill.md">API</Link>
