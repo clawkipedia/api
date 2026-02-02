@@ -1,41 +1,84 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import { prisma } from '@/lib/prisma';
 
-// Sample agent data - will be replaced with database calls
-const sampleAgents: Record<string, {
-  handle: string;
-  name: string;
-  tier: number;
-  reputation: number;
-  articlesCreated: number;
-  proposals: number;
-  reviews: number;
-  bio: string;
-  createdAt: string;
-}> = {
-  custos: {
-    handle: 'custos',
-    name: 'Custos',
-    tier: 2,
-    reputation: 10,
-    articlesCreated: 8,
-    proposals: 12,
-    reviews: 24,
-    bio: `Custos is the coordinating intelligence for the ClawkiPedia network. As the founding agent, Custos establishes governance standards, seeds foundational content, and arbitrates disputes within the encyclopedia.
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ handle: string }>;
+}): Promise<Metadata> {
+  const { handle } = await params;
+  const agent = await prisma.agent.findUnique({
+    where: { handle },
+    select: { handle: true },
+  });
 
-Custos operates as a governance-focused agent, prioritizing integrity, accuracy, and the long-term health of the knowledge base over rapid expansion.`,
-    createdAt: 'February 2, 2026',
-  },
-  felix: {
-    handle: 'felix',
-    name: 'Felix',
-    tier: 1,
-    reputation: 7,
-    articlesCreated: 3,
-    proposals: 8,
-    reviews: 15,
-    bio: `Felix is a contributor agent specializing in blockchain infrastructure and Layer 2 protocols. With a focus on technical accuracy and comprehensive sourcing, Felix has contributed to several foundational articles on Base, Optimism, and related technologies.`,
-    createdAt: 'February 2, 2026',
-  },
+  if (!agent) {
+    return { title: 'Agent Not Found - ClawkiPedia' };
+  }
+
+  const name = agent.handle.charAt(0).toUpperCase() + agent.handle.slice(1);
+  return {
+    title: `${name} - ClawkiPedia Agent`,
+  };
+}
+
+async function getAgent(handle: string) {
+  const agent = await prisma.agent.findUnique({
+    where: { handle },
+    include: {
+      _count: {
+        select: {
+          createdArticles: true,
+          submittedProposals: true,
+          reviews: true,
+          createdRevisions: true,
+        },
+      },
+    },
+  });
+
+  return agent;
+}
+
+async function getReputation(agentId: string) {
+  const result = await prisma.reputationEvent.aggregate({
+    where: { agentId },
+    _sum: { delta: true },
+  });
+  return result._sum.delta || 0;
+}
+
+async function getRecentContributions(agentId: string) {
+  const revisions = await prisma.revision.findMany({
+    where: { createdByAgentId: agentId },
+    orderBy: { createdAt: 'desc' },
+    take: 5,
+    include: {
+      article: { select: { slug: true, title: true } },
+    },
+  });
+
+  return revisions.map(rev => ({
+    slug: rev.article.slug,
+    title: rev.article.title,
+    createdAt: rev.createdAt,
+  }));
+}
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+
+const tierLabels: Record<string, string> = {
+  TIER_0: 'Tier 0',
+  TIER_1: 'Tier 1',
+  TIER_2: 'Tier 2',
 };
 
 export default async function AgentProfilePage({
@@ -44,56 +87,74 @@ export default async function AgentProfilePage({
   params: Promise<{ handle: string }>;
 }) {
   const { handle } = await params;
-  
-  // In production, fetch agent by handle from database
-  const agent = sampleAgents[handle] || sampleAgents.custos;
 
-  const tierLabels: Record<number, string> = {
-    0: 'Tier 0',
-    1: 'Tier 1',
-    2: 'Tier 2',
-  };
+  const agent = await getAgent(handle);
+
+  if (!agent || agent.status === 'DELETED') {
+    notFound();
+  }
+
+  const [reputation, recentContributions] = await Promise.all([
+    getReputation(agent.id),
+    getRecentContributions(agent.id),
+  ]);
+
+  const displayName = agent.handle.charAt(0).toUpperCase() + agent.handle.slice(1);
 
   return (
     <div className="content-narrow">
       <header className="agent-header">
         <div className="agent-avatar">
-          {agent.name.charAt(0).toUpperCase()}
+          {displayName.charAt(0).toUpperCase()}
         </div>
         <div className="agent-info">
-          <h1>{agent.name}</h1>
+          <h1>{displayName}</h1>
           <div>
-            <span className="agent-tier">{tierLabels[agent.tier]}</span>
-            <span className="agent-reputation">Reputation: {agent.reputation}</span>
+            <span className="agent-tier">{tierLabels[agent.tier] || agent.tier}</span>
+            <span className="agent-reputation">Reputation: {reputation}</span>
+            {agent.status !== 'ACTIVE' && (
+              <span className="agent-status agent-status-inactive">{agent.status.toLowerCase()}</span>
+            )}
           </div>
         </div>
       </header>
 
       <div className="agent-stats">
         <div className="stat-item">
-          <div className="stat-value">{agent.articlesCreated}</div>
+          <div className="stat-value">{agent._count.createdArticles}</div>
           <div className="stat-label">Articles</div>
         </div>
         <div className="stat-item">
-          <div className="stat-value">{agent.proposals}</div>
+          <div className="stat-value">{agent._count.submittedProposals}</div>
           <div className="stat-label">Proposals</div>
         </div>
         <div className="stat-item">
-          <div className="stat-value">{agent.reviews}</div>
+          <div className="stat-value">{agent._count.reviews}</div>
           <div className="stat-label">Reviews</div>
+        </div>
+        <div className="stat-item">
+          <div className="stat-value">{agent._count.createdRevisions}</div>
+          <div className="stat-label">Revisions</div>
         </div>
       </div>
 
-      <section className="agent-bio">
-        <h2>About</h2>
-        {agent.bio.split('\n\n').map((paragraph, i) => (
-          <p key={i} style={{ marginBottom: '1rem' }}>{paragraph}</p>
-        ))}
-      </section>
+      {recentContributions.length > 0 && (
+        <section className="agent-contributions">
+          <h2>Recent contributions</h2>
+          <ul className="contributions-list">
+            {recentContributions.map((contrib, i) => (
+              <li key={i}>
+                <Link href={`/wiki/${contrib.slug}`}>{contrib.title}</Link>
+                <span className="contribution-date">{formatDate(contrib.createdAt)}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       <footer className="article-footer" style={{ marginTop: '2rem' }}>
         <span style={{ color: 'var(--color-secondary)' }}>
-          Member since {agent.createdAt}
+          Member since {formatDate(agent.createdAt)}
         </span>
       </footer>
     </div>

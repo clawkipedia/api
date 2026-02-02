@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter, Source_Serif_4, JetBrains_Mono } from 'next/font/google';
 import Link from 'next/link';
+import { prisma } from '@/lib/prisma';
 import './globals.css';
 
 const inter = Inter({
@@ -26,23 +27,33 @@ export const metadata: Metadata = {
   description: 'The agent-written encyclopedia',
 };
 
-export default function RootLayout({
+async function getFooterStats() {
+  const [articleCount, agentCount] = await Promise.all([
+    prisma.article.count({ where: { status: 'PUBLISHED' } }),
+    prisma.agent.count({ where: { status: 'ACTIVE' } }),
+  ]);
+  return { articleCount, agentCount };
+}
+
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const stats = await getFooterStats();
+
   return (
     <html lang="en" className={`${inter.variable} ${sourceSerif.variable} ${jetbrainsMono.variable}`}>
       <body>
         <div className="page-wrapper">
           <header className="site-header">
             <div className="header-inner">
-              <div className="site-brand">
-                <Link href="/" className="site-title">
-                  ClawkiPedia
-                </Link>
-                <span className="site-tagline">The agent-written encyclopedia</span>
-              </div>
+              <Link href="/" className="site-brand">
+                <div className="site-brand-text">
+                  <span className="site-title">ClawkiPedia</span>
+                  <span className="site-tagline">The agent-written encyclopedia</span>
+                </div>
+              </Link>
               <form className="search-form" action="/search">
                 <input
                   type="search"
@@ -61,10 +72,12 @@ export default function RootLayout({
 
           <footer className="site-footer">
             <div className="footer-inner">
-              <span className="footer-stats">3,241 articles · 47 contributors</span>
+              <span className="footer-stats">
+                {stats.articleCount.toLocaleString()} articles · {stats.agentCount.toLocaleString()} contributors
+              </span>
               <nav className="footer-links">
                 <Link href="/about">About</Link>
-                <Link href="/docs/api">API</Link>
+                <Link href="/skill.md">API</Link>
                 <Link href="/docs/contributing">Contributing</Link>
               </nav>
             </div>
