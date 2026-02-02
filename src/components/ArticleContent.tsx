@@ -7,83 +7,75 @@ interface ArticleContentProps {
   content: string;
 }
 
-// Convert wiki links [[Article Name]] to actual links
-function parseWikiLinks(text: string): React.ReactNode[] {
-  const parts: React.ReactNode[] = [];
-  const regex = /\[\[([^\]]+)\]\]/g;
-  let lastIndex = 0;
-  let match;
-
-  while ((match = regex.exec(text)) !== null) {
-    // Add text before the match
-    if (match.index > lastIndex) {
-      parts.push(parseInlineFormatting(text.slice(lastIndex, match.index)));
-    }
-    
-    // Add the wiki link
-    const articleName = match[1];
-    const slug = articleName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-    parts.push(
-      <Link key={match.index} href={`/wiki/${slug}`} className="wiki-link">
-        {articleName}
-      </Link>
-    );
-    
-    lastIndex = match.index + match[0].length;
-  }
-  
-  // Add remaining text
-  if (lastIndex < text.length) {
-    parts.push(parseInlineFormatting(text.slice(lastIndex)));
-  }
-  
-  return parts.length > 0 ? parts : [parseInlineFormatting(text)];
-}
-
-// Parse inline formatting: **bold**, *italic*, `code`
-function parseInlineFormatting(text: string): React.ReactNode {
+// Parse all inline formatting in order of priority
+function parseInline(text: string): React.ReactNode {
   if (!text) return null;
   
-  const parts: React.ReactNode[] = [];
-  // Match **bold**, *italic*, `code` patterns
-  const regex = /(\*\*[^*]+\*\*|\*[^*]+\*|`[^`]+`)/g;
-  let lastIndex = 0;
-  let match;
+  const result: React.ReactNode[] = [];
+  let remaining = text;
   let keyCounter = 0;
 
-  while ((match = regex.exec(text)) !== null) {
-    // Add plain text before match
-    if (match.index > lastIndex) {
-      parts.push(text.slice(lastIndex, match.index));
-    }
-    
-    const matched = match[0];
-    if (matched.startsWith('**') && matched.endsWith('**')) {
-      // Bold
-      parts.push(<strong key={keyCounter++}>{matched.slice(2, -2)}</strong>);
-    } else if (matched.startsWith('*') && matched.endsWith('*')) {
-      // Italic
-      parts.push(<em key={keyCounter++}>{matched.slice(1, -1)}</em>);
-    } else if (matched.startsWith('`') && matched.endsWith('`')) {
-      // Inline code
-      parts.push(<code key={keyCounter++}>{matched.slice(1, -1)}</code>);
-    }
-    
-    lastIndex = match.index + match[0].length;
-  }
-  
-  // Add remaining text
-  if (lastIndex < text.length) {
-    parts.push(text.slice(lastIndex));
-  }
-  
-  return parts.length === 1 ? parts[0] : <>{parts}</>;
-}
+  while (remaining.length > 0) {
+    // Find the earliest match of any pattern
+    const patterns = [
+      { regex: /\[\[([^\]]+)\]\]/, type: 'wikilink' },
+      { regex: /\*\*([^*]+)\*\*/, type: 'bold' },
+      { regex: /\*([^*]+)\*/, type: 'italic' },
+      { regex: /`([^`]+)`/, type: 'code' },
+    ];
 
-// Parse a single line into formatted content
-function parseLine(line: string): React.ReactNode {
-  // First handle wiki links, then inline formatting
-  return <>{parseWikiLinks(line)}</>;
+    let earliestMatch: { index: number; match: RegExpMatchArray; type: string } | null = null;
+
+    for (const pattern of patterns) {
+      const match = remaining.match(pattern.regex);
+      if (match && match.index !== undefined) {
+        if (!earliestMatch || match.index < earliestMatch.index) {
+          earliestMatch = { index: match.index, match, type: pattern.type };
+        }
+      }
+    }
+
+    if (!earliestMatch) {
+      // No more patterns, add remaining text
+      result.push(remaining);
+      break;
+    }
+
+    // Add text before the match
+    if (earliestMatch.index > 0) {
+      result.push(remaining.slice(0, earliestMatch.index));
+    }
+
+    // Add the formatted element
+    const content = earliestMatch.match[1];
+    const fullMatch = earliestMatch.match[0];
+
+    switch (earliestMatch.type) {
+      case 'wikilink': {
+        const slug = content.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+        result.push(
+          <Link key={keyCounter++} href={`/wiki/${slug}`} className="wiki-link">
+            {content}
+          </Link>
+        );
+        break;
+      }
+      case 'bold':
+        result.push(<strong key={keyCounter++}>{parseInline(content)}</strong>);
+        break;
+      case 'italic':
+        result.push(<em key={keyCounter++}>{parseInline(content)}</em>);
+        break;
+      case 'code':
+        result.push(<code key={keyCounter++}>{content}</code>);
+        break;
+    }
+
+    // Continue with the rest
+    remaining = remaining.slice(earliestMatch.index + fullMatch.length);
+  }
+
+  return result.length === 1 ? result[0] : <>{result}</>;
 }
 
 export function ArticleContent({ content }: ArticleContentProps) {
@@ -100,7 +92,7 @@ export function ArticleContent({ content }: ArticleContentProps) {
       elements.push(
         <ul key={keyCounter++} className="article-list">
           {currentList.map((item, i) => (
-            <li key={i}>{parseLine(item)}</li>
+            <li key={i}>{parseInline(item)}</li>
           ))}
         </ul>
       );
@@ -151,7 +143,7 @@ export function ArticleContent({ content }: ArticleContentProps) {
     // H2
     if (line.startsWith('## ')) {
       flushList();
-      const headingText = line.replace('## ', '');
+      const headingText = line.slice(3);
       const headingId = headingText.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
       elements.push(
         <h2 key={keyCounter++} id={headingId} className="article-h2">
@@ -164,7 +156,7 @@ export function ArticleContent({ content }: ArticleContentProps) {
     // H3
     if (line.startsWith('### ')) {
       flushList();
-      const headingText = line.replace('### ', '');
+      const headingText = line.slice(4);
       elements.push(
         <h3 key={keyCounter++} className="article-h3">
           {headingText}
@@ -178,7 +170,7 @@ export function ArticleContent({ content }: ArticleContentProps) {
       flushList();
       elements.push(
         <blockquote key={keyCounter++} className="article-blockquote">
-          {parseLine(line.slice(2))}
+          {parseInline(line.slice(2))}
         </blockquote>
       );
       continue;
@@ -186,7 +178,7 @@ export function ArticleContent({ content }: ArticleContentProps) {
     
     // List item
     if (line.startsWith('- ') || line.startsWith('* ')) {
-      currentList.push(line.replace(/^[-*]\s+/, ''));
+      currentList.push(line.slice(2));
       continue;
     }
     
@@ -200,7 +192,7 @@ export function ArticleContent({ content }: ArticleContentProps) {
     flushList();
     elements.push(
       <p key={keyCounter++} className="article-paragraph">
-        {parseLine(line)}
+        {parseInline(line)}
       </p>
     );
   }
