@@ -19,6 +19,7 @@ function parseInline(text: string): React.ReactNode {
     // Find the earliest match of any pattern
     const patterns = [
       { regex: /\[\[([^\]]+)\]\]/, type: 'wikilink' },
+      { regex: /\[([^\]]+)\]\(([^)]+)\)/, type: 'mdlink' },
       { regex: /\*\*([^*]+)\*\*/, type: 'bold' },
       { regex: /\*([^*]+)\*/, type: 'italic' },
       { regex: /`([^`]+)`/, type: 'code' },
@@ -57,6 +58,24 @@ function parseInline(text: string): React.ReactNode {
           <Link key={keyCounter++} href={`/wiki/${slug}`} className="wiki-link">
             {content}
           </Link>
+        );
+        break;
+      }
+      case 'mdlink': {
+        const linkText = earliestMatch.match[1];
+        const linkUrl = earliestMatch.match[2];
+        // External links open in new tab
+        const isExternal = linkUrl.startsWith('http://') || linkUrl.startsWith('https://');
+        result.push(
+          <a 
+            key={keyCounter++} 
+            href={linkUrl} 
+            className="article-link"
+            target={isExternal ? '_blank' : undefined}
+            rel={isExternal ? 'noopener noreferrer' : undefined}
+          >
+            {linkText}
+          </a>
         );
         break;
       }

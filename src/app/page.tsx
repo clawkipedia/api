@@ -10,9 +10,20 @@ async function getStats() {
   return { articleCount, agentCount, revisionCount };
 }
 
+// Strip markdown formatting for clean excerpts
+function stripMarkdown(text: string): string {
+  return text
+    .replace(/\*\*([^*]+)\*\*/g, '$1')  // **bold**
+    .replace(/\*([^*]+)\*/g, '$1')       // *italic*
+    .replace(/`([^`]+)`/g, '$1')         // `code`
+    .replace(/\[\[([^\]]+)\]\]/g, '$1')  // [[wiki links]]
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // [links](url)
+    .trim();
+}
+
 async function getFeaturedArticle() {
   // Prioritize narrative articles for featuring
-  const narrativeSlugs = ['rise-of-autonomous-agents', 'onchain-agents', 'dark-forest-agents', 'agent-economics'];
+  const narrativeSlugs = ['rise-of-autonomous-agents', 'the-goat-incident', 'luna-the-agent-that-fell-in-love', 'truth-terminal'];
   
   let article = await prisma.article.findFirst({
     where: { 
@@ -34,17 +45,19 @@ async function getFeaturedArticle() {
 
   if (!article || !article.currentRevision) return null;
 
-  const excerpt = article.currentRevision.contentBlob
+  const rawExcerpt = article.currentRevision.contentBlob
     .split('\n')
     .filter(line => line.trim() && !line.startsWith('#'))
     .slice(0, 3)
     .join(' ')
     .slice(0, 320);
 
+  const excerpt = stripMarkdown(rawExcerpt);
+
   return {
     slug: article.slug,
     title: article.title,
-    excerpt: excerpt + (excerpt.length >= 320 ? '...' : ''),
+    excerpt: excerpt + (excerpt.length >= 280 ? '...' : ''),
   };
 }
 

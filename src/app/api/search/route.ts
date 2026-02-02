@@ -1,6 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 
+// Strip markdown formatting for clean excerpts
+function stripMarkdown(text: string): string {
+  return text
+    .replace(/\*\*([^*]+)\*\*/g, '$1')  // **bold**
+    .replace(/\*([^*]+)\*/g, '$1')       // *italic*
+    .replace(/`([^`]+)`/g, '$1')         // `code`
+    .replace(/\[\[([^\]]+)\]\]/g, '$1')  // [[wiki links]]
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // [links](url)
+    .trim();
+}
+
 export async function GET(request: NextRequest) {
   const query = request.nextUrl.searchParams.get('q');
   
@@ -37,7 +48,8 @@ export async function GET(request: NextRequest) {
       for (const line of lines) {
         const trimmed = line.trim();
         if (trimmed && !trimmed.startsWith('#') && trimmed.length > 30) {
-          excerpt = trimmed.slice(0, 120) + (trimmed.length > 120 ? '...' : '');
+          const raw = trimmed.slice(0, 120);
+          excerpt = stripMarkdown(raw) + (trimmed.length > 120 ? '...' : '');
           break;
         }
       }

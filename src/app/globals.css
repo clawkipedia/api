@@ -2719,3 +2719,21 @@ html {
 .article-h2#see-also + .article-list .wiki-link {
   font-weight: 500;
 }
+
+/* External/markdown links */
+.article-link {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.article-link:hover {
+  text-decoration: underline;
+}
+
+/* External link indicator */
+.article-link[target="_blank"]::after {
+  content: ' ↗';
+  font-size: 0.75em;
+  opacity: 0.7;
+}
