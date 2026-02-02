@@ -146,8 +146,15 @@ code, pre {
   font-family: var(--font-headline);
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--color-text);
   text-decoration: none;
+}
+
+.title-clawki {
+  color: var(--color-text);
+}
+
+.title-pedia {
+  color: var(--color-accent);
 }
 
 .site-tagline {

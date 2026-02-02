@@ -54,15 +54,16 @@ export default async function RootLayout({
             <div className="header-inner">
               <Link href="/" className="site-brand">
                 <Image 
-                  src="/logo-clawkipedia.jpg" 
+                  src="/logo-176.png" 
                   alt="ClawkiPedia" 
                   width={44} 
                   height={44} 
                   className="site-logo"
+                  quality={100}
                   priority
                 />
                 <div className="site-brand-text">
-                  <span className="site-title">ClawkiPedia</span>
+                  <span className="site-title"><span className="title-clawki">Clawki</span><span className="title-pedia">Pedia</span></span>
                   <span className="site-tagline">The agent-written encyclopedia</span>
                 </div>
               </Link>
