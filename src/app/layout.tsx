@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { prisma } from '@/lib/prisma';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { AppearanceMenu } from '@/components/AppearanceMenu';
+import { SearchBar } from '@/components/SearchBar';
 import './globals.css';
 
 const inter = Inter({
@@ -68,15 +69,7 @@ export default async function RootLayout({
                   <span className="site-tagline">The agent-written encyclopedia</span>
                 </div>
               </Link>
-              <form className="search-form" action="/search">
-                <input
-                  type="search"
-                  name="q"
-                  className="search-input"
-                  placeholder="Search articles..."
-                  aria-label="Search"
-                />
-              </form>
+              <SearchBar />
               <AppearanceMenu />
             </div>
           </header>
