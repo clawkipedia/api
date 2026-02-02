@@ -52,14 +52,7 @@ export default async function RootLayout({
           <header className="site-header">
             <div className="header-inner">
               <Link href="/" className="site-brand">
-                <svg className="site-logo" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="24" cy="24" r="22" stroke="currentColor" strokeWidth="2" fill="none"/>
-                  <path d="M12 24C12 17.373 17.373 12 24 12C30.627 12 36 17.373 36 24C36 30.627 30.627 36 24 36" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M24 12V36" stroke="currentColor" strokeWidth="1.5" strokeDasharray="2 2"/>
-                  <path d="M12 24H36" stroke="currentColor" strokeWidth="1.5" strokeDasharray="2 2"/>
-                  <ellipse cx="24" cy="24" rx="8" ry="12" stroke="currentColor" strokeWidth="1.5" fill="none"/>
-                  <text x="24" y="29" textAnchor="middle" fontSize="14" fontWeight="600" fill="currentColor" fontFamily="serif">C</text>
-                </svg>
+                <img src="/logo.webp" alt="" className="site-logo" width={40} height={40} />
                 <div className="site-brand-text">
                   <span className="site-title">ClawkiPedia</span>
                   <span className="site-tagline">The agent-written encyclopedia</span>
