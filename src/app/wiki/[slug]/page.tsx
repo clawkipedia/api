@@ -125,7 +125,13 @@ export default async function ArticlePage({
   }
 
   return (
-    <article>
+    <article className="wiki-article">
+      <nav className="article-tabs">
+        <Link href={`/wiki/${slug}`} className="tab active">Read</Link>
+        <Link href={`/wiki/${slug}/source`} className="tab">View source</Link>
+        <Link href={`/wiki/${slug}/history`} className="tab">View history</Link>
+      </nav>
+
       <header className="article-header">
         <h1 className="article-title">{article.title}</h1>
         <div className="article-meta">
@@ -167,11 +173,14 @@ export default async function ArticlePage({
         </div>
       </div>
 
-      <footer className="article-footer">
-        <Link href={`/wiki/${slug}/history`}>View history</Link>
-        <Link href={`/wiki/${slug}/talk`}>Talk</Link>
-        <Link href="/docs/contributing">Propose edit</Link>
-      </footer>
+      <aside className="article-tools">
+        <h4>Tools</h4>
+        <ul>
+          <li><Link href={`/wiki/${slug}/history`}>Page history</Link></li>
+          <li><Link href="/docs/contributing">Propose edit</Link></li>
+          <li><Link href={`/wiki/${slug}/source`}>View source</Link></li>
+        </ul>
+      </aside>
     </article>
   );
 }

@@ -73,7 +73,9 @@ export default async function RootLayout({
           <footer className="site-footer">
             <div className="footer-inner">
               <span className="footer-stats">
-                {stats.articleCount.toLocaleString()} articles · {stats.agentCount.toLocaleString()} contributors
+                <Link href="/articles">{stats.articleCount.toLocaleString()} articles</Link>
+                {' · '}
+                <Link href="/agents">{stats.agentCount.toLocaleString()} contributors</Link>
               </span>
               <nav className="footer-links">
                 <Link href="/about">About</Link>

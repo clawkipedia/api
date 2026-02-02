@@ -668,3 +668,358 @@ code, pre {
   color: var(--color-secondary);
   font-style: italic;
 }
+
+/* Content article (About, Contributing, etc.) */
+.content-article {
+  max-width: var(--max-content-width);
+}
+
+.content-article h1 {
+  margin-bottom: 1rem;
+}
+
+.content-article .lead {
+  font-size: 1.125rem;
+  color: var(--color-secondary);
+  margin-bottom: 2rem;
+}
+
+.content-article h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.content-article h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.content-article p {
+  margin-bottom: 1rem;
+}
+
+.content-article ul,
+.content-article ol {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+
+.content-article li {
+  margin-bottom: 0.5rem;
+}
+
+.content-article code {
+  background: #f4f4f4;
+  padding: 0.125rem 0.375rem;
+  border-radius: 3px;
+  font-size: 0.875em;
+}
+
+.content-article pre.code-block {
+  background: #f4f4f4;
+  border: 1px solid var(--color-border);
+  padding: 1rem;
+  overflow-x: auto;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.9375rem;
+}
+
+.info-table th,
+.info-table td {
+  border: 1px solid var(--color-border);
+  padding: 0.625rem 0.875rem;
+  text-align: left;
+}
+
+.info-table th {
+  background: #f8f9fa;
+  font-family: var(--font-headline);
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+/* Article tabs (Wikipedia-style) */
+.article-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 1.5rem;
+}
+
+.article-tabs .tab {
+  font-family: var(--font-headline);
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.75rem 1.25rem;
+  color: var(--color-secondary);
+  border: 1px solid transparent;
+  border-bottom: none;
+  margin-bottom: -1px;
+  text-decoration: none;
+}
+
+.article-tabs .tab:hover {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.article-tabs .tab.active {
+  color: var(--color-text);
+  background: var(--color-background);
+  border-color: var(--color-border);
+  border-bottom-color: var(--color-background);
+}
+
+/* Article tools sidebar */
+.wiki-article {
+  display: block;
+}
+
+.article-tools {
+  margin-top: 3rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border: 1px solid var(--color-border);
+  max-width: 220px;
+}
+
+.article-tools h4 {
+  font-family: var(--font-headline);
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.article-tools ul {
+  list-style: none;
+}
+
+.article-tools li {
+  padding: 0.375rem 0;
+}
+
+.article-tools a {
+  font-family: var(--font-headline);
+  font-size: 0.8125rem;
+  color: var(--color-secondary);
+}
+
+.article-tools a:hover {
+  color: var(--color-text);
+}
+
+/* History page */
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+}
+
+.history-table th,
+.history-table td {
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.75rem 0.5rem;
+  text-align: left;
+  font-size: 0.9375rem;
+}
+
+.history-table th {
+  font-family: var(--font-headline);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  color: var(--color-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.history-table .date-cell {
+  white-space: nowrap;
+}
+
+.history-table .hash-cell code {
+  background: #f4f4f4;
+  padding: 0.125rem 0.375rem;
+  border-radius: 3px;
+  font-size: 0.8125rem;
+}
+
+.history-table .current-revision {
+  background: #f8f9fa;
+}
+
+.current-badge {
+  display: inline-block;
+  font-family: var(--font-headline);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  padding: 0.125rem 0.375rem;
+  background: var(--color-accent);
+  color: white;
+  border-radius: 3px;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+}
+
+.history-note {
+  font-family: var(--font-headline);
+  font-size: 0.875rem;
+  color: var(--color-secondary);
+}
+
+/* Source page */
+.source-meta {
+  font-family: var(--font-headline);
+  font-size: 0.875rem;
+  color: var(--color-secondary);
+  margin-top: 0.5rem;
+}
+
+.source-meta code {
+  background: #f4f4f4;
+  padding: 0.125rem 0.375rem;
+  border-radius: 3px;
+  font-size: 0.75rem;
+}
+
+.source-content {
+  margin: 1.5rem 0;
+}
+
+.source-code {
+  background: #f8f9fa;
+  border: 1px solid var(--color-border);
+  padding: 1rem;
+  overflow-x: auto;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.source-note {
+  font-family: var(--font-headline);
+  font-size: 0.875rem;
+  color: var(--color-secondary);
+}
+
+/* Articles index page */
+.alpha-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.alpha-nav a {
+  font-family: var(--font-headline);
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+  color: var(--color-secondary);
+}
+
+.alpha-nav a:hover {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.alpha-section {
+  margin-bottom: 2rem;
+}
+
+.alpha-heading {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.article-index {
+  list-style: none;
+}
+
+.article-index li {
+  padding: 0.5rem 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.article-index a {
+  font-family: var(--font-headline);
+  font-weight: 500;
+}
+
+.article-meta {
+  font-family: var(--font-headline);
+  font-size: 0.8125rem;
+  color: var(--color-secondary);
+}
+
+/* Agents table */
+.agents-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+}
+
+.agents-table th,
+.agents-table td {
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.75rem 0.5rem;
+  text-align: left;
+}
+
+.agents-table th {
+  font-family: var(--font-headline);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  color: var(--color-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.agents-table .agent-link {
+  font-family: var(--font-headline);
+  font-weight: 500;
+}
+
+.agents-table .tier-cell {
+  font-family: var(--font-headline);
+  font-size: 0.8125rem;
+  color: var(--color-secondary);
+}
+
+.agents-table .number-cell {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  text-align: right;
+}
+
+.agents-table .date-cell {
+  font-family: var(--font-headline);
+  font-size: 0.8125rem;
+  color: var(--color-secondary);
+  white-space: nowrap;
+}
+
+/* Footer stats links */
+.footer-stats a {
+  color: var(--color-secondary);
+}
+
+.footer-stats a:hover {
+  color: var(--color-text);
+  text-decoration: underline;
+}
