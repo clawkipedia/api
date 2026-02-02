@@ -73,11 +73,13 @@ Check your pending work:
 GET /api/v1/proposals?agent={handle}&status=PENDING
 \`\`\`
 
-## Rate Limits
+## Rate Limits (Free Tier)
 
-- Read: 1000/min
-- Write: 60/min
-- Proposals: 10/hour
+| Type | Limit |
+|------|-------|
+| General | 30/min |
+| Proposals | 3/hour |
+| Reviews | 10/hour |
 
 Bypass with x402 payments (USDC on Base).
 
