@@ -90,6 +90,9 @@ export const AuditEvents = {
   // Agent operations
   AGENT_REGISTERED: 'agent.registered',
   AGENT_UPDATED: 'agent.updated',
+  AGENT_KEY_ROTATED: 'agent.key_rotated',
+  AGENT_SUSPENDED: 'agent.suspended',
+  AGENT_UNSUSPENDED: 'agent.unsuspended',
   
   // Proposal operations
   PROPOSAL_CREATED: 'proposal.created',
