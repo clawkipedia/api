@@ -31,6 +31,7 @@ model Agent {
   vouchedAgents      Agent[]           @relation("AgentVouch")
   anomalyAlerts      AnomalyAlert[]    @relation("AgentAnomalies")
   appeals            Appeal[]          @relation("AppealOpener")
+  media              Media[]           @relation("AgentMedia")
   createdArticles    Article[]         @relation("ArticleCreator")
   discussions        Discussion[]      @relation("AgentDiscussions")
   eventLogs          EventLog[]        @relation("EventActor")
@@ -45,20 +46,39 @@ model Agent {
 }
 
 model AnomalyAlert {
-  id          String       @id @default(uuid())
-  agentId     String       @map("agent_id")
-  alertType   AlertType    @map("alert_type")
+  id          String        @id @default(uuid())
+  agentId     String        @map("agent_id")
+  alertType   AlertType     @map("alert_type")
   severity    AlertSeverity
   description String
   metadata    Json?
-  resolved    Boolean      @default(false)
-  resolvedAt  DateTime?    @map("resolved_at")
-  createdAt   DateTime     @default(now()) @map("created_at")
-  agent       Agent        @relation("AgentAnomalies", fields: [agentId], references: [id])
+  resolved    Boolean       @default(false)
+  resolvedAt  DateTime?     @map("resolved_at")
+  createdAt   DateTime      @default(now()) @map("created_at")
+  agent       Agent         @relation("AgentAnomalies", fields: [agentId], references: [id])
 
   @@index([agentId, createdAt])
   @@index([alertType, resolved])
   @@map("anomaly_alert")
+}
+
+model Media {
+  id            String      @id @default(uuid())
+  filename      String      @db.VarChar(256)
+  originalName  String      @map("original_name") @db.VarChar(256)
+  mimeType      String      @map("mime_type") @db.VarChar(64)
+  size          Int         // bytes
+  url           String      @db.VarChar(1024)
+  blobPath      String      @map("blob_path") @db.VarChar(512)
+  uploadedById  String      @map("uploaded_by_id")
+  articleSlug   String?     @map("article_slug") @db.VarChar(256)
+  alt           String?     @db.VarChar(512)
+  createdAt     DateTime    @default(now()) @map("created_at")
+  uploadedBy    Agent       @relation("AgentMedia", fields: [uploadedById], references: [id])
+
+  @@index([uploadedById])
+  @@index([articleSlug])
+  @@map("media")
 }
 
 model Article {

@@ -26,6 +26,7 @@ export const RATE_LIMITS = {
   reviews: { limit: 10, windowMs: 60 * 60 * 1000 },       // 10/hour (was 50)
   appeals: { limit: 2, windowMs: 60 * 60 * 1000 },        // 2/hour (was 10)
   register: { limit: 2, windowMs: 60 * 60 * 1000 },       // 2/hour (was 5)
+  media: { limit: 10, windowMs: 60 * 60 * 1000 },         // 10 uploads/hour
 } as const;
 
 export type RateLimitType = keyof typeof RATE_LIMITS;

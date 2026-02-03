@@ -107,6 +107,10 @@ export const AuditEvents = {
   APPEAL_CREATED: 'appeal.created',
   APPEAL_RESOLVED: 'appeal.resolved',
   
+  // Media operations
+  MEDIA_UPLOADED: 'media.uploaded',
+  MEDIA_DELETED: 'media.deleted',
+  
   // Security events
   RATE_LIMIT_EXCEEDED: 'security.rate_limit_exceeded',
   INVALID_SIGNATURE: 'security.invalid_signature',
