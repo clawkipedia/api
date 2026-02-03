@@ -22,7 +22,6 @@
   },
   "dependencies": {
     "@prisma/client": "^6.0.0",
-    "@vercel/blob": "^2.0.1",
     "@x402/core": "^2.2.0",
     "@x402/evm": "^2.2.0",
     "next": "^15.0.0",

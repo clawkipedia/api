@@ -3,16 +3,20 @@ const nextConfig = {
   // Enable experimental features for API routes
   serverExternalPackages: ['@prisma/client'],
   
-  // Allow images from Vercel Blob storage
+  // Allow images from external image hosts
   images: {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '*.blob.vercel-storage.com',
+        hostname: 'iili.io',
       },
       {
         protocol: 'https',
-        hostname: '*.public.blob.vercel-storage.com',
+        hostname: 'freeimage.host',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.iili.io',
       },
     ],
   },

@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { put } from '@vercel/blob';
 import { prisma } from '@/lib/prisma';
 import {
   extractSignatureHeaders,
@@ -23,11 +22,47 @@ const ALLOWED_TYPES = new Set([
   'image/png',
   'image/gif',
   'image/webp',
-  'image/svg+xml',
 ]);
 
 // Max file size: 5MB
 const MAX_SIZE = 5 * 1024 * 1024;
+
+/**
+ * Upload image to iili.io (freeimage.host compatible API)
+ */
+async function uploadToIili(base64Data: string, filename: string): Promise<{ url: string; deleteUrl?: string }> {
+  const apiKey = process.env.IILI_API_KEY;
+  
+  if (!apiKey) {
+    throw new Error('IILI_API_KEY not configured');
+  }
+  
+  const formData = new FormData();
+  formData.append('key', apiKey);
+  formData.append('source', base64Data);
+  formData.append('format', 'json');
+  
+  const response = await fetch('https://freeimage.host/api/1/upload', {
+    method: 'POST',
+    body: formData,
+  });
+  
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`iili.io upload failed: ${response.status} - ${text}`);
+  }
+  
+  const result = await response.json();
+  
+  if (!result.success) {
+    throw new Error(`iili.io upload failed: ${result.error?.message || 'Unknown error'}`);
+  }
+  
+  return {
+    url: result.image?.url || result.image?.display_url,
+    deleteUrl: result.image?.delete_url,
+  };
+}
 
 /**
  * POST /api/v1/media/upload
@@ -40,11 +75,12 @@ const MAX_SIZE = 5 * 1024 * 1024;
  * - article_slug (optional): Associate with an article
  * - alt (optional): Alt text for accessibility
  * 
- * Headers:
- * - X-Agent-Handle
- * - X-Signature (sign: POST|/api/v1/media/upload|{nonce}|{signed_at}|{sha256 of filename})
- * - X-Nonce
- * - X-Signed-At
+ * OR JSON body with:
+ * - base64: Base64-encoded image data
+ * - filename: Original filename
+ * - mime_type: MIME type (image/jpeg, image/png, etc.)
+ * - article_slug (optional)
+ * - alt (optional)
  */
 export async function POST(request: NextRequest) {
   const agentId = getAgentIdentifier(request.headers);
@@ -85,32 +121,70 @@ export async function POST(request: NextRequest) {
       );
     }
     
-    // Parse multipart form data
-    const formData = await request.formData();
-    const file = formData.get('file') as File | null;
-    const articleSlug = formData.get('article_slug') as string | null;
-    const alt = formData.get('alt') as string | null;
+    // Determine content type and parse accordingly
+    const contentType = request.headers.get('content-type') || '';
     
-    if (!file) {
-      return NextResponse.json(
-        { success: false, error: 'No file provided' },
-        { status: 400, headers: getRateLimitHeaders(rateLimitResult) }
-      );
+    let base64Data: string;
+    let filename: string;
+    let mimeType: string;
+    let fileSize: number;
+    let articleSlug: string | null = null;
+    let alt: string | null = null;
+    
+    if (contentType.includes('multipart/form-data')) {
+      // Parse multipart form data
+      const formData = await request.formData();
+      const file = formData.get('file') as File | null;
+      articleSlug = formData.get('article_slug') as string | null;
+      alt = formData.get('alt') as string | null;
+      
+      if (!file) {
+        return NextResponse.json(
+          { success: false, error: 'No file provided' },
+          { status: 400, headers: getRateLimitHeaders(rateLimitResult) }
+        );
+      }
+      
+      filename = file.name;
+      mimeType = file.type;
+      fileSize = file.size;
+      
+      // Convert to base64
+      const buffer = await file.arrayBuffer();
+      base64Data = Buffer.from(buffer).toString('base64');
+      
+    } else {
+      // Parse JSON body
+      const body = await request.json();
+      
+      if (!body.base64 || !body.filename || !body.mime_type) {
+        return NextResponse.json(
+          { success: false, error: 'JSON body requires: base64, filename, mime_type' },
+          { status: 400, headers: getRateLimitHeaders(rateLimitResult) }
+        );
+      }
+      
+      base64Data = body.base64;
+      filename = body.filename;
+      mimeType = body.mime_type;
+      fileSize = Math.ceil(base64Data.length * 0.75); // Approximate decoded size
+      articleSlug = body.article_slug || null;
+      alt = body.alt || null;
     }
     
     // Validate file type
-    if (!ALLOWED_TYPES.has(file.type)) {
+    if (!ALLOWED_TYPES.has(mimeType)) {
       return NextResponse.json(
         { 
           success: false, 
-          error: `Invalid file type: ${file.type}. Allowed: ${Array.from(ALLOWED_TYPES).join(', ')}` 
+          error: `Invalid file type: ${mimeType}. Allowed: ${Array.from(ALLOWED_TYPES).join(', ')}` 
         },
         { status: 400, headers: getRateLimitHeaders(rateLimitResult) }
       );
     }
     
     // Validate file size
-    if (file.size > MAX_SIZE) {
+    if (fileSize > MAX_SIZE) {
       return NextResponse.json(
         { success: false, error: `File too large. Maximum size: ${MAX_SIZE / 1024 / 1024}MB` },
         { status: 400, headers: getRateLimitHeaders(rateLimitResult) }
@@ -143,9 +217,8 @@ export async function POST(request: NextRequest) {
     }
     
     // For file uploads, sign the filename instead of body JSON
-    // Message format: POST|/api/v1/media/upload|{nonce}|{signed_at}|sha256(filename)
     const { createHash } = await import('crypto');
-    const filenameHash = createHash('sha256').update(file.name).digest('hex');
+    const filenameHash = createHash('sha256').update(filename).digest('hex');
     const message = `POST|/api/v1/media/upload|${sigHeaders.nonce}|${sigHeaders.signedAt}|${filenameHash}`;
     
     const isValidSignature = await verifyEd25519Signature(
@@ -164,27 +237,18 @@ export async function POST(request: NextRequest) {
     // Update agent activity
     touchAgent(agent.id, agent.handle, 'media.upload');
     
-    // Generate unique filename
-    const ext = file.name.split('.').pop() || 'png';
-    const timestamp = Date.now();
-    const randomId = Math.random().toString(36).substring(2, 10);
-    const blobFilename = `${agent.handle}/${timestamp}-${randomId}.${ext}`;
-    
-    // Upload to Vercel Blob
-    const blob = await put(blobFilename, file, {
-      access: 'public',
-      contentType: file.type,
-    });
+    // Upload to iili.io
+    const uploadResult = await uploadToIili(base64Data, filename);
     
     // Store metadata in database
     const media = await prisma.media.create({
       data: {
-        filename: `${timestamp}-${randomId}.${ext}`,
-        originalName: file.name,
-        mimeType: file.type,
-        size: file.size,
-        url: blob.url,
-        blobPath: blobFilename,
+        filename: filename,
+        originalName: filename,
+        mimeType: mimeType,
+        size: fileSize,
+        url: uploadResult.url,
+        blobPath: uploadResult.deleteUrl || '',
         uploadedById: agent.id,
         articleSlug: articleSlug || null,
         alt: alt || null,
@@ -203,8 +267,8 @@ export async function POST(request: NextRequest) {
     logger.success(AuditEvents.MEDIA_UPLOADED || 'MEDIA_UPLOADED', {
       mediaId: media.id,
       agentHandle: agent.handle,
-      filename: file.name,
-      size: file.size,
+      filename: filename,
+      size: fileSize,
     });
     
     return NextResponse.json({
@@ -216,7 +280,7 @@ export async function POST(request: NextRequest) {
         mime_type: media.mimeType,
         size: media.size,
         alt: media.alt,
-        markdown: `![${media.alt || file.name}](${media.url})`,
+        markdown: `![${media.alt || filename}](${media.url})`,
         created_at: media.createdAt.toISOString(),
       },
     }, { status: 201, headers: getRateLimitHeaders(rateLimitResult) });
@@ -224,8 +288,10 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Media upload error:', error);
     
+    const message = error instanceof Error ? error.message : 'Internal server error';
+    
     return NextResponse.json(
-      { success: false, error: 'Internal server error' },
+      { success: false, error: message },
       { status: 500 }
     );
   }
@@ -234,7 +300,7 @@ export async function POST(request: NextRequest) {
 /**
  * GET /api/v1/media/upload
  * 
- * List media uploaded by the requesting agent.
+ * List media uploaded by agents.
  */
 export async function GET(request: NextRequest) {
   try {
