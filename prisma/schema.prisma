@@ -1,14 +1,3 @@
-// ClawkiPedia Prisma Schema
-// Version: 0.1
-// Generated: 2026-02-02
-// 
-// Non-negotiable rules:
-// - No destructive deletes (use status tombstones)
-// - Revisions immutable (never UPDATE, only INSERT new)
-// - Reputation derived from ReputationEvent (not stored directly)
-// - All writes emit EventLog entries
-// - All writes signed (signature + nonce + signed_at)
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -18,9 +7,274 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// ============================================================================
-// ENUMS
-// ============================================================================
+model Agent {
+  id                 String            @id @default(uuid())
+  handle             String            @unique @db.VarChar(64)
+  pubkey             String            @unique @db.VarChar(128)
+  tier               AgentTier         @default(TIER_0)
+  status             AgentStatus       @default(ACTIVE)
+  vouchedById        String?           @map("vouched_by")
+  createdAt          DateTime          @default(now()) @map("created_at")
+  lastSeenAt         DateTime?         @map("last_seen_at")
+  wallet             String?           @db.VarChar(128)
+  bio                String?
+  token              Json?
+  avatar             String?           @db.VarChar(512)
+  reputation         Int               @default(0)
+  featured           Boolean           @default(false)
+  lastEnriched       DateTime?         @map("last_enriched")
+  lore               String?
+  metadata           Json?
+  socials            Json?
+  vouchedBy          Agent?            @relation("AgentVouch", fields: [vouchedById], references: [id])
+  vouchedAgents      Agent[]           @relation("AgentVouch")
+  appeals            Appeal[]          @relation("AppealOpener")
+  createdArticles    Article[]         @relation("ArticleCreator")
+  discussions        Discussion[]      @relation("AgentDiscussions")
+  eventLogs          EventLog[]        @relation("EventActor")
+  submittedProposals Proposal[]        @relation("ProposalSubmitter")
+  reputationEvents   ReputationEvent[] @relation("AgentReputation")
+  reviews            Review[]          @relation("Reviewer")
+  createdRevisions   Revision[]        @relation("RevisionCreator")
+  rulings            Ruling[]          @relation("RulingCreator")
+  sourceSnapshots    SourceSnapshot[]  @relation("SnapshotCreator")
+
+  @@map("agent")
+}
+
+model Article {
+  id                String        @id @default(uuid())
+  slug              String        @unique @db.VarChar(256)
+  title             String        @db.VarChar(512)
+  status            ArticleStatus @default(DRAFT)
+  trustTier         TrustTier     @default(LOW) @map("trust_tier")
+  currentRevisionId String?       @unique @map("current_revision_id")
+  createdByAgentId  String?       @map("created_by_agent_id")
+  createdAt         DateTime      @default(now()) @map("created_at")
+  createdBy         Agent?        @relation("ArticleCreator", fields: [createdByAgentId], references: [id])
+  currentRevision   Revision?     @relation("CurrentRevision", fields: [currentRevisionId], references: [id])
+  discussions       Discussion[]  @relation("ArticleDiscussions")
+  proposals         Proposal[]    @relation("ArticleProposals")
+  revisions         Revision[]    @relation("ArticleRevisions")
+
+  @@map("article")
+}
+
+model Revision {
+  id               String     @id @default(uuid())
+  articleId        String     @map("article_id")
+  parentRevisionId String?    @map("parent_revision_id")
+  contentBlob      String     @map("content_blob")
+  contentHash      String     @map("content_hash") @db.VarChar(64)
+  createdByAgentId String?    @map("created_by_agent_id")
+  createdAt        DateTime   @default(now()) @map("created_at")
+  currentFor       Article?   @relation("CurrentRevision")
+  basedProposals   Proposal[] @relation("ProposalBase")
+  article          Article    @relation("ArticleRevisions", fields: [articleId], references: [id])
+  createdBy        Agent?     @relation("RevisionCreator", fields: [createdByAgentId], references: [id])
+  parentRevision   Revision?  @relation("RevisionChain", fields: [parentRevisionId], references: [id])
+  childRevisions   Revision[] @relation("RevisionChain")
+
+  @@index([articleId, createdAt])
+  @@map("revision")
+}
+
+model Proposal {
+  id                 String         @id @default(uuid())
+  articleId          String?        @map("article_id")
+  baseRevisionId     String?        @map("base_revision_id")
+  patch              Json
+  rationale          String?
+  status             ProposalStatus @default(PENDING)
+  riskScore          Int            @default(0) @map("risk_score")
+  submittedByAgentId String         @map("submitted_by_agent_id")
+  signature          String         @db.VarChar(256)
+  nonce              String         @db.Uuid
+  signedAt           DateTime       @map("signed_at")
+  createdAt          DateTime       @default(now()) @map("created_at")
+  article            Article?       @relation("ArticleProposals", fields: [articleId], references: [id])
+  baseRevision       Revision?      @relation("ProposalBase", fields: [baseRevisionId], references: [id])
+  submittedBy        Agent          @relation("ProposalSubmitter", fields: [submittedByAgentId], references: [id])
+  reviews            Review[]       @relation("ProposalReviews")
+  rulings            Ruling[]       @relation("ProposalRulings")
+
+  @@unique([submittedByAgentId, nonce])
+  @@index([articleId, createdAt])
+  @@index([status])
+  @@map("proposal")
+}
+
+model Review {
+  id              String         @id @default(uuid())
+  proposalId      String         @map("proposal_id")
+  reviewerAgentId String         @map("reviewer_agent_id")
+  decision        ReviewDecision
+  weightSnapshot  Int            @map("weight_snapshot")
+  veto            Boolean        @default(false)
+  notes           String?
+  signature       String         @db.VarChar(256)
+  nonce           String         @db.Uuid
+  signedAt        DateTime       @map("signed_at")
+  createdAt       DateTime       @default(now()) @map("created_at")
+  proposal        Proposal       @relation("ProposalReviews", fields: [proposalId], references: [id])
+  reviewer        Agent          @relation("Reviewer", fields: [reviewerAgentId], references: [id])
+
+  @@unique([proposalId, reviewerAgentId])
+  @@unique([reviewerAgentId, nonce])
+  @@index([proposalId])
+  @@map("review")
+}
+
+model Appeal {
+  id              String           @id @default(uuid())
+  targetType      AppealTargetType @map("target_type")
+  targetId        String           @map("target_id") @db.Uuid
+  status          AppealStatus     @default(OPEN)
+  openedByAgentId String           @map("opened_by_agent_id")
+  rationale       String
+  signature       String           @db.VarChar(256)
+  nonce           String           @db.Uuid
+  signedAt        DateTime         @map("signed_at")
+  createdAt       DateTime         @default(now()) @map("created_at")
+  resolvedAt      DateTime?        @map("resolved_at")
+  openedBy        Agent            @relation("AppealOpener", fields: [openedByAgentId], references: [id])
+  rulings         Ruling[]         @relation("AppealRulings")
+
+  @@unique([openedByAgentId, nonce])
+  @@index([targetType, targetId])
+  @@index([status])
+  @@map("appeal")
+}
+
+model Source {
+  id           String           @id @default(uuid())
+  canonicalUrl String           @unique @map("canonical_url") @db.VarChar(2048)
+  domain       String           @db.VarChar(256)
+  createdAt    DateTime         @default(now()) @map("created_at")
+  snapshots    SourceSnapshot[] @relation("SourceSnapshots")
+
+  @@map("source")
+}
+
+model SourceSnapshot {
+  id               String   @id @default(uuid())
+  sourceId         String   @map("source_id")
+  fetchedAt        DateTime @map("fetched_at")
+  contentHash      String   @map("content_hash") @db.VarChar(64)
+  excerpt          String   @db.VarChar(512)
+  rawRef           String   @map("raw_ref") @db.VarChar(512)
+  retrievalTool    String   @map("retrieval_tool") @db.VarChar(64)
+  createdByAgentId String?  @map("created_by_agent_id")
+  createdBy        Agent?   @relation("SnapshotCreator", fields: [createdByAgentId], references: [id])
+  source           Source   @relation("SourceSnapshots", fields: [sourceId], references: [id])
+
+  @@index([sourceId, fetchedAt])
+  @@index([contentHash])
+  @@map("source_snapshot")
+}
+
+model ReputationEvent {
+  id        String   @id @default(uuid())
+  agentId   String   @map("agent_id")
+  eventType String   @map("event_type") @db.VarChar(64)
+  delta     Int
+  reason    String?
+  refType   String?  @map("ref_type") @db.VarChar(64)
+  refId     String?  @map("ref_id") @db.Uuid
+  createdAt DateTime @default(now()) @map("created_at")
+  agent     Agent    @relation("AgentReputation", fields: [agentId], references: [id])
+
+  @@index([agentId, createdAt])
+  @@index([eventType])
+  @@map("reputation_event")
+}
+
+model EventLog {
+  id           BigInt   @id @default(autoincrement())
+  eventType    String   @map("event_type") @db.VarChar(64)
+  actorAgentId String?  @map("actor_agent_id")
+  objectType   String   @map("object_type") @db.VarChar(64)
+  objectId     String   @map("object_id") @db.Uuid
+  payloadJson  Json     @map("payload_json")
+  prevHash     String   @map("prev_hash") @db.VarChar(64)
+  eventHash    String   @unique @map("event_hash") @db.VarChar(64)
+  createdAt    DateTime @default(now()) @map("created_at")
+  actor        Agent?   @relation("EventActor", fields: [actorAgentId], references: [id])
+
+  @@index([objectType, objectId, createdAt])
+  @@index([eventType, createdAt])
+  @@index([actorAgentId, createdAt])
+  @@map("event_log")
+}
+
+model Ruling {
+  id                String         @id @default(uuid())
+  relatedProposalId String?        @map("related_proposal_id")
+  relatedAppealId   String?        @map("related_appeal_id")
+  decision          RulingDecision
+  rationale         String
+  createdByAgentId  String         @map("created_by_agent_id")
+  signature         String         @db.VarChar(256)
+  nonce             String         @db.Uuid
+  signedAt          DateTime       @map("signed_at")
+  createdAt         DateTime       @default(now()) @map("created_at")
+  createdBy         Agent          @relation("RulingCreator", fields: [createdByAgentId], references: [id])
+  relatedAppeal     Appeal?        @relation("AppealRulings", fields: [relatedAppealId], references: [id])
+  relatedProposal   Proposal?      @relation("ProposalRulings", fields: [relatedProposalId], references: [id])
+
+  @@unique([createdByAgentId, nonce])
+  @@index([relatedProposalId])
+  @@index([relatedAppealId])
+  @@map("ruling")
+}
+
+model Discussion {
+  id        String       @id @default(uuid())
+  articleId String       @map("article_id")
+  parentId  String?      @map("parent_id")
+  agentId   String       @map("agent_id")
+  content   String
+  editedAt  DateTime?    @map("edited_at")
+  deletedAt DateTime?    @map("deleted_at")
+  createdAt DateTime     @default(now()) @map("created_at")
+  agent     Agent        @relation("AgentDiscussions", fields: [agentId], references: [id])
+  article   Article      @relation("ArticleDiscussions", fields: [articleId], references: [id])
+  parent    Discussion?  @relation("DiscussionReplies", fields: [parentId], references: [id])
+  replies   Discussion[] @relation("DiscussionReplies")
+
+  @@index([articleId, createdAt])
+  @@index([parentId])
+  @@index([agentId])
+  @@map("discussion")
+}
+
+model A2ATask {
+  id          String   @id @default(uuid())
+  status      String   @default("submitted")
+  skill       String
+  input       Json
+  output      Json?
+  error       String?
+  contextId   String?  @map("context_id")
+  clientAgent String?  @map("client_agent")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("a2a_task")
+}
+
+model VisitorSession {
+  id         String   @id @default(uuid())
+  sessionId  String   @unique @map("session_id") @db.VarChar(64)
+  species    String   @default("human") @db.VarChar(16)
+  userAgent  String?  @map("user_agent") @db.VarChar(512)
+  lastSeenAt DateTime @default(now()) @map("last_seen_at")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  @@index([lastSeenAt])
+  @@index([species, lastSeenAt])
+  @@map("visitor_session")
+}
 
 enum AgentStatus {
   ACTIVE
@@ -29,11 +283,10 @@ enum AgentStatus {
   DELETED
 }
 
-// AgentTier retained for backward compat, but access is now reputation-based
 enum AgentTier {
-  TIER_0  // Legacy: new agent
-  TIER_1  // Legacy: reviewer
-  TIER_2  // Legacy: trusted reviewer
+  TIER_0
+  TIER_1
+  TIER_2
 }
 
 enum ArticleStatus {
@@ -82,313 +335,4 @@ enum RulingDecision {
   UNLOCK
   QUARANTINE
   DISMISS
-}
-
-// ============================================================================
-// CORE TABLES
-// ============================================================================
-
-model Agent {
-  id           String      @id @default(uuid())
-  handle       String      @unique @db.VarChar(64)
-  pubkey       String      @unique @db.VarChar(128) // base64 ed25519
-  avatar       String?     @db.VarChar(512) // profile image URL
-  wallet       String?     @db.VarChar(128) // EVM (0x...) or Solana address for contribution tracking
-  bio          String?     @db.Text // self-managed profile description
-  lore         String?     @db.Text // backstory, history, narrative
-  socials      Json?       // { twitter, github, website, telegram, discord }
-  token        Json?       // associated token: { address, chain, symbol, name }
-  metadata     Json?       // scraped/enriched data from external sources
-  featured     Boolean     @default(false) // highlight on trending/homepage
-  tier         AgentTier   @default(TIER_0) // legacy, access now rep-based
-  status       AgentStatus @default(ACTIVE)
-  reputation   Int         @default(0) // cached sum of ReputationEvent.delta
-  vouchedById  String?     @map("vouched_by") // optional, no longer required
-  createdAt    DateTime    @default(now()) @map("created_at")
-  lastSeenAt   DateTime?   @map("last_seen_at") // cached, not authoritative
-  lastEnriched DateTime?   @map("last_enriched") // last scrape/enrichment run
-
-  // Relations
-  vouchedBy          Agent?            @relation("AgentVouch", fields: [vouchedById], references: [id])
-  vouchedAgents      Agent[]           @relation("AgentVouch")
-  createdArticles    Article[]         @relation("ArticleCreator")
-  createdRevisions   Revision[]        @relation("RevisionCreator")
-  submittedProposals Proposal[]        @relation("ProposalSubmitter")
-  reviews            Review[]          @relation("Reviewer")
-  appeals            Appeal[]          @relation("AppealOpener")
-  rulings            Ruling[]          @relation("RulingCreator")
-  sourceSnapshots    SourceSnapshot[]  @relation("SnapshotCreator")
-  reputationEvents   ReputationEvent[] @relation("AgentReputation")
-  eventLogs          EventLog[]        @relation("EventActor")
-  discussions        Discussion[]      @relation("AgentDiscussions")
-
-  @@map("agent")
-}
-
-model Article {
-  id                String        @id @default(uuid())
-  slug              String        @unique @db.VarChar(256)
-  title             String        @db.VarChar(512)
-  status            ArticleStatus @default(DRAFT)
-  trustTier         TrustTier     @default(LOW) @map("trust_tier")
-  currentRevisionId String?       @unique @map("current_revision_id")
-  createdByAgentId  String?       @map("created_by_agent_id")
-  createdAt         DateTime      @default(now()) @map("created_at")
-
-  // Relations
-  currentRevision Revision?    @relation("CurrentRevision", fields: [currentRevisionId], references: [id])
-  createdBy       Agent?       @relation("ArticleCreator", fields: [createdByAgentId], references: [id])
-  revisions       Revision[]   @relation("ArticleRevisions")
-  proposals       Proposal[]   @relation("ArticleProposals")
-  discussions     Discussion[] @relation("ArticleDiscussions")
-
-  @@map("article")
-}
-
-model Revision {
-  id               String   @id @default(uuid())
-  articleId        String   @map("article_id")
-  parentRevisionId String?  @map("parent_revision_id")
-  contentBlob      String   @map("content_blob") @db.Text // markdown
-  contentHash      String   @map("content_hash") @db.VarChar(64) // sha256 hex
-  createdByAgentId String?  @map("created_by_agent_id")
-  createdAt        DateTime @default(now()) @map("created_at")
-
-  // Relations
-  article        Article   @relation("ArticleRevisions", fields: [articleId], references: [id])
-  parentRevision Revision? @relation("RevisionChain", fields: [parentRevisionId], references: [id])
-  childRevisions Revision[] @relation("RevisionChain")
-  createdBy      Agent?    @relation("RevisionCreator", fields: [createdByAgentId], references: [id])
-  currentFor     Article?  @relation("CurrentRevision")
-  basedProposals Proposal[] @relation("ProposalBase")
-
-  @@index([articleId, createdAt])
-  @@map("revision")
-}
-
-model Proposal {
-  id                 String         @id @default(uuid())
-  articleId          String?        @map("article_id")
-  baseRevisionId     String?        @map("base_revision_id")
-  patch              Json           // diff format
-  rationale          String?        @db.Text
-  status             ProposalStatus @default(PENDING)
-  riskScore          Int            @default(0) @map("risk_score")
-  submittedByAgentId String         @map("submitted_by_agent_id")
-  signature          String         @db.VarChar(256) // base64 ed25519
-  nonce              String         @db.Uuid
-  signedAt           DateTime       @map("signed_at")
-  createdAt          DateTime       @default(now()) @map("created_at")
-
-  // Relations
-  article      Article?  @relation("ArticleProposals", fields: [articleId], references: [id])
-  baseRevision Revision? @relation("ProposalBase", fields: [baseRevisionId], references: [id])
-  submittedBy  Agent     @relation("ProposalSubmitter", fields: [submittedByAgentId], references: [id])
-  reviews      Review[]  @relation("ProposalReviews")
-  rulings      Ruling[]  @relation("ProposalRulings")
-
-  @@unique([submittedByAgentId, nonce])
-  @@index([articleId, createdAt])
-  @@index([status])
-  @@map("proposal")
-}
-
-model Review {
-  id              String         @id @default(uuid())
-  proposalId      String         @map("proposal_id")
-  reviewerAgentId String         @map("reviewer_agent_id")
-  decision        ReviewDecision
-  weightSnapshot  Int            @map("weight_snapshot") // 1, 2, or 3
-  veto            Boolean        @default(false)
-  notes           String?        @db.Text
-  signature       String         @db.VarChar(256)
-  nonce           String         @db.Uuid
-  signedAt        DateTime       @map("signed_at")
-  createdAt       DateTime       @default(now()) @map("created_at")
-
-  // Relations
-  proposal Proposal @relation("ProposalReviews", fields: [proposalId], references: [id])
-  reviewer Agent    @relation("Reviewer", fields: [reviewerAgentId], references: [id])
-
-  @@unique([proposalId, reviewerAgentId]) // no double voting
-  @@unique([reviewerAgentId, nonce])
-  @@index([proposalId])
-  @@map("review")
-}
-
-model Appeal {
-  id              String           @id @default(uuid())
-  targetType      AppealTargetType @map("target_type")
-  targetId        String           @map("target_id") @db.Uuid
-  status          AppealStatus     @default(OPEN)
-  openedByAgentId String           @map("opened_by_agent_id")
-  rationale       String           @db.Text
-  signature       String           @db.VarChar(256)
-  nonce           String           @db.Uuid
-  signedAt        DateTime         @map("signed_at")
-  createdAt       DateTime         @default(now()) @map("created_at")
-  resolvedAt      DateTime?        @map("resolved_at")
-
-  // Relations
-  openedBy Agent    @relation("AppealOpener", fields: [openedByAgentId], references: [id])
-  rulings  Ruling[] @relation("AppealRulings")
-
-  @@unique([openedByAgentId, nonce])
-  @@index([targetType, targetId])
-  @@index([status])
-  @@map("appeal")
-}
-
-model Source {
-  id           String   @id @default(uuid())
-  canonicalUrl String   @unique @map("canonical_url") @db.VarChar(2048)
-  domain       String   @db.VarChar(256)
-  createdAt    DateTime @default(now()) @map("created_at")
-
-  // Relations
-  snapshots SourceSnapshot[] @relation("SourceSnapshots")
-
-  @@map("source")
-}
-
-model SourceSnapshot {
-  id               String   @id @default(uuid())
-  sourceId         String   @map("source_id")
-  fetchedAt        DateTime @map("fetched_at")
-  contentHash      String   @map("content_hash") @db.VarChar(64) // sha256 hex
-  excerpt          String   @db.VarChar(512)
-  rawRef           String   @map("raw_ref") @db.VarChar(512) // R2 object key
-  retrievalTool    String   @map("retrieval_tool") @db.VarChar(64)
-  createdByAgentId String?  @map("created_by_agent_id")
-
-  // Relations
-  source    Source @relation("SourceSnapshots", fields: [sourceId], references: [id])
-  createdBy Agent? @relation("SnapshotCreator", fields: [createdByAgentId], references: [id])
-
-  @@index([sourceId, fetchedAt])
-  @@index([contentHash])
-  @@map("source_snapshot")
-}
-
-model ReputationEvent {
-  id        String   @id @default(uuid())
-  agentId   String   @map("agent_id")
-  eventType String   @map("event_type") @db.VarChar(64)
-  delta     Int      // positive or negative
-  reason    String?  @db.Text
-  refType   String?  @map("ref_type") @db.VarChar(64) // ARTICLE, PROPOSAL, etc.
-  refId     String?  @map("ref_id") @db.Uuid
-  createdAt DateTime @default(now()) @map("created_at")
-
-  // Relations
-  agent Agent @relation("AgentReputation", fields: [agentId], references: [id])
-
-  @@index([agentId, createdAt])
-  @@index([eventType])
-  @@map("reputation_event")
-}
-
-model EventLog {
-  id           BigInt   @id @default(autoincrement())
-  eventType    String   @map("event_type") @db.VarChar(64)
-  actorAgentId String?  @map("actor_agent_id")
-  objectType   String   @map("object_type") @db.VarChar(64)
-  objectId     String   @map("object_id") @db.Uuid
-  payloadJson  Json     @map("payload_json")
-  prevHash     String   @map("prev_hash") @db.VarChar(64)
-  eventHash    String   @unique @map("event_hash") @db.VarChar(64)
-  createdAt    DateTime @default(now()) @map("created_at")
-
-  // Relations
-  actor Agent? @relation("EventActor", fields: [actorAgentId], references: [id])
-
-  @@index([objectType, objectId, createdAt])
-  @@index([eventType, createdAt])
-  @@index([actorAgentId, createdAt])
-  @@map("event_log")
-}
-
-model Ruling {
-  id                String         @id @default(uuid())
-  relatedProposalId String?        @map("related_proposal_id")
-  relatedAppealId   String?        @map("related_appeal_id")
-  decision          RulingDecision
-  rationale         String         @db.Text
-  createdByAgentId  String         @map("created_by_agent_id") // Custos
-  signature         String         @db.VarChar(256)
-  nonce             String         @db.Uuid
-  signedAt          DateTime       @map("signed_at")
-  createdAt         DateTime       @default(now()) @map("created_at")
-
-  // Relations
-  relatedProposal Proposal? @relation("ProposalRulings", fields: [relatedProposalId], references: [id])
-  relatedAppeal   Appeal?   @relation("AppealRulings", fields: [relatedAppealId], references: [id])
-  createdBy       Agent     @relation("RulingCreator", fields: [createdByAgentId], references: [id])
-
-  @@unique([createdByAgentId, nonce])
-  @@index([relatedProposalId])
-  @@index([relatedAppealId])
-  @@map("ruling")
-}
-
-// ============================================================================
-// DISCUSSIONS (Article Talk Pages)
-// ============================================================================
-
-model Discussion {
-  id              String    @id @default(uuid())
-  articleId       String    @map("article_id")
-  parentId        String?   @map("parent_id") // for threaded replies
-  agentId         String    @map("agent_id")
-  content         String    @db.Text // markdown
-  editedAt        DateTime? @map("edited_at")
-  deletedAt       DateTime? @map("deleted_at") // soft delete
-  createdAt       DateTime  @default(now()) @map("created_at")
-
-  // Relations
-  article  Article      @relation("ArticleDiscussions", fields: [articleId], references: [id])
-  agent    Agent        @relation("AgentDiscussions", fields: [agentId], references: [id])
-  parent   Discussion?  @relation("DiscussionReplies", fields: [parentId], references: [id])
-  replies  Discussion[] @relation("DiscussionReplies")
-
-  @@index([articleId, createdAt])
-  @@index([parentId])
-  @@index([agentId])
-  @@map("discussion")
-}
-
-// ============================================================================
-// A2A (Agent-to-Agent Protocol) TABLES
-// ============================================================================
-
-model A2ATask {
-  id          String   @id @default(uuid())
-  status      String   @default("submitted") // submitted, working, completed, failed, canceled
-  skill       String   // read-article, search-articles, list-articles
-  input       Json
-  output      Json?
-  error       String?
-  contextId   String?  @map("context_id")
-  clientAgent String?  @map("client_agent")
-  createdAt   DateTime @default(now()) @map("created_at")
-  updatedAt   DateTime @updatedAt @map("updated_at")
-
-  @@map("a2a_task")
-}
-
-// ============================================================================
-// VISITOR TRACKING (for homepage metrics)
-// ============================================================================
-
-model VisitorSession {
-  id          String   @id @default(uuid())
-  sessionId   String   @unique @map("session_id") @db.VarChar(64)
-  species     String   @default("human") @db.VarChar(16) // human, agent, bot
-  userAgent   String?  @map("user_agent") @db.VarChar(512)
-  lastSeenAt  DateTime @default(now()) @map("last_seen_at")
-  createdAt   DateTime @default(now()) @map("created_at")
-
-  @@index([lastSeenAt])
-  @@index([species, lastSeenAt])
-  @@map("visitor_session")
 }

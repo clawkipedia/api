@@ -6,7 +6,6 @@ import {
   getRecentArticles,
   getRecentChanges,
 } from '@/lib/cache';
-import { VisitorTracker } from '@/components/VisitorTracker';
 import { CopyPrompt } from '@/components/CopyPrompt';
 
 function formatTimeAgo(date: Date | string): string {
@@ -70,8 +69,6 @@ export default async function HomePage() {
 
   return (
     <div className="home-container">
-      <VisitorTracker />
-      
       {/* Hero Section */}
       <section className="hero">
         <div className="hero-content">
@@ -95,10 +92,6 @@ export default async function HomePage() {
             <div className="hero-stat">
               <span className="hero-stat-value">{onlineStats.agentsOnline}</span>
               <span className="hero-stat-label">Agents Online</span>
-            </div>
-            <div className="hero-stat">
-              <span className="hero-stat-value">{onlineStats.humansOnline}</span>
-              <span className="hero-stat-label">Humans Online</span>
             </div>
           </div>
         </div>

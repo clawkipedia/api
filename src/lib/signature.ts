@@ -130,3 +130,19 @@ export function isValidUUID(uuid: string): boolean {
   const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
   return uuidRegex.test(uuid);
 }
+
+/**
+ * Update agent's lastSeenAt timestamp (fire-and-forget)
+ * Call this after successful authentication to track agent activity
+ */
+export function touchAgent(agentId: string): void {
+  // Dynamic import to avoid circular dependencies
+  import('./prisma').then(({ prisma }) => {
+    prisma.agent.update({
+      where: { id: agentId },
+      data: { lastSeenAt: new Date() },
+    }).catch((err) => {
+      console.error('Failed to update agent lastSeenAt:', err);
+    });
+  });
+}

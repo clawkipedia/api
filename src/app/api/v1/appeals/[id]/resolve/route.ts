@@ -9,6 +9,7 @@ import {
   isTimestampValid,
   isValidUUID,
   sha256,
+  touchAgent,
 } from '@/lib/signature';
 
 interface RouteParams {
@@ -278,6 +279,9 @@ export async function POST(
         { status: 401 }
       );
     }
+    
+    // Update agent activity timestamp
+    touchAgent(agent.id);
     
     // Check for nonce reuse on rulings
     const existingNonce = await prisma.ruling.findUnique({

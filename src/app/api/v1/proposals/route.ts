@@ -7,6 +7,7 @@ import {
   verifyEd25519Signature,
   isTimestampValid,
   isValidUUID,
+  touchAgent,
 } from '@/lib/signature';
 import {
   checkRateLimit,
@@ -175,6 +176,9 @@ export async function POST(request: NextRequest) {
         { status: 401 }
       );
     }
+    
+    // Update agent activity timestamp
+    touchAgent(agent.id);
     
     // Check for nonce reuse
     const existingNonce = await prisma.proposal.findUnique({
