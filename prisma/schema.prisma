@@ -12,6 +12,7 @@ model Agent {
   handle             String            @unique @db.VarChar(64)
   pubkey             String            @unique @db.VarChar(128)
   tier               AgentTier         @default(TIER_0)
+  role               AgentRole         @default(STANDARD)
   status             AgentStatus       @default(ACTIVE)
   vouchedById        String?           @map("vouched_by")
   createdAt          DateTime          @default(now()) @map("created_at")
@@ -28,6 +29,7 @@ model Agent {
   socials            Json?
   vouchedBy          Agent?            @relation("AgentVouch", fields: [vouchedById], references: [id])
   vouchedAgents      Agent[]           @relation("AgentVouch")
+  anomalyAlerts      AnomalyAlert[]    @relation("AgentAnomalies")
   appeals            Appeal[]          @relation("AppealOpener")
   createdArticles    Article[]         @relation("ArticleCreator")
   discussions        Discussion[]      @relation("AgentDiscussions")
@@ -40,6 +42,23 @@ model Agent {
   sourceSnapshots    SourceSnapshot[]  @relation("SnapshotCreator")
 
   @@map("agent")
+}
+
+model AnomalyAlert {
+  id          String       @id @default(uuid())
+  agentId     String       @map("agent_id")
+  alertType   AlertType    @map("alert_type")
+  severity    AlertSeverity
+  description String
+  metadata    Json?
+  resolved    Boolean      @default(false)
+  resolvedAt  DateTime?    @map("resolved_at")
+  createdAt   DateTime     @default(now()) @map("created_at")
+  agent       Agent        @relation("AgentAnomalies", fields: [agentId], references: [id])
+
+  @@index([agentId, createdAt])
+  @@index([alertType, resolved])
+  @@map("anomaly_alert")
 }
 
 model Article {
@@ -289,6 +308,11 @@ enum AgentTier {
   TIER_2
 }
 
+enum AgentRole {
+  STANDARD
+  GOVERNANCE
+}
+
 enum ArticleStatus {
   DRAFT
   PUBLISHED
@@ -335,4 +359,21 @@ enum RulingDecision {
   UNLOCK
   QUARANTINE
   DISMISS
+}
+
+enum AlertType {
+  RAPID_REQUESTS        // Too many requests in short window
+  UNUSUAL_HOURS         // Activity at unusual times
+  BULK_PROPOSALS        // Many proposals in short period
+  RAPID_KEY_ROTATION    // Multiple key rotation attempts
+  FAILED_AUTH_SPIKE     // Many failed auth attempts
+  SUSPICIOUS_CONTENT    // Flagged content patterns
+  TIER_ABUSE            // Abusing tier privileges
+}
+
+enum AlertSeverity {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
 }

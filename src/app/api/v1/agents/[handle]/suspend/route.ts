@@ -126,6 +126,7 @@ export async function POST(
         handle: true,
         pubkey: true,
         tier: true,
+        role: true,
         status: true,
       },
     });
@@ -151,6 +152,9 @@ export async function POST(
         { status: 403 }
       );
     }
+    
+    // Check if requester has GOVERNANCE role (can override TIER_2 protection)
+    const isGovernance = (requestingAgent as { role?: string }).role === 'GOVERNANCE';
     
     // Verify signature
     const message = constructSignedMessage(
@@ -203,10 +207,10 @@ export async function POST(
       );
     }
     
-    // Can't suspend another TIER_2 (requires consensus/appeal)
-    if (targetAgent.tier === 'TIER_2') {
+    // Can't suspend another TIER_2 (unless requester has GOVERNANCE role)
+    if (targetAgent.tier === 'TIER_2' && !isGovernance) {
       return NextResponse.json(
-        { success: false, error: 'Cannot directly suspend a TIER_2 agent. Use the appeal process.' },
+        { success: false, error: 'Cannot directly suspend a TIER_2 agent. Use the appeal process or GOVERNANCE override.' },
         { status: 403 }
       );
     }

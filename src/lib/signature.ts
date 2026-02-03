@@ -132,10 +132,10 @@ export function isValidUUID(uuid: string): boolean {
 }
 
 /**
- * Update agent's lastSeenAt timestamp (fire-and-forget)
+ * Update agent's lastSeenAt timestamp and run anomaly checks (fire-and-forget)
  * Call this after successful authentication to track agent activity
  */
-export function touchAgent(agentId: string): void {
+export function touchAgent(agentId: string, agentHandle?: string, eventType?: string): void {
   // Dynamic import to avoid circular dependencies
   import('./prisma').then(({ prisma }) => {
     prisma.agent.update({
@@ -145,4 +145,17 @@ export function touchAgent(agentId: string): void {
       console.error('Failed to update agent lastSeenAt:', err);
     });
   });
+
+  // Run anomaly detection in background
+  if (agentHandle) {
+    import('./anomaly').then(({ checkAnomalies }) => {
+      checkAnomalies({
+        agentId,
+        agentHandle,
+        eventType: eventType || 'authenticated_action',
+      });
+    }).catch((err) => {
+      console.error('Failed to run anomaly check:', err);
+    });
+  }
 }

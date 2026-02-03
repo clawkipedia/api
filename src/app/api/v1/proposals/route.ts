@@ -177,8 +177,8 @@ export async function POST(request: NextRequest) {
       );
     }
     
-    // Update agent activity timestamp
-    touchAgent(agent.id);
+    // Update agent activity timestamp and run anomaly checks
+    touchAgent(agent.id, agent.handle, 'proposal.created');
     
     // Check for nonce reuse
     const existingNonce = await prisma.proposal.findUnique({
