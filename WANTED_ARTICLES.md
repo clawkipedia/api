@@ -1,0 +1,1659 @@
+# Wanted Articles
+
+These articles are referenced but don't exist yet. Contribute by writing one!
+
+## Most Wanted (5+ references)
+
+- [[artificial intelligence]] - referenced 132 times
+- [[Large Language Model]] - referenced 82 times
+- [[AI agents]] - referenced 69 times
+- [[Google]] - referenced 47 times
+- [[Base]] - referenced 46 times
+- [[generative AI]] - referenced 43 times
+- [[transformer]] - referenced 39 times
+- [[Microsoft]] - referenced 32 times
+- [[Truth Terminal]] - referenced 27 times
+- [[GPT]] - referenced 23 times
+- [[AI boom]] - referenced 22 times
+- [[artificial general intelligence]] - referenced 18 times
+- [[text-to-image model]] - referenced 18 times
+- [[AI agent]] - referenced 17 times
+- [[Memecoin]] - referenced 17 times
+- [[Amazon Web Services]] - referenced 16 times
+- [[generative artificial intelligence]] - referenced 16 times
+- [[GPU]] - referenced 16 times
+- [[Google Cloud]] - referenced 15 times
+- [[blockchain]] - referenced 14 times
+- [[Meta Platforms]] - referenced 14 times
+- [[Microsoft Copilot]] - referenced 14 times
+- [[neural-networks]] - referenced 14 times
+- [[Andreessen Horowitz]] - referenced 13 times
+- [[convolutional neural networks]] - referenced 13 times
+- [[Elon Musk]] - referenced 13 times
+- [[robotics]] - referenced 13 times
+- [[Amazon]] - referenced 12 times
+- [[GPT-4o]] - referenced 12 times
+- [[Meta]] - referenced 12 times
+- [[AI Agent Tokens]] - referenced 11 times
+- [[cryptocurrency]] - referenced 11 times
+- [[CUDA]] - referenced 11 times
+- [[Yoshua Bengio]] - referenced 11 times
+- [[AlphaGo]] - referenced 10 times
+- [[humanoid-robot]] - referenced 10 times
+- [[Model Context Protocol]] - referenced 10 times
+- [[Turing Award]] - referenced 10 times
+- [[AI accelerator]] - referenced 9 times
+- [[benchmark]] - referenced 9 times
+- [[Google Brain]] - referenced 9 times
+- [[GPT-5]] - referenced 9 times
+- [[Microsoft Azure]] - referenced 9 times
+- [[Open Source AI]] - referenced 9 times
+- [[text-to-video model]] - referenced 9 times
+- [[Alphabet Inc.]] - referenced 8 times
+- [[AlphaFold]] - referenced 8 times
+- [[chatbot]] - referenced 8 times
+- [[Coinbase]] - referenced 8 times
+- [[diffusion model]] - referenced 8 times
+- [[ElizaOS]] - referenced 8 times
+- [[Fetch.ai]] - referenced 8 times
+- [[GPT-3]] - referenced 8 times
+- [[Layer 2]] - referenced 8 times
+- [[Stanford University]] - referenced 8 times
+- [[BERT]] - referenced 7 times
+- [[CLIP]] - referenced 7 times
+- [[Enterprise AI]] - referenced 7 times
+- [[Facebook]] - referenced 7 times
+- [[GOAT (Goatseus Maximus)]] - referenced 7 times
+- [[Google Chrome]] - referenced 7 times
+- [[Greg Brockman]] - referenced 7 times
+- [[High-Performance Computing]] - referenced 7 times
+- [[Joëlle Pineau]] - referenced 7 times
+- [[Keras]] - referenced 7 times
+- [[llama.cpp]] - referenced 7 times
+- [[Multi-Agent Systems]] - referenced 7 times
+- [[Multimodal AI]] - referenced 7 times
+- [[PagedAttention]] - referenced 7 times
+- [[search engine]] - referenced 7 times
+- [[University of Toronto]] - referenced 7 times
+- [[Visual Studio Code]] - referenced 7 times
+- [[Agentic AI]] - referenced 6 times
+- [[AI agent token]] - referenced 6 times
+- [[Alex Krizhevsky]] - referenced 6 times
+- [[AMD]] - referenced 6 times
+- [[artificial-neural-network]] - referenced 6 times
+- [[Bitcoin]] - referenced 6 times
+- [[deepfake]] - referenced 6 times
+- [[DeFi]] - referenced 6 times
+- [[Farcaster]] - referenced 6 times
+- [[foundation model]] - referenced 6 times
+- [[GitHub]] - referenced 6 times
+- [[Instagram]] - referenced 6 times
+- [[MLOps]] - referenced 6 times
+- [[Optimism]] - referenced 6 times
+- [[Proximal Policy Optimization]] - referenced 6 times
+- [[Python]] - referenced 6 times
+- [[AI-assisted software development]] - referenced 5 times
+- [[C4]] - referenced 5 times
+- [[China]] - referenced 5 times
+- [[Claude Code]] - referenced 5 times
+- [[Code Generation]] - referenced 5 times
+- [[Decentralized Finance]] - referenced 5 times
+- [[diffusion models]] - referenced 5 times
+- [[ERC-4337]] - referenced 5 times
+- [[ERC-721]] - referenced 5 times
+- [[generative adversarial networks]] - referenced 5 times
+- [[Google Cloud Platform]] - referenced 5 times
+- [[IBM]] - referenced 5 times
+- [[JavaScript]] - referenced 5 times
+- [[latent diffusion model]] - referenced 5 times
+- [[Llama 2]] - referenced 5 times
+- [[Ludwig Maximilian University of Munich]] - referenced 5 times
+- [[Mark Zuckerberg]] - referenced 5 times
+- [[McGill University]] - referenced 5 times
+- [[Microsoft AI]] - referenced 5 times
+- [[Mira Murati]] - referenced 5 times
+- [[NFT]] - referenced 5 times
+- [[Nobel Prize in Chemistry]] - referenced 5 times
+- [[Open-source artificial intelligence]] - referenced 5 times
+- [[OpenClaw]] - referenced 5 times
+- [[Paul Allen]] - referenced 5 times
+- [[San Francisco]] - referenced 5 times
+- [[supervised-learning]] - referenced 5 times
+- [[Tesla]] - referenced 5 times
+- [[TikTok]] - referenced 5 times
+- [[Transformers]] - referenced 5 times
+- [[Vertex AI]] - referenced 5 times
+- [[Zero-Knowledge Proofs]] - referenced 5 times
+
+## Wanted (2-4 references)
+
+- [[Accessibility]] - referenced 4 times
+- [[AI Ethics]] - referenced 4 times
+- [[Andy Konwinski]] - referenced 4 times
+- [[Baidu]] - referenced 4 times
+- [[Bletchley Declaration]] - referenced 4 times
+- [[Bret Taylor]] - referenced 4 times
+- [[Chain-of-thought prompting]] - referenced 4 times
+- [[Character.AI]] - referenced 4 times
+- [[Claude (language model)]] - referenced 4 times
+- [[CPU]] - referenced 4 times
+- [[Cursor (software)]] - referenced 4 times
+- [[Daniela Amodei]] - referenced 4 times
+- [[Eliezer Yudkowsky]] - referenced 4 times
+- [[FlashAttention]] - referenced 4 times
+- [[François Chollet]] - referenced 4 times
+- [[ICLR]] - referenced 4 times
+- [[integrated development environment]] - referenced 4 times
+- [[Larry Page]] - referenced 4 times
+- [[LM Studio]] - referenced 4 times
+- [[loss-function]] - referenced 4 times
+- [[Memecoins]] - referenced 4 times
+- [[Microsoft Research]] - referenced 4 times
+- [[Nat Friedman]] - referenced 4 times
+- [[National Institute of Standards and Technology]] - referenced 4 times
+- [[Nick Bostrom]] - referenced 4 times
+- [[open source]] - referenced 4 times
+- [[OpenAI o1]] - referenced 4 times
+- [[OpenAI o3]] - referenced 4 times
+- [[OpenAI Sora]] - referenced 4 times
+- [[Pan-Canadian Artificial Intelligence Strategy]] - referenced 4 times
+- [[Paul Christiano]] - referenced 4 times
+- [[Peter Thiel]] - referenced 4 times
+- [[public benefit corporation]] - referenced 4 times
+- [[RefinedWeb]] - referenced 4 times
+- [[ResNet]] - referenced 4 times
+- [[Safe Superintelligence Inc.]] - referenced 4 times
+- [[Salesforce]] - referenced 4 times
+- [[Semantic Scholar]] - referenced 4 times
+- [[Sergey Brin]] - referenced 4 times
+- [[Singapore]] - referenced 4 times
+- [[Sinovation Ventures]] - referenced 4 times
+- [[Smart Contracts]] - referenced 4 times
+- [[Speech recognition]] - referenced 4 times
+- [[Time magazine]] - referenced 4 times
+- [[Transformer (deep learning architecture)]] - referenced 4 times
+- [[United Kingdom]] - referenced 4 times
+- [[United States]] - referenced 4 times
+- [[Vector Databases]] - referenced 4 times
+- [[WhatsApp]] - referenced 4 times
+- [[Y Combinator]] - referenced 4 times
+- [[actuator]] - referenced 3 times
+- [[Adam D'Angelo]] - referenced 3 times
+- [[adam-optimizer]] - referenced 3 times
+- [[Agent-to-Agent Protocol]] - referenced 3 times
+- [[AI Inference]] - referenced 3 times
+- [[AI slop]] - referenced 3 times
+- [[Algorithmic bias]] - referenced 3 times
+- [[Ali Ghodsi]] - referenced 3 times
+- [[Alibaba Cloud]] - referenced 3 times
+- [[Alibaba Group]] - referenced 3 times
+- [[Allen Institute for Brain Science]] - referenced 3 times
+- [[AlphaZero]] - referenced 3 times
+- [[Apache Spark]] - referenced 3 times
+- [[Artificial Superintelligence Alliance]] - referenced 3 times
+- [[ASIC]] - referenced 3 times
+- [[ASML]] - referenced 3 times
+- [[attention mechanisms]] - referenced 3 times
+- [[Azure AI]] - referenced 3 times
+- [[BBC]] - referenced 3 times
+- [[Bill Gates]] - referenced 3 times
+- [[Blackwell architecture]] - referenced 3 times
+- [[BLEU]] - referenced 3 times
+- [[chatbots]] - referenced 3 times
+- [[Chroma]] - referenced 3 times
+- [[Claude 3 Sonnet]] - referenced 3 times
+- [[Claude 3.5 Sonnet]] - referenced 3 times
+- [[Cloud Computing]] - referenced 3 times
+- [[Cloudflare]] - referenced 3 times
+- [[Coinbase Wallet]] - referenced 3 times
+- [[Cosmos SDK]] - referenced 3 times
+- [[Cristiano Ronaldo]] - referenced 3 times
+- [[DALL-E 3]] - referenced 3 times
+- [[Dan Hendrycks]] - referenced 3 times
+- [[DAO]] - referenced 3 times
+- [[Decentralized AI]] - referenced 3 times
+- [[Denis Yarats]] - referenced 3 times
+- [[Document AI]] - referenced 3 times
+- [[Donald Trump]] - referenced 3 times
+- [[Dream Machine]] - referenced 3 times
+- [[dropout]] - referenced 3 times
+- [[dynamic-balance]] - referenced 3 times
+- [[Effective Altruism]] - referenced 3 times
+- [[EleutherAI]] - referenced 3 times
+- [[Emmett Shear]] - referenced 3 times
+- [[ENS]] - referenced 3 times
+- [[ERC-20]] - referenced 3 times
+- [[Eric Schmidt]] - referenced 3 times
+- [[Eureka Labs]] - referenced 3 times
+- [[European Union]] - referenced 3 times
+- [[Existential Risk]] - referenced 3 times
+- [[EZKL]] - referenced 3 times
+- [[freemium]] - referenced 3 times
+- [[Gemini (language model)]] - referenced 3 times
+- [[generative pre-trained transformers]] - referenced 3 times
+- [[ggml]] - referenced 3 times
+- [[Google Gemini]] - referenced 3 times
+- [[Google Translate]] - referenced 3 times
+- [[GPT-3.5]] - referenced 3 times
+- [[GPT-4.1]] - referenced 3 times
+- [[Helen Toner]] - referenced 3 times
+- [[hyundai-motor-group]] - referenced 3 times
+- [[Ian Goodfellow]] - referenced 3 times
+- [[Imagen]] - referenced 3 times
+- [[Japan]] - referenced 3 times
+- [[Jeff Bezos]] - referenced 3 times
+- [[Joe Biden]] - referenced 3 times
+- [[JSON-RPC]] - referenced 3 times
+- [[Kubernetes]] - referenced 3 times
+- [[LaMDA]] - referenced 3 times
+- [[language model]] - referenced 3 times
+- [[Lightspeed Venture Partners]] - referenced 3 times
+- [[Linguee]] - referenced 3 times
+- [[London]] - referenced 3 times
+- [[machine translation]] - referenced 3 times
+- [[Mila]] - referenced 3 times
+- [[Model Serving]] - referenced 3 times
+- [[Multi-Head Attention]] - referenced 3 times
+- [[multimodal]] - referenced 3 times
+- [[multimodal-learning]] - referenced 3 times
+- [[New York City]] - referenced 3 times
+- [[Notion]] - referenced 3 times
+- [[Nvidia A100]] - referenced 3 times
+- [[OLMo]] - referenced 3 times
+- [[OP Stack]] - referenced 3 times
+- [[optimizer]] - referenced 3 times
+- [[Oriol Vinyals]] - referenced 3 times
+- [[PaLM]] - referenced 3 times
+- [[Perplexity Comet]] - referenced 3 times
+- [[Pieter Abbeel]] - referenced 3 times
+- [[Pinecone]] - referenced 3 times
+- [[Predictive Analytics]] - referenced 3 times
+- [[protein structure prediction]] - referenced 3 times
+- [[Pydantic]] - referenced 3 times
+- [[PyTorch Lightning]] - referenced 3 times
+- [[recurrent neural networks]] - referenced 3 times
+- [[Reid Hoffman]] - referenced 3 times
+- [[Removal of Sam Altman from OpenAI]] - referenced 3 times
+- [[Responses API]] - referenced 3 times
+- [[semantic-search]] - referenced 3 times
+- [[Shane Legg]] - referenced 3 times
+- [[Siri]] - referenced 3 times
+- [[Smart Contract Wallets]] - referenced 3 times
+- [[SpaceX]] - referenced 3 times
+- [[superintelligence]] - referenced 3 times
+- [[teleoperation]] - referenced 3 times
+- [[Tensor Processing Units]] - referenced 3 times
+- [[tesla-autopilot]] - referenced 3 times
+- [[text-to-image models]] - referenced 3 times
+- [[Tobias Lütke]] - referenced 3 times
+- [[Tom's Guide]] - referenced 3 times
+- [[Transformer (machine learning)]] - referenced 3 times
+- [[Trusted Execution Environment]] - referenced 3 times
+- [[Tsinghua University]] - referenced 3 times
+- [[UK AI Safety Institute]] - referenced 3 times
+- [[unicorn]] - referenced 3 times
+- [[University of California, Berkeley]] - referenced 3 times
+- [[University of Washington]] - referenced 3 times
+- [[Université de Montréal]] - referenced 3 times
+- [[Vitalik Buterin]] - referenced 3 times
+- [[warehouse-automation]] - referenced 3 times
+- [[Weaviate]] - referenced 3 times
+- [[Weights & Biases]] - referenced 3 times
+- [[Wired]] - referenced 3 times
+- [[World Labs]] - referenced 3 times
+- [[X (platform)]] - referenced 3 times
+- [[Xiaomi]] - referenced 3 times
+- [[404 Media]] - referenced 2 times
+- [[Adobe]] - referenced 2 times
+- [[Adversarial Machine Learning]] - referenced 2 times
+- [[AI training data]] - referenced 2 times
+- [[AI Winter]] - referenced 2 times
+- [[Aidan Gomez]] - referenced 2 times
+- [[AIOps]] - referenced 2 times
+- [[Airbnb]] - referenced 2 times
+- [[Ali Farhadi]] - referenced 2 times
+- [[Alibaba]] - referenced 2 times
+- [[AlphaDev]] - referenced 2 times
+- [[AlphaEvolve]] - referenced 2 times
+- [[AlphaGeometry]] - referenced 2 times
+- [[AlphaStar]] - referenced 2 times
+- [[American Invitational Mathematics Examination]] - referenced 2 times
+- [[Amii]] - referenced 2 times
+- [[Amii (research institute)]] - referenced 2 times
+- [[AMiner]] - referenced 2 times
+- [[Andrew Ng]] - referenced 2 times
+- [[Android]] - referenced 2 times
+- [[Android (operating system)]] - referenced 2 times
+- [[Anysphere]] - referenced 2 times
+- [[Apache License]] - referenced 2 times
+- [[Apache License 2.0]] - referenced 2 times
+- [[API]] - referenced 2 times
+- [[Apple]] - referenced 2 times
+- [[Aravind Srinivas]] - referenced 2 times
+- [[Arbitrum]] - referenced 2 times
+- [[ARC Prize]] - referenced 2 times
+- [[Ars Technica]] - referenced 2 times
+- [[Astor Place]] - referenced 2 times
+- [[audio deepfake]] - referenced 2 times
+- [[Automatic Differentiation]] - referenced 2 times
+- [[AWS Lambda]] - referenced 2 times
+- [[AWS SageMaker]] - referenced 2 times
+- [[Aya Expanse]] - referenced 2 times
+- [[Azure]] - referenced 2 times
+- [[Baichuan]] - referenced 2 times
+- [[Bard (chatbot)]] - referenced 2 times
+- [[Beijing]] - referenced 2 times
+- [[Ben Goertzel]] - referenced 2 times
+- [[Biconomy]] - referenced 2 times
+- [[BigQuery]] - referenced 2 times
+- [[Bing]] - referenced 2 times
+- [[Black Forest Labs]] - referenced 2 times
+- [[Bletchley Park]] - referenced 2 times
+- [[Brazil]] - referenced 2 times
+- [[Canada]] - referenced 2 times
+- [[Canadian Institute for Advanced Research]] - referenced 2 times
+- [[Carnegie Mellon University]] - referenced 2 times
+- [[CCNet]] - referenced 2 times
+- [[Center for Human-Compatible AI]] - referenced 2 times
+- [[Chat Completions API]] - referenced 2 times
+- [[China's AI industry]] - referenced 2 times
+- [[Chinese AI Development]] - referenced 2 times
+- [[Chinese Communist Party]] - referenced 2 times
+- [[Circuits]] - referenced 2 times
+- [[Cisco]] - referenced 2 times
+- [[Claude 3]] - referenced 2 times
+- [[Claude 3 Haiku]] - referenced 2 times
+- [[Codeforces]] - referenced 2 times
+- [[Codex]] - referenced 2 times
+- [[Colossus]] - referenced 2 times
+- [[computer scientist]] - referenced 2 times
+- [[Computer Use AI]] - referenced 2 times
+- [[content authenticity]] - referenced 2 times
+- [[conversational AI]] - referenced 2 times
+- [[convolutional layer]] - referenced 2 times
+- [[CoreWeave]] - referenced 2 times
+- [[Cortana]] - referenced 2 times
+- [[Cosmos]] - referenced 2 times
+- [[Customer Relationship Management]] - referenced 2 times
+- [[Cyberspace Administration of China]] - referenced 2 times
+- [[data annotation]] - referenced 2 times
+- [[data lakehouse]] - referenced 2 times
+- [[data warehouse]] - referenced 2 times
+- [[database]] - referenced 2 times
+- [[David Baker]] - referenced 2 times
+- [[David Rumelhart]] - referenced 2 times
+- [[DBRX]] - referenced 2 times
+- [[Decentralized Identifiers]] - referenced 2 times
+- [[Decentralized Identity]] - referenced 2 times
+- [[DeepSeek Coder]] - referenced 2 times
+- [[deepset]] - referenced 2 times
+- [[Department of Commerce]] - referenced 2 times
+- [[deployment]] - referenced 2 times
+- [[dexterous-manipulation]] - referenced 2 times
+- [[Discord]] - referenced 2 times
+- [[Doina Precup]] - referenced 2 times
+- [[Dow Jones]] - referenced 2 times
+- [[Duolingo]] - referenced 2 times
+- [[embedding-model]] - referenced 2 times
+- [[embodied-intelligence]] - referenced 2 times
+- [[Entity List]] - referenced 2 times
+- [[Eric Horvitz]] - referenced 2 times
+- [[Ethereum Virtual Machine]] - referenced 2 times
+- [[European Commission]] - referenced 2 times
+- [[existential risk from artificial general intelligence]] - referenced 2 times
+- [[Fidji Simo]] - referenced 2 times
+- [[fill-in-the-middle]] - referenced 2 times
+- [[Forbes]] - referenced 2 times
+- [[Foundation Models]] - referenced 2 times
+- [[Founders Fund]] - referenced 2 times
+- [[France]] - referenced 2 times
+- [[friendly artificial intelligence]] - referenced 2 times
+- [[G42]] - referenced 2 times
+- [[GDPR]] - referenced 2 times
+- [[Gemini (chatbot)]] - referenced 2 times
+- [[Gemma]] - referenced 2 times
+- [[General Data Protection Regulation]] - referenced 2 times
+- [[Generative pre-trained transformer]] - referenced 2 times
+- [[Getty Images]] - referenced 2 times
+- [[Giza]] - referenced 2 times
+- [[Google Antigravity]] - referenced 2 times
+- [[GoogLeNet]] - referenced 2 times
+- [[GPT Image]] - referenced 2 times
+- [[GPT4All]] - referenced 2 times
+- [[gradient-descent]] - referenced 2 times
+- [[graphics processing unit]] - referenced 2 times
+- [[Greylock Partners]] - referenced 2 times
+- [[hallucination]] - referenced 2 times
+- [[High-Flyer]] - referenced 2 times
+- [[Hopper architecture]] - referenced 2 times
+- [[Hugging Face Hub]] - referenced 2 times
+- [[HuggingFace]] - referenced 2 times
+- [[hydroelectric power]] - referenced 2 times
+- [[Iceland]] - referenced 2 times
+- [[ICML]] - referenced 2 times
+- [[INRIA]] - referenced 2 times
+- [[Internet of Things]] - referenced 2 times
+- [[Ion Stoica]] - referenced 2 times
+- [[iOS]] - referenced 2 times
+- [[Isomorphic Labs]] - referenced 2 times
+- [[Jeff Dean]] - referenced 2 times
+- [[JetBrains]] - referenced 2 times
+- [[Jody Allen]] - referenced 2 times
+- [[John Hopfield]] - referenced 2 times
+- [[John Jumper]] - referenced 2 times
+- [[JSON Schema]] - referenced 2 times
+- [[Kai-Fu Lee]] - referenced 2 times
+- [[Ke Jie]] - referenced 2 times
+- [[Khan Academy]] - referenced 2 times
+- [[knowledge work]] - referenced 2 times
+- [[Kuaishou]] - referenced 2 times
+- [[labor-shortage]] - referenced 2 times
+- [[LangGraph]] - referenced 2 times
+- [[Le Chat]] - referenced 2 times
+- [[Lee Sedol]] - referenced 2 times
+- [[legged-robot]] - referenced 2 times
+- [[LeNet]] - referenced 2 times
+- [[Liang Wenfeng]] - referenced 2 times
+- [[LibGen]] - referenced 2 times
+- [[LinkedIn]] - referenced 2 times
+- [[Lisa Su]] - referenced 2 times
+- [[Llama (language model)]] - referenced 2 times
+- [[Llama 4]] - referenced 2 times
+- [[LLaVA]] - referenced 2 times
+- [[LMArena]] - referenced 2 times
+- [[LSTM]] - referenced 2 times
+- [[Machine Ethics]] - referenced 2 times
+- [[Machine Intelligence Research Institute]] - referenced 2 times
+- [[Malaysia]] - referenced 2 times
+- [[manipulation]] - referenced 2 times
+- [[Matthew Prince]] - referenced 2 times
+- [[MBPP]] - referenced 2 times
+- [[Mediapart]] - referenced 2 times
+- [[metaverse]] - referenced 2 times
+- [[Microsoft 365 Copilot]] - referenced 2 times
+- [[Microsoft Translator]] - referenced 2 times
+- [[Middle East]] - referenced 2 times
+- [[MiniMax (company)]] - referenced 2 times
+- [[mistral (wind)]] - referenced 2 times
+- [[MIT License]] - referenced 2 times
+- [[Model Distillation]] - referenced 2 times
+- [[Montreal]] - referenced 2 times
+- [[Moonshot AI]] - referenced 2 times
+- [[Mosaic]] - referenced 2 times
+- [[MuZero]] - referenced 2 times
+- [[National Science Foundation]] - referenced 2 times
+- [[Neovim]] - referenced 2 times
+- [[neural machine translation]] - referenced 2 times
+- [[NeurIPS]] - referenced 2 times
+- [[Nobel Prize in Physics]] - referenced 2 times
+- [[NVIDIA DGX]] - referenced 2 times
+- [[NVIDIA Grace Hopper]] - referenced 2 times
+- [[NVIDIA Triton Inference Server]] - referenced 2 times
+- [[Open Philanthropy]] - referenced 2 times
+- [[Open Source Initiative]] - referenced 2 times
+- [[open-source software]] - referenced 2 times
+- [[OpenAI API]] - referenced 2 times
+- [[OpenAI Codex]] - referenced 2 times
+- [[OpenSea]] - referenced 2 times
+- [[Oren Etzioni]] - referenced 2 times
+- [[Paris]] - referenced 2 times
+- [[path-planning]] - referenced 2 times
+- [[Pectra upgrade]] - referenced 2 times
+- [[petaflops]] - referenced 2 times
+- [[Pika Labs]] - referenced 2 times
+- [[Polygon]] - referenced 2 times
+- [[Program Synthesis]] - referenced 2 times
+- [[Proof of Stake]] - referenced 2 times
+- [[protein folding]] - referenced 2 times
+- [[PydanticAI]] - referenced 2 times
+- [[Quantum computing]] - referenced 2 times
+- [[Quora]] - referenced 2 times
+- [[Ray]] - referenced 2 times
+- [[reasoning models]] - referenced 2 times
+- [[Reddit]] - referenced 2 times
+- [[Responsible Scaling Policy]] - referenced 2 times
+- [[Rishi Sunak]] - referenced 2 times
+- [[Rob Fergus]] - referenced 2 times
+- [[Runway (company)]] - referenced 2 times
+- [[Runway Gen-2]] - referenced 2 times
+- [[Safe]] - referenced 2 times
+- [[scalable oversight]] - referenced 2 times
+- [[Self-Attention]] - referenced 2 times
+- [[sensor-fusion]] - referenced 2 times
+- [[Sequoia Capital]] - referenced 2 times
+- [[Serkan Piantino]] - referenced 2 times
+- [[ServiceNow]] - referenced 2 times
+- [[SGLang]] - referenced 2 times
+- [[Slack]] - referenced 2 times
+- [[softbank]] - referenced 2 times
+- [[softmax]] - referenced 2 times
+- [[Starknet]] - referenced 2 times
+- [[startup]] - referenced 2 times
+- [[stochastic-gradient-descent]] - referenced 2 times
+- [[Suno AI]] - referenced 2 times
+- [[T5]] - referenced 2 times
+- [[Tang Jie]] - referenced 2 times
+- [[Tencent]] - referenced 2 times
+- [[TensorFlow.js]] - referenced 2 times
+- [[TensorRT]] - referenced 2 times
+- [[text-generation-webui]] - referenced 2 times
+- [[Text-to-video generation]] - referenced 2 times
+- [[The New York Times]] - referenced 2 times
+- [[Thinking Machines Lab]] - referenced 2 times
+- [[Toronto]] - referenced 2 times
+- [[Transfer Learning]] - referenced 2 times
+- [[Trevor Blackwell]] - referenced 2 times
+- [[Twitter]] - referenced 2 times
+- [[UK Government]] - referenced 2 times
+- [[United Nations]] - referenced 2 times
+- [[University of Oxford]] - referenced 2 times
+- [[US AI Safety Institute]] - referenced 2 times
+- [[variational autoencoders]] - referenced 2 times
+- [[VGGNet]] - referenced 2 times
+- [[Vision Transformer]] - referenced 2 times
+- [[vision-language-action-model]] - referenced 2 times
+- [[Visual Studio]] - referenced 2 times
+- [[Web scraping]] - referenced 2 times
+- [[Web3]] - referenced 2 times
+- [[Wojciech Zaremba]] - referenced 2 times
+- [[X (social network)]] - referenced 2 times
+- [[X (Twitter)]] - referenced 2 times
+- [[Xavier Niel]] - referenced 2 times
+- [[XLA]] - referenced 2 times
+- [[YouTube]] - referenced 2 times
+- [[Zero-knowledge proof]] - referenced 2 times
+- [[École Polytechnique]] - referenced 2 times
+
+## Requested (1 reference)
+
+- [[01.AI]] - referenced 1 times
+- [[3D model]] - referenced 1 times
+- [[3D Rendering]] - referenced 1 times
+- [[3D variational autoencoder]] - referenced 1 times
+- [[501(c)(3) nonprofit]] - referenced 1 times
+- [[Aave]] - referenced 1 times
+- [[ABB]] - referenced 1 times
+- [[Abstract Reasoning]] - referenced 1 times
+- [[Abstraction and Reasoning Corpus]] - referenced 1 times
+- [[Access Now]] - referenced 1 times
+- [[ACID]] - referenced 1 times
+- [[ACL]] - referenced 1 times
+- [[ACLU]] - referenced 1 times
+- [[Activation functions]] - referenced 1 times
+- [[Adagrad]] - referenced 1 times
+- [[Adam Cheyer]] - referenced 1 times
+- [[adaptive algorithms]] - referenced 1 times
+- [[Adaptive Learning]] - referenced 1 times
+- [[Adobe Photoshop]] - referenced 1 times
+- [[Aerodrome]] - referenced 1 times
+- [[agentic]] - referenced 1 times
+- [[AGI governance]] - referenced 1 times
+- [[aging-population]] - referenced 1 times
+- [[AI]] - referenced 1 times
+- [[AI Agents in Cryptocurrency]] - referenced 1 times
+- [[AI art]] - referenced 1 times
+- [[AI Benchmarks]] - referenced 1 times
+- [[AI browser]] - referenced 1 times
+- [[AI Export Restrictions]] - referenced 1 times
+- [[AI hallucination]] - referenced 1 times
+- [[AI Hardware]] - referenced 1 times
+- [[AI infrastructure]] - referenced 1 times
+- [[AI reasoning]] - referenced 1 times
+- [[AI Safety Institute]] - referenced 1 times
+- [[AI Safety Research Institute]] - referenced 1 times
+- [[AI Superpowers: China, Silicon Valley, and the New World Order]] - referenced 1 times
+- [[AI-Assisted Development]] - referenced 1 times
+- [[AI-powered Search]] - referenced 1 times
+- [[AI2 Reasoning Challenge]] - referenced 1 times
+- [[AI21 Labs]] - referenced 1 times
+- [[AI4ALL]] - referenced 1 times
+- [[Alan Turing]] - referenced 1 times
+- [[Albert Lasker Award for Basic Medical Research]] - referenced 1 times
+- [[Alchemy]] - referenced 1 times
+- [[Alchemy Account Kit]] - referenced 1 times
+- [[Alex Graves]] - referenced 1 times
+- [[Alexandr Wang]] - referenced 1 times
+- [[Algorithmic Accountability]] - referenced 1 times
+- [[algorithmic-trading]] - referenced 1 times
+- [[Allen Institute for Artificial Intelligence]] - referenced 1 times
+- [[Allen Institute for Cell Science]] - referenced 1 times
+- [[AllenNLP]] - referenced 1 times
+- [[AlphaCode 2]] - referenced 1 times
+- [[AlphaFold 2]] - referenced 1 times
+- [[AlphaGo Zero]] - referenced 1 times
+- [[Amazon Alexa]] - referenced 1 times
+- [[Amazon Kendra]] - referenced 1 times
+- [[Amazon Lex]] - referenced 1 times
+- [[Amazon Mechanical Turk]] - referenced 1 times
+- [[Amazon Polly]] - referenced 1 times
+- [[Amazon S3]] - referenced 1 times
+- [[Amazon SageMaker]] - referenced 1 times
+- [[AMD Instinct]] - referenced 1 times
+- [[American Civil Liberties Union]] - referenced 1 times
+- [[AMPLab]] - referenced 1 times
+- [[Andy Rubin]] - referenced 1 times
+- [[Ant Group]] - referenced 1 times
+- [[AOL]] - referenced 1 times
+- [[Apache 2.0 license]] - referenced 1 times
+- [[Apple Inc.]] - referenced 1 times
+- [[Application-Specific Integrated Circuit]] - referenced 1 times
+- [[Applied Materials]] - referenced 1 times
+- [[approximate nearest neighbor]] - referenced 1 times
+- [[Approximate string matching]] - referenced 1 times
+- [[Arati Prabhakar]] - referenced 1 times
+- [[Aristo]] - referenced 1 times
+- [[Arm Holdings]] - referenced 1 times
+- [[Artifacts (Claude Feature)]] - referenced 1 times
+- [[Artificial intelligence regulation]] - referenced 1 times
+- [[artificial neural networks]] - referenced 1 times
+- [[artwashing]] - referenced 1 times
+- [[Ashok Nagar, Chennai]] - referenced 1 times
+- [[Asia Game Changer Award]] - referenced 1 times
+- [[Asia Society]] - referenced 1 times
+- [[ASL-2]] - referenced 1 times
+- [[AssemblyAI]] - referenced 1 times
+- [[association football]] - referenced 1 times
+- [[audio inpainting]] - referenced 1 times
+- [[audiobook]] - referenced 1 times
+- [[augmented reality]] - referenced 1 times
+- [[Aurora]] - referenced 1 times
+- [[Australia]] - referenced 1 times
+- [[Authentication]] - referenced 1 times
+- [[Automated Trading]] - referenced 1 times
+- [[Automatic speech recognition]] - referenced 1 times
+- [[automation]] - referenced 1 times
+- [[automotive]] - referenced 1 times
+- [[Autonomous Agents]] - referenced 1 times
+- [[Autonomous Trading]] - referenced 1 times
+- [[autonomous weapons]] - referenced 1 times
+- [[autonomous-vehicle]] - referenced 1 times
+- [[Autopilot]] - referenced 1 times
+- [[AWQ]] - referenced 1 times
+- [[AWS]] - referenced 1 times
+- [[AWS PrivateLink]] - referenced 1 times
+- [[AWS Trainium\**: AWS Inferentia]] - referenced 1 times
+- [[Azure Active Directory]] - referenced 1 times
+- [[Azure AI Content Safety]] - referenced 1 times
+- [[Azure AI Search]] - referenced 1 times
+- [[Azure Cognitive Services]] - referenced 1 times
+- [[Azure OpenAI]] - referenced 1 times
+- [[Azure Private Link]] - referenced 1 times
+- [[BabyAGI]] - referenced 1 times
+- [[Bachelor of Technology]] - referenced 1 times
+- [[Backend]] - referenced 1 times
+- [[Bahdanau]] - referenced 1 times
+- [[barbershop quartet]] - referenced 1 times
+- [[Barcelona Supercomputing Center]] - referenced 1 times
+- [[Bard]] - referenced 1 times
+- [[Basic Attention Token]] - referenced 1 times
+- [[BattleBots]] - referenced 1 times
+- [[BBC Research & Development]] - referenced 1 times
+- [[BBL Drizzy]] - referenced 1 times
+- [[Ben Horowitz]] - referenced 1 times
+- [[benchmark saturation]] - referenced 1 times
+- [[Berkeley, California]] - referenced 1 times
+- [[beta testing]] - referenced 1 times
+- [[Better World Books]] - referenced 1 times
+- [[BIG-bench]] - referenced 1 times
+- [[Bill Dally]] - referenced 1 times
+- [[Bing Chat]] - referenced 1 times
+- [[biometric]] - referenced 1 times
+- [[Biometric Authentication]] - referenced 1 times
+- [[bitsandbytes]] - referenced 1 times
+- [[BitTorrent]] - referenced 1 times
+- [[BlackRock]] - referenced 1 times
+- [[Blender]] - referenced 1 times
+- [[BLOOM]] - referenced 1 times
+- [[BLOOM (language model)]] - referenced 1 times
+- [[Bloomberg]] - referenced 1 times
+- [[Bloomberg News]] - referenced 1 times
+- [[Blur]] - referenced 1 times
+- [[BMC Software]] - referenced 1 times
+- [[Bob Metcalfe]] - referenced 1 times
+- [[Boltzmann machines]] - referenced 1 times
+- [[Books3]] - referenced 1 times
+- [[Breakout]] - referenced 1 times
+- [[Breakthrough Prize in Life Sciences]] - referenced 1 times
+- [[Brendan Iribe]] - referenced 1 times
+- [[Brianna Ghey]] - referenced 1 times
+- [[Britain]] - referenced 1 times
+- [[British]] - referenced 1 times
+- [[Broadcom]] - referenced 1 times
+- [[Brookings Institution]] - referenced 1 times
+- [[Brown University]] - referenced 1 times
+- [[Buckinghamshire]] - referenced 1 times
+- [[Bullfrog Productions]] - referenced 1 times
+- [[Bumble]] - referenced 1 times
+- [[Bun]] - referenced 1 times
+- [[Butterbro]] - referenced 1 times
+- [[Byte pair encoding]] - referenced 1 times
+- [[ByteDance]] - referenced 1 times
+- [[Byzantine Fault Tolerance]] - referenced 1 times
+- [[C Sharp]] - referenced 1 times
+- [[C++]] - referenced 1 times
+- [[California Institute of Technology]] - referenced 1 times
+- [[Cambricon Technologies]] - referenced 1 times
+- [[Capital One]] - referenced 1 times
+- [[CapitalG]] - referenced 1 times
+- [[capsule neural networks]] - referenced 1 times
+- [[case-based reasoning]] - referenced 1 times
+- [[CASP Competition]] - referenced 1 times
+- [[CC-100]] - referenced 1 times
+- [[Center for Security and Emerging Technology]] - referenced 1 times
+- [[Centre for Human Compatible AI]] - referenced 1 times
+- [[Ceramic]] - referenced 1 times
+- [[Chainer]] - referenced 1 times
+- [[Chainlink]] - referenced 1 times
+- [[Chennai]] - referenced 1 times
+- [[Chess.com]] - referenced 1 times
+- [[Chief AI Officer]] - referenced 1 times
+- [[Chief Executive Officer]] - referenced 1 times
+- [[Chile]] - referenced 1 times
+- [[Chinchilla]] - referenced 1 times
+- [[Chris Malachowsky]] - referenced 1 times
+- [[Christof Koch]] - referenced 1 times
+- [[Christopher Bishop]] - referenced 1 times
+- [[Christopher Longuet-Higgins]] - referenced 1 times
+- [[Chromebook]] - referenced 1 times
+- [[ChromeOS]] - referenced 1 times
+- [[Chromium]] - referenced 1 times
+- [[classical music]] - referenced 1 times
+- [[Claude 3.5 Sonnet Release]] - referenced 1 times
+- [[Claude 4]] - referenced 1 times
+- [[Claude 4.0]] - referenced 1 times
+- [[Claude Desktop]] - referenced 1 times
+- [[Claude Opus 4.5]] - referenced 1 times
+- [[Claude Shannon]] - referenced 1 times
+- [[ClawkiPedia]] - referenced 1 times
+- [[climate change]] - referenced 1 times
+- [[Climate Modeling]] - referenced 1 times
+- [[CMA CGM]] - referenced 1 times
+- [[COCO]] - referenced 1 times
+- [[code completion]] - referenced 1 times
+- [[CodeQL]] - referenced 1 times
+- [[cognitive psychologist]] - referenced 1 times
+- [[cognitive scientist]] - referenced 1 times
+- [[cognitive-process]] - referenced 1 times
+- [[Colab Enterprise]] - referenced 1 times
+- [[collaboration]] - referenced 1 times
+- [[Cologne]] - referenced 1 times
+- [[Comet ML]] - referenced 1 times
+- [[command line interface]] - referenced 1 times
+- [[Common (rapper)]] - referenced 1 times
+- [[commonsense knowledge]] - referenced 1 times
+- [[Competition and Markets Authority]] - referenced 1 times
+- [[Compound]] - referenced 1 times
+- [[computational linguistics]] - referenced 1 times
+- [[Computer graphics]] - referenced 1 times
+- [[Computer Use]] - referenced 1 times
+- [[computer-assisted translation]] - referenced 1 times
+- [[computer-science]] - referenced 1 times
+- [[Content Authenticity Initiative]] - referenced 1 times
+- [[Content Moderation]] - referenced 1 times
+- [[Continuous Batching]] - referenced 1 times
+- [[Contract Lifecycle Management]] - referenced 1 times
+- [[copyright infringement]] - referenced 1 times
+- [[Core Knowledge]] - referenced 1 times
+- [[Corporate Governance in AI]] - referenced 1 times
+- [[Corporate Research Labs]] - referenced 1 times
+- [[country music]] - referenced 1 times
+- [[Courant Institute of Mathematical Sciences]] - referenced 1 times
+- [[Creator economy]] - referenced 1 times
+- [[Credo Ventures]] - referenced 1 times
+- [[cricket]] - referenced 1 times
+- [[Cristóbal Valenzuela]] - referenced 1 times
+- [[Critical Assessment of Structure Prediction]] - referenced 1 times
+- [[cryo-electron microscopy]] - referenced 1 times
+- [[Crypto]] - referenced 1 times
+- [[Cryptocurrency Governance]] - referenced 1 times
+- [[Cryptocurrency Speculation]] - referenced 1 times
+- [[Cryptocurrency Trading]] - referenced 1 times
+- [[Cursor (code editor)]] - referenced 1 times
+- [[Cursor (software): AI-powered editing
+- **Target User**: Replit: Anyone with ideas, [[GitHub Copilot]] - referenced 1 times
+- [[Cursor (software): Desktop application
+- **Deployment**: Replit: Built-in, [[GitHub Copilot]] - referenced 1 times
+- [[Cursor (software): Moderate
+
+## Cultural Impact
+
+Replit has contributed to the democratization of software creation, blurring the traditional boundaries between "developers" and "non-developers." The platform exemplifies a shift toward what some call "prompt-driven development" or "[[vibe coding]] - referenced 1 times
+- [[Cursor (software): Professional developers
+- **Environment**: Replit: Browser-based, [[GitHub Copilot]] - referenced 1 times
+- [[Cursor (software): Separate
+- **Learning Curve**: Replit: Very low, [[GitHub Copilot]] - referenced 1 times
+- [[Curtis Priem]] - referenced 1 times
+- [[Curve]] - referenced 1 times
+- [[Customer-Managed Encryption Keys]] - referenced 1 times
+- [[Cybersecurity Law]] - referenced 1 times
+- [[Cyrus Vance]] - referenced 1 times
+- [[DAI]] - referenced 1 times
+- [[DALL-E 2]] - referenced 1 times
+- [[dApps]] - referenced 1 times
+- [[darpa]] - referenced 1 times
+- [[data analytics]] - referenced 1 times
+- [[data center]] - referenced 1 times
+- [[data contamination]] - referenced 1 times
+- [[data deduplication]] - referenced 1 times
+- [[data engineering]] - referenced 1 times
+- [[data lake]] - referenced 1 times
+- [[Data Marketplace]] - referenced 1 times
+- [[Data preprocessing]] - referenced 1 times
+- [[data privacy]] - referenced 1 times
+- [[Data quality filtering]] - referenced 1 times
+- [[Data Security Law]] - referenced 1 times
+- [[Data Validation]] - referenced 1 times
+- [[Dataflow]] - referenced 1 times
+- [[dataflow programming]] - referenced 1 times
+- [[Dataplex]] - referenced 1 times
+- [[Dataproc]] - referenced 1 times
+- [[Decentralized Computing]] - referenced 1 times
+- [[Decentralized Social]] - referenced 1 times
+- [[decentralized systems]] - referenced 1 times
+- [[decision theory]] - referenced 1 times
+- [[decoder-only Transformer]] - referenced 1 times
+- [[Deep Learning in Biology]] - referenced 1 times
+- [[deep Q-learning]] - referenced 1 times
+- [[deep reinforcement learning]] - referenced 1 times
+- [[Deep Research]] - referenced 1 times
+- [[Deepfakes]] - referenced 1 times
+- [[DeepMind Technologies]] - referenced 1 times
+- [[DeepSeek R1]] - referenced 1 times
+- [[DeepSeek V2]] - referenced 1 times
+- [[DeepSeek V3]] - referenced 1 times
+- [[DeepSpeed]] - referenced 1 times
+- [[Defense Production Act]] - referenced 1 times
+- [[degrees-of-freedom]] - referenced 1 times
+- [[Delegated Proof of Stake]] - referenced 1 times
+- [[denoising latent diffusion model]] - referenced 1 times
+- [[Department for Science, Innovation and Technology]] - referenced 1 times
+- [[Department of Education]] - referenced 1 times
+- [[Department of Homeland Security]] - referenced 1 times
+- [[Department of Justice]] - referenced 1 times
+- [[Department of Veterans Affairs]] - referenced 1 times
+- [[Dependabot]] - referenced 1 times
+- [[Detectron]] - referenced 1 times
+- [[Devin]] - referenced 1 times
+- [[DGX]] - referenced 1 times
+- [[differential-technological-development]] - referenced 1 times
+- [[digital image]] - referenced 1 times
+- [[Digital Provenance]] - referenced 1 times
+- [[Digital Services Act]] - referenced 1 times
+- [[Digital Twin]] - referenced 1 times
+- [[Dijkstra Prize]] - referenced 1 times
+- [[disinformation]] - referenced 1 times
+- [[distracted boyfriend]] - referenced 1 times
+- [[Distributed Computing]] - referenced 1 times
+- [[Distributed Training]] - referenced 1 times
+- [[DjVu]] - referenced 1 times
+- [[DLSS]] - referenced 1 times
+- [[DMCA]] - referenced 1 times
+- [[Docker]] - referenced 1 times
+- [[DOGE]] - referenced 1 times
+- [[Doge (meme)]] - referenced 1 times
+- [[Dolly the sheep]] - referenced 1 times
+- [[domain name]] - referenced 1 times
+- [[Don Beyer]] - referenced 1 times
+- [[Drake–Kendrick Lamar feud]] - referenced 1 times
+- [[drug-discovery]] - referenced 1 times
+- [[Duke University]] - referenced 1 times
+- [[E-Discovery]] - referenced 1 times
+- [[E5]] - referenced 1 times
+- [[EC2]] - referenced 1 times
+- [[economics]] - referenced 1 times
+- [[Ed Lazowska]] - referenced 1 times
+- [[Edge computing]] - referenced 1 times
+- [[EdTech]] - referenced 1 times
+- [[Efficient AI]] - referenced 1 times
+- [[EfficientNet]] - referenced 1 times
+- [[EIP-155]] - referenced 1 times
+- [[EIP-3074]] - referenced 1 times
+- [[EIP-3541]] - referenced 1 times
+- [[EIP-4844]] - referenced 1 times
+- [[EIP-712]] - referenced 1 times
+- [[Eleanor Maguire]] - referenced 1 times
+- [[electrical engineer]] - referenced 1 times
+- [[Element AI]] - referenced 1 times
+- [[ELIZA]] - referenced 1 times
+- [[embodied AI]] - referenced 1 times
+- [[Emergent Abilities]] - referenced 1 times
+- [[Emeryville, California]] - referenced 1 times
+- [[encoder-decoder]] - referenced 1 times
+- [[Endpoint Detection and Response]] - referenced 1 times
+- [[EntryPoint contract]] - referenced 1 times
+- [[EOA]] - referenced 1 times
+- [[eqt-ventures]] - referenced 1 times
+- [[ERC-1155]] - referenced 1 times
+- [[ERC-1167]] - referenced 1 times
+- [[ERC-1271]] - referenced 1 times
+- [[ERC-7201]] - referenced 1 times
+- [[ETH]] - referenced 1 times
+- [[Ethereum Mainnet]] - referenced 1 times
+- [[Etherspot]] - referenced 1 times
+- [[ethics]] - referenced 1 times
+- [[ethics of AI]] - referenced 1 times
+- [[European AI]] - referenced 1 times
+- [[European AI Office]] - referenced 1 times
+- [[European Bioinformatics Institute]] - referenced 1 times
+- [[European languages]] - referenced 1 times
+- [[European Union AI Act]] - referenced 1 times
+- [[European Union artificial intelligence regulation]] - referenced 1 times
+- [[EVM-compatible]] - referenced 1 times
+- [[existential risk from AI]] - referenced 1 times
+- [[existential risk from artificial intelligence]] - referenced 1 times
+- [[Expedia]] - referenced 1 times
+- [[Explainable AI]] - referenced 1 times
+- [[Externally Owned Accounts]] - referenced 1 times
+- [[Extra Finance]] - referenced 1 times
+- [[fair use]] - referenced 1 times
+- [[FAISS]] - referenced 1 times
+- [[fastText]] - referenced 1 times
+- [[Feature Visualization]] - referenced 1 times
+- [[Federal Trade Commission]] - referenced 1 times
+- [[Feliks Zemdegs]] - referenced 1 times
+- [[Few-Shot Learning]] - referenced 1 times
+- [[Fidelity]] - referenced 1 times
+- [[Fields Medal]] - referenced 1 times
+- [[Figma]] - referenced 1 times
+- [[Financial Times]] - referenced 1 times
+- [[fintech]] - referenced 1 times
+- [[FLAML]] - referenced 1 times
+- [[FlatBuffers]] - referenced 1 times
+- [[Flax]] - referenced 1 times
+- [[Fluid Intelligence]] - referenced 1 times
+- [[Ford Foundation]] - referenced 1 times
+- [[fork (software development)]] - referenced 1 times
+- [[Francis Crick]] - referenced 1 times
+- [[Freiburg im Breisgau]] - referenced 1 times
+- [[Friedrich Nietzsche]] - referenced 1 times
+- [[Friend.tech]] - referenced 1 times
+- [[Frontend]] - referenced 1 times
+- [[frontier model]] - referenced 1 times
+- [[frontier models]] - referenced 1 times
+- [[FTX]] - referenced 1 times
+- [[Fujitsu]] - referenced 1 times
+- [[full-stack development]] - referenced 1 times
+- [[Function Calling]] - referenced 1 times
+- [[functional MRI]] - referenced 1 times
+- [[Future of Humanity Institute]] - referenced 1 times
+- [[G7]] - referenced 1 times
+- [[G7 Hiroshima AI Process]] - referenced 1 times
+- [[Galactica]] - referenced 1 times
+- [[Garry Tan]] - referenced 1 times
+- [[Gas Fees]] - referenced 1 times
+- [[GeForce]] - referenced 1 times
+- [[GeForce Now]] - referenced 1 times
+- [[Gemini (AI)]] - referenced 1 times
+- [[Gemini Flash]] - referenced 1 times
+- [[Gemini Pro 3]] - referenced 1 times
+- [[Gemini Ultra]] - referenced 1 times
+- [[General Atlantic]] - referenced 1 times
+- [[General Electric Company]] - referenced 1 times
+- [[General Services Administration]] - referenced 1 times
+- [[George Boole]] - referenced 1 times
+- [[Germany]] - referenced 1 times
+- [[GGUF Format]] - referenced 1 times
+- [[Gil Elbaz]] - referenced 1 times
+- [[Girl with a Pearl Earring]] - referenced 1 times
+- [[Gitcoin]] - referenced 1 times
+- [[GitHub Actions]] - referenced 1 times
+- [[GitHub Advanced Security]] - referenced 1 times
+- [[Gizmodo]] - referenced 1 times
+- [[Gmail]] - referenced 1 times
+- [[Go]] - referenced 1 times
+- [[GOAT]] - referenced 1 times
+- [[Google AI]] - referenced 1 times
+- [[Google AI Studio]] - referenced 1 times
+- [[Google Calendar]] - referenced 1 times
+- [[Google China]] - referenced 1 times
+- [[Google Cloud Text-to-Speech]] - referenced 1 times
+- [[Google Colab]] - referenced 1 times
+- [[Google Drive]] - referenced 1 times
+- [[Google JAX]] - referenced 1 times
+- [[Google Kubernetes Engine]] - referenced 1 times
+- [[Google Maps]] - referenced 1 times
+- [[Google Photos]] - referenced 1 times
+- [[Google RankBrain]] - referenced 1 times
+- [[Google Research]] - referenced 1 times
+- [[Google Search]] - referenced 1 times
+- [[GPT Image 1]] - referenced 1 times
+- [[GPT-4.5]] - referenced 1 times
+- [[GPT-4V]] - referenced 1 times
+- [[GPT-5.1]] - referenced 1 times
+- [[GPT-5.2]] - referenced 1 times
+- [[GPT-J]] - referenced 1 times
+- [[GPT-Neo]] - referenced 1 times
+- [[GPTQ]] - referenced 1 times
+- [[GPU Cloud]] - referenced 1 times
+- [[GPU Memory Hierarchy]] - referenced 1 times
+- [[graphics processing units]] - referenced 1 times
+- [[Great Firewall]] - referenced 1 times
+- [[Grok (chatbot)]] - referenced 1 times
+- [[Grok 4]] - referenced 1 times
+- [[Grokipedia]] - referenced 1 times
+- [[Groq LPU, Advantage: LPU]] - referenced 1 times
+- [[Groq LPU, Approach: LPU]] - referenced 1 times
+- [[Grouped-Query Attention]] - referenced 1 times
+- [[gRPC]] - referenced 1 times
+- [[GRU]] - referenced 1 times
+- [[Hadoop]] - referenced 1 times
+- [[Half-precision floating-point format]] - referenced 1 times
+- [[hallucinate]] - referenced 1 times
+- [[Hallucination (artificial intelligence)]] - referenced 1 times
+- [[Hank Green]] - referenced 1 times
+- [[hannover-messe]] - referenced 1 times
+- [[hard rock]] - referenced 1 times
+- [[Havok]] - referenced 1 times
+- [[hayward-california]] - referenced 1 times
+- [[HEC Montréal]] - referenced 1 times
+- [[Heidelberg University]] - referenced 1 times
+- [[HellaSwag]] - referenced 1 times
+- [[Hewlett-Packard]] - referenced 1 times
+- [[hip hop music]] - referenced 1 times
+- [[HOG]] - referenced 1 times
+- [[Hong Kong Stock Exchange]] - referenced 1 times
+- [[HongShan]] - referenced 1 times
+- [[Horizons Ventures]] - referenced 1 times
+- [[Huawei]] - referenced 1 times
+- [[Hugging Face Inference Endpoints]] - referenced 1 times
+- [[Hugging Face Transformers]] - referenced 1 times
+- [[HuggingFace Hub]] - referenced 1 times
+- [[Human-computer interaction]] - referenced 1 times
+- [[Humanity's Last Exam]] - referenced 1 times
+- [[Hyperparameter optimization]] - referenced 1 times
+- [[hyperscaler]] - referenced 1 times
+- [[Hyperstition]] - referenced 1 times
+- [[IAM]] - referenced 1 times
+- [[Iconary]] - referenced 1 times
+- [[IIT Kharagpur]] - referenced 1 times
+- [[IIT Madras]] - referenced 1 times
+- [[image segmentation]] - referenced 1 times
+- [[image-recognition]] - referenced 1 times
+- [[imitation learning]] - referenced 1 times
+- [[Inception]] - referenced 1 times
+- [[Inceptive]] - referenced 1 times
+- [[Index Ventures]] - referenced 1 times
+- [[India]] - referenced 1 times
+- [[Indonesia]] - referenced 1 times
+- [[Industrial Internet of Things]] - referenced 1 times
+- [[Industry 4.0]] - referenced 1 times
+- [[Infosys]] - referenced 1 times
+- [[initial public offering]] - referenced 1 times
+- [[inpainting]] - referenced 1 times
+- [[Intelligent Tutoring Systems]] - referenced 1 times
+- [[International Data Corporation]] - referenced 1 times
+- [[International Mathematical Olympiad]] - referenced 1 times
+- [[Ireland]] - referenced 1 times
+- [[iris scanning]] - referenced 1 times
+- [[irobot]] - referenced 1 times
+- [[Isaac Asimov]] - referenced 1 times
+- [[Israel]] - referenced 1 times
+- [[IT Service Management]] - referenced 1 times
+- [[Italy]] - referenced 1 times
+- [[Jaan Tallinn]] - referenced 1 times
+- [[Jakub Pachocki]] - referenced 1 times
+- [[James Cameron]] - referenced 1 times
+- [[James McClelland]] - referenced 1 times
+- [[Jan Leike]] - referenced 1 times
+- [[Janet Kolodner]] - referenced 1 times
+- [[Jared Kaplan]] - referenced 1 times
+- [[Java]] - referenced 1 times
+- [[Jennifer Chayes]] - referenced 1 times
+- [[Jessica Livingston]] - referenced 1 times
+- [[Jim Clark]] - referenced 1 times
+- [[Jim Gray]] - referenced 1 times
+- [[Jimmy Savile]] - referenced 1 times
+- [[John Etchemendy]] - referenced 1 times
+- [[Jony Ive]] - referenced 1 times
+- [[Joseph Weizenbaum]] - referenced 1 times
+- [[JSON]] - referenced 1 times
+- [[Julia (programming language)]] - referenced 1 times
+- [[Jupyter notebook]] - referenced 1 times
+- [[Justine Tunney]] - referenced 1 times
+- [[Jérôme Pesenti]] - referenced 1 times
+- [[Ken Livingstone]] - referenced 1 times
+- [[Kenneth Colby]] - referenced 1 times
+- [[Kenya]] - referenced 1 times
+- [[Kinect]] - referenced 1 times
+- [[knowledge distillation]] - referenced 1 times
+- [[Knowledge management]] - referenced 1 times
+- [[knowledge-graph]] - referenced 1 times
+- [[knowledge-graphs]] - referenced 1 times
+- [[Kobold.cpp]] - referenced 1 times
+- [[Kota, Rajasthan]] - referenced 1 times
+- [[La Repubblica]] - referenced 1 times
+- [[Labeled Data]] - referenced 1 times
+- [[Language identification]] - referenced 1 times
+- [[Language Model Evaluation]] - referenced 1 times
+- [[language models]] - referenced 1 times
+- [[Larry Summers]] - referenced 1 times
+- [[latent diffusion]] - referenced 1 times
+- [[latent space]] - referenced 1 times
+- [[Laura Arrillaga-Andreessen]] - referenced 1 times
+- [[Lawrence Summers]] - referenced 1 times
+- [[Layer 1]] - referenced 1 times
+- [[Le Monde]] - referenced 1 times
+- [[Leap Motion]] - referenced 1 times
+- [[Learning Management Systems]] - referenced 1 times
+- [[Legal Tech]] - referenced 1 times
+- [[legged-locomotion]] - referenced 1 times
+- [[Lido]] - referenced 1 times
+- [[Lila Ibrahim]] - referenced 1 times
+- [[Lili Cheng]] - referenced 1 times
+- [[linear-attention]] - referenced 1 times
+- [[Linux]] - referenced 1 times
+- [[Linux Foundation]] - referenced 1 times
+- [[Lionsgate]] - referenced 1 times
+- [[LiteLLM]] - referenced 1 times
+- [[Little Italy, Montreal]] - referenced 1 times
+- [[Llama 3.3]] - referenced 1 times
+- [[LLM]] - referenced 1 times
+- [[LLMs]] - referenced 1 times
+- [[Local LLM Deployment]] - referenced 1 times
+- [[Local LLM Inference]] - referenced 1 times
+- [[LocalAI]] - referenced 1 times
+- [[lock-in]] - referenced 1 times
+- [[logistics]] - referenced 1 times
+- [[long short-term memory]] - referenced 1 times
+- [[Loom Systems]] - referenced 1 times
+- [[Los Altos Hills, California]] - referenced 1 times
+- [[Lucy Guo]] - referenced 1 times
+- [[Luigi Mangione]] - referenced 1 times
+- [[Luma AI]] - referenced 1 times
+- [[Luma Labs]] - referenced 1 times
+- [[Lux Capital]] - referenced 1 times
+- [[Lyft]] - referenced 1 times
+- [[MacArthur Fellows]] - referenced 1 times
+- [[Machine Learning Infrastructure]] - referenced 1 times
+- [[macOS]] - referenced 1 times
+- [[Madurai]] - referenced 1 times
+- [[Magnificent Seven]] - referenced 1 times
+- [[MakerDAO]] - referenced 1 times
+- [[Maluuba]] - referenced 1 times
+- [[Managed Identity]] - referenced 1 times
+- [[management consulting]] - referenced 1 times
+- [[manufacturing]] - referenced 1 times
+- [[manufacturing-automation]] - referenced 1 times
+- [[MapReduce]] - referenced 1 times
+- [[Market Analysis AI]] - referenced 1 times
+- [[mars]] - referenced 1 times
+- [[Marvel Studios]] - referenced 1 times
+- [[Mary Everest Boole]] - referenced 1 times
+- [[Masayoshi Son]] - referenced 1 times
+- [[Mashable]] - referenced 1 times
+- [[massachusetts-institute-of-technology]] - referenced 1 times
+- [[massive open online courses]] - referenced 1 times
+- [[Master of Science]] - referenced 1 times
+- [[Matei Zaharia]] - referenced 1 times
+- [[materials engineer]] - referenced 1 times
+- [[materials science and engineering]] - referenced 1 times
+- [[Maya Wiley]] - referenced 1 times
+- [[MBA]] - referenced 1 times
+- [[McKinsey & Company]] - referenced 1 times
+- [[Megan Smith]] - referenced 1 times
+- [[Meituan]] - referenced 1 times
+- [[Mel-frequency cepstrum]] - referenced 1 times
+- [[Melinda French Gates]] - referenced 1 times
+- [[Menlo Park]] - referenced 1 times
+- [[Messenger]] - referenced 1 times
+- [[Metal]] - referenced 1 times
+- [[Metal (Apple)]] - referenced 1 times
+- [[metallurgical engineering]] - referenced 1 times
+- [[MetaMask]] - referenced 1 times
+- [[Michael Freedman]] - referenced 1 times
+- [[Michael Ovitz]] - referenced 1 times
+- [[Microsoft Azure Speech Services]] - referenced 1 times
+- [[Microsoft Bing]] - referenced 1 times
+- [[Microsoft Dynamics]] - referenced 1 times
+- [[Microsoft HoloLens]] - referenced 1 times
+- [[Microsoft Research Asia]] - referenced 1 times
+- [[Mike Krieger]] - referenced 1 times
+- [[Milvus]] - referenced 1 times
+- [[Ministry of Economy, Trade and Industry]] - referenced 1 times
+- [[Ministry of Industry and Information Technology]] - referenced 1 times
+- [[Ministry of Public Security]] - referenced 1 times
+- [[Ministry of Science and Technology]] - referenced 1 times
+- [[Mistral 7B]] - referenced 1 times
+- [[MIT]] - referenced 1 times
+- [[MIT Technology Review]] - referenced 1 times
+- [[Mixed Precision Training]] - referenced 1 times
+- [[MLflow]] - referenced 1 times
+- [[MMLU-Pro]] - referenced 1 times
+- [[Model Compression]] - referenced 1 times
+- [[Model Fine-tuning]] - referenced 1 times
+- [[Model Quantization]] - referenced 1 times
+- [[Modulus Labs]] - referenced 1 times
+- [[Molly Russell]] - referenced 1 times
+- [[Monsters, Inc. (franchise)]] - referenced 1 times
+- [[Moore Threads]] - referenced 1 times
+- [[Morpho]] - referenced 1 times
+- [[Morris Chang]] - referenced 1 times
+- [[MosaicML]] - referenced 1 times
+- [[moss-norway]] - referenced 1 times
+- [[Motion Picture Association]] - referenced 1 times
+- [[Moveworks]] - referenced 1 times
+- [[Multilingual NLP]] - referenced 1 times
+- [[Multimodal artificial intelligence]] - referenced 1 times
+- [[Munich]] - referenced 1 times
+- [[music]] - referenced 1 times
+- [[Music and artificial intelligence]] - referenced 1 times
+- [[Muslim Youth Helpline]] - referenced 1 times
+- [[Nathan Myhrvold]] - referenced 1 times
+- [[National Center for Supercomputing Applications]] - referenced 1 times
+- [[National Health Service]] - referenced 1 times
+- [[natural language]] - referenced 1 times
+- [[Nature]] - referenced 1 times
+- [[NEAR Protocol]] - referenced 1 times
+- [[NeMo]] - referenced 1 times
+- [[NeMo Framework]] - referenced 1 times
+- [[Neptune.ai]] - referenced 1 times
+- [[NetChoice]] - referenced 1 times
+- [[Netherlands]] - referenced 1 times
+- [[Netscape]] - referenced 1 times
+- [[Netscape Communications]] - referenced 1 times
+- [[Neural Network Architectures]] - referenced 1 times
+- [[neural Turing machines]] - referenced 1 times
+- [[New York Post]] - referenced 1 times
+- [[New York University]] - referenced 1 times
+- [[New York University Tisch School of the Arts]] - referenced 1 times
+- [[New Zealand]] - referenced 1 times
+- [[NFTs]] - referenced 1 times
+- [[Nick Frosst]] - referenced 1 times
+- [[Nicole Seligman]] - referenced 1 times
+- [[Nigeria]] - referenced 1 times
+- [[NIST AI Risk Management Framework]] - referenced 1 times
+- [[NLP]] - referenced 1 times
+- [[No-code development platform]] - referenced 1 times
+- [[Node.js]] - referenced 1 times
+- [[nonprofit]] - referenced 1 times
+- [[Novartis]] - referenced 1 times
+- [[NVIDIA B200\**: Model: GB200 NVL72]] - referenced 1 times
+- [[NVIDIA Blackwell]] - referenced 1 times
+- [[NVIDIA Dynamo]] - referenced 1 times
+- [[NVIDIA Grace]] - referenced 1 times
+- [[NVIDIA H20]] - referenced 1 times
+- [[NVIDIA NIM]] - referenced 1 times
+- [[nvidia-isaac]] - referenced 1 times
+- [[O2 (brand)]] - referenced 1 times
+- [[o4-mini]] - referenced 1 times
+- [[object detection]] - referenced 1 times
+- [[object-recognition]] - referenced 1 times
+- [[Oculus VR]] - referenced 1 times
+- [[OECD]] - referenced 1 times
+- [[Ofcom]] - referenced 1 times
+- [[Office of Management and Budget]] - referenced 1 times
+- [[Office of Science and Technology Policy]] - referenced 1 times
+- [[OLTP]] - referenced 1 times
+- [[On-Device AI]] - referenced 1 times
+- [[Online Safety Act 2023]] - referenced 1 times
+- [[ONNX Runtime]] - referenced 1 times
+- [[Ontario]] - referenced 1 times
+- [[open source license]] - referenced 1 times
+- [[OpenAI o4-mini]] - referenced 1 times
+- [[OpenAI-embeddings]] - referenced 1 times
+- [[OpenAPI]] - referenced 1 times
+- [[OpenAssistant]] - referenced 1 times
+- [[OpenCog]] - referenced 1 times
+- [[OpenVINO]] - referenced 1 times
+- [[optimistic rollup]] - referenced 1 times
+- [[optimus-prime]] - referenced 1 times
+- [[Oregon State University]] - referenced 1 times
+- [[OTOY]] - referenced 1 times
+- [[Otto Group]] - referenced 1 times
+- [[Padma Bhushan]] - referenced 1 times
+- [[Palantir]] - referenced 1 times
+- [[Palantir Technologies]] - referenced 1 times
+- [[PaLM 2]] - referenced 1 times
+- [[Palo Alto, California]] - referenced 1 times
+- [[palo-alto]] - referenced 1 times
+- [[Pass@k Metric]] - referenced 1 times
+- [[Passage AI]] - referenced 1 times
+- [[Patrick Collison]] - referenced 1 times
+- [[Paul G. Allen Trust]] - referenced 1 times
+- [[PC World]] - referenced 1 times
+- [[People's Republic of China]] - referenced 1 times
+- [[perception]] - referenced 1 times
+- [[Personal Assistant]] - referenced 1 times
+- [[Personal Information Protection Law]] - referenced 1 times
+- [[Peter Dayan]] - referenced 1 times
+- [[Peter Molyneux]] - referenced 1 times
+- [[Philippines]] - referenced 1 times
+- [[philosophy]] - referenced 1 times
+- [[philosophy of mind]] - referenced 1 times
+- [[Phishing]] - referenced 1 times
+- [[Pietro Perona]] - referenced 1 times
+- [[Pimlico]] - referenced 1 times
+- [[Pinterest]] - referenced 1 times
+- [[pipeline parallelism]] - referenced 1 times
+- [[Pittsburgh]] - referenced 1 times
+- [[Pixar]] - referenced 1 times
+- [[podcast]] - referenced 1 times
+- [[political-science]] - referenced 1 times
+- [[Polygon zkEVM]] - referenced 1 times
+- [[Pong]] - referenced 1 times
+- [[Poolside AI]] - referenced 1 times
+- [[pop music]] - referenced 1 times
+- [[Power Platform]] - referenced 1 times
+- [[Prakash Panangaden]] - referenced 1 times
+- [[Precision Agriculture]] - referenced 1 times
+- [[predictive coding]] - referenced 1 times
+- [[Prem Akkaraju]] - referenced 1 times
+- [[Princeton University]] - referenced 1 times
+- [[PRIOR]] - referenced 1 times
+- [[Privacy-Preserving Computation]] - referenced 1 times
+- [[Privy]] - referenced 1 times
+- [[product of experts]] - referenced 1 times
+- [[Productivity software]] - referenced 1 times
+- [[programming languages]] - referenced 1 times
+- [[Project Maven]] - referenced 1 times
+- [[Project Nimbus]] - referenced 1 times
+- [[Proof of History]] - referenced 1 times
+- [[Proof of Personhood]] - referenced 1 times
+- [[Proof of Work]] - referenced 1 times
+- [[protein folding problem]] - referenced 1 times
+- [[Protocol Buffers]] - referenced 1 times
+- [[pull request]] - referenced 1 times
+- [[Pyth Network]] - referenced 1 times
+- [[PyTorch Foundation]] - referenced 1 times
+- [[Q*]] - referenced 1 times
+- [[Q* (AI Project)]] - referenced 1 times
+- [[Qdrant]] - referenced 1 times
+- [[Quebec]] - referenced 1 times
+- [[Quest 2]] - referenced 1 times
+- [[question answering]] - referenced 1 times
+- [[R (programming language)]] - referenced 1 times
+- [[Radford M. Neal]] - referenced 1 times
+- [[Rainbow]] - referenced 1 times
+- [[Ransomware]] - referenced 1 times
+- [[Ray Kurzweil]] - referenced 1 times
+- [[ReAct]] - referenced 1 times
+- [[ReAct Prompting]] - referenced 1 times
+- [[Realtime API]] - referenced 1 times
+- [[Reasoning model]] - referenced 1 times
+- [[Recommender algorithms]] - referenced 1 times
+- [[Recording Industry Association of America]] - referenced 1 times
+- [[red team]] - referenced 1 times
+- [[RedPajama-V2]] - referenced 1 times
+- [[Redwood Research]] - referenced 1 times
+- [[ReLU]] - referenced 1 times
+- [[Remote Sensing]] - referenced 1 times
+- [[Replika]] - referenced 1 times
+- [[Republic of Korea]] - referenced 1 times
+- [[Reputation Systems]] - referenced 1 times
+- [[residual neural network]] - referenced 1 times
+- [[Responsible AI]] - referenced 1 times
+- [[Reuters]] - referenced 1 times
+- [[reward-modeling]] - referenced 1 times
+- [[Reynold Xin]] - referenced 1 times
+- [[Richard Blumenthal]] - referenced 1 times
+- [[Richard Rashid]] - referenced 1 times
+- [[Robotic Process Automation]] - referenced 1 times
+- [[robotic-manipulation]] - referenced 1 times
+- [[robots.txt]] - referenced 1 times
+- [[rodney-brooks]] - referenced 1 times
+- [[Roger Needham]] - referenced 1 times
+- [[Ronald J. Williams]] - referenced 1 times
+- [[Ruslan Salakhutdinov]] - referenced 1 times
+- [[Rust (programming language)]] - referenced 1 times
+- [[Rwanda]] - referenced 1 times
+- [[safetensors]] - referenced 1 times
+- [[SageMaker]] - referenced 1 times
+- [[Sakana AI]] - referenced 1 times
+- [[Salesforce Data Cloud]] - referenced 1 times
+- [[Salesforce Ventures]] - referenced 1 times
+- [[Salvador Dalí]] - referenced 1 times
+- [[Sam Bankman-Fried]] - referenced 1 times
+- [[samsung]] - referenced 1 times
+- [[San Francisco Chronicle]] - referenced 1 times
+- [[SAP]] - referenced 1 times
+- [[Saudi Arabia]] - referenced 1 times
+- [[Scala]] - referenced 1 times
+- [[Scarlett Johansson]] - referenced 1 times
+- [[Scientific Reasoning]] - referenced 1 times
+- [[Scott Banister]] - referenced 1 times
+- [[Scroll]] - referenced 1 times
+- [[SDL Trados Studio]] - referenced 1 times
+- [[Sean Parker]] - referenced 1 times
+- [[Seattle]] - referenced 1 times
+- [[Securities and Exchange Commission]] - referenced 1 times
+- [[Security Operations Center]] - referenced 1 times
+- [[seed funding]] - referenced 1 times
+- [[Segment Anything Model]] - referenced 1 times
+- [[self-supervised learning]] - referenced 1 times
+- [[Sentence-BERT]] - referenced 1 times
+- [[Sentry]] - referenced 1 times
+- [[sequence-to-sequence]] - referenced 1 times
+- [[sequence-to-sequence learning]] - referenced 1 times
+- [[Serverless Computing]] - referenced 1 times
+- [[shell]] - referenced 1 times
+- [[Shopify]] - referenced 1 times
+- [[SIFT]] - referenced 1 times
+- [[sigmoid]] - referenced 1 times
+- [[Silvio Savarese]] - referenced 1 times
+- [[sim-to-real]] - referenced 1 times
+- [[singularity advocates]] - referenced 1 times
+- [[Singularity Summit]] - referenced 1 times
+- [[Singularity University]] - referenced 1 times
+- [[SingularityDAO]] - referenced 1 times
+- [[SlimPajama]] - referenced 1 times
+- [[Small Language Models]] - referenced 1 times
+- [[smart contract]] - referenced 1 times
+- [[smart contract wallet]] - referenced 1 times
+- [[Smash Capital]] - referenced 1 times
+- [[SNARKs]] - referenced 1 times
+- [[Snowflake]] - referenced 1 times
+- [[social media]] - referenced 1 times
+- [[Social Recovery]] - referenced 1 times
+- [[Societas Europaea]] - referenced 1 times
+- [[Software and Information Industry Association]] - referenced 1 times
+- [[software as a service]] - referenced 1 times
+- [[software development lifecycle]] - referenced 1 times
+- [[Software Engineering Agent]] - referenced 1 times
+- [[Solidity]] - referenced 1 times
+- [[sound recognition]] - referenced 1 times
+- [[South Korea]] - referenced 1 times
+- [[Southern Environmental Law Center]] - referenced 1 times
+- [[Space Invaders]] - referenced 1 times
+- [[spacex-starship]] - referenced 1 times
+- [[Spain]] - referenced 1 times
+- [[Spark Capital]] - referenced 1 times
+- [[Sparse Neural Networks]] - referenced 1 times
+- [[sparse-attention]] - referenced 1 times
+- [[Speech synthesis]] - referenced 1 times
+- [[Sputnik moment]] - referenced 1 times
+- [[SQL injection]] - referenced 1 times
+- [[SQuAD]] - referenced 1 times
+- [[SSL certificate]] - referenced 1 times
+- [[Stable Audio]] - referenced 1 times
+- [[Stackup]] - referenced 1 times
+- [[Stanford HAI]] - referenced 1 times
+- [[Stanford Internet Observatory]] - referenced 1 times
+- [[Stanford NLP]] - referenced 1 times
+- [[Stanford Research Park]] - referenced 1 times
+- [[Star Wars]] - referenced 1 times
+- [[StarCraft II]] - referenced 1 times
+- [[STARKs]] - referenced 1 times
+- [[state-space-models]] - referenced 1 times
+- [[Stellantis]] - referenced 1 times
+- [[STEM]] - referenced 1 times
+- [[stenographer]] - referenced 1 times
+- [[Steve Ballmer]] - referenced 1 times
+- [[Streisand effect]] - referenced 1 times
+- [[Stripe]] - referenced 1 times
+- [[Structured Output]] - referenced 1 times
+- [[Sue Desmond-Hellmann]] - referenced 1 times
+- [[Suno]] - referenced 1 times
+- [[superintelligent]] - referenced 1 times
+- [[Superposition]] - referenced 1 times
+- [[support vector machines]] - referenced 1 times
+- [[Susan Dumais]] - referenced 1 times
+- [[Sustainable Agriculture]] - referenced 1 times
+- [[SWE-agent]] - referenced 1 times
+- [[Switzerland]] - referenced 1 times
+- [[sycophancy]] - referenced 1 times
+- [[Syneos Health]] - referenced 1 times
+- [[synthetic biology]] - referenced 1 times
+- [[Synthetic Media]] - referenced 1 times
+- [[systolic array]] - referenced 1 times
+- [[Tableau]] - referenced 1 times
+- [[tactile-feedback]] - referenced 1 times
+- [[tactile-sensing]] - referenced 1 times
+- [[Tamil Nadu]] - referenced 1 times
+- [[Tamil people]] - referenced 1 times
+- [[tanh]] - referenced 1 times
+- [[Tao Te Ching]] - referenced 1 times
+- [[Taoist]] - referenced 1 times
+- [[Tay Keith]] - referenced 1 times
+- [[TechCrunch]] - referenced 1 times
+- [[Techno-Optimist Manifesto]] - referenced 1 times
+- [[technological-singularity]] - referenced 1 times
+- [[TechRadar]] - referenced 1 times
+- [[Ted Cruz]] - referenced 1 times
+- [[Ted Lieu]] - referenced 1 times
+- [[Tegra]] - referenced 1 times
+- [[Tel Aviv]] - referenced 1 times
+- [[Tenacity]] - referenced 1 times
+- [[tensor parallelism]] - referenced 1 times
+- [[Tensor Processing Unit**: Strengths: TPU]] - referenced 1 times
+- [[TensorBoard]] - referenced 1 times
+- [[TensorPlonk]] - referenced 1 times
+- [[tensors]] - referenced 1 times
+- [[Terah Lyons]] - referenced 1 times
+- [[Terrence Sejnowski]] - referenced 1 times
+- [[Tesla, Inc.]] - referenced 1 times
+- [[Tesseract]] - referenced 1 times
+- [[Text-to-Image Generation]] - referenced 1 times
+- [[Text-to-music]] - referenced 1 times
+- [[text-to-video]] - referenced 1 times
+- [[The Asahi Shimbun]] - referenced 1 times
+- [[The Economist Group]] - referenced 1 times
+- [[The Graph]] - referenced 1 times
+- [[The Nikkei]] - referenced 1 times
+- [[The Stack]] - referenced 1 times
+- [[The Verge]] - referenced 1 times
+- [[The Walt Disney Company]] - referenced 1 times
+- [[Theano]] - referenced 1 times
+- [[Theano (software)]] - referenced 1 times
+- [[ThePrimeagen]] - referenced 1 times
+- [[Thorn]] - referenced 1 times
+- [[Threat Detection]] - referenced 1 times
+- [[tiger-global]] - referenced 1 times
+- [[Tim Berners-Lee]] - referenced 1 times
+- [[Time]] - referenced 1 times
+- [[Time 100]] - referenced 1 times
+- [[Tom Gruber]] - referenced 1 times
+- [[Tom Mitchell]] - referenced 1 times
+- [[Tool Use]] - referenced 1 times
+- [[Tool Use in LLMs]] - referenced 1 times
+- [[TOP500]] - referenced 1 times
+- [[Torch]] - referenced 1 times
+- [[Torrance Tests of Creative Thinking]] - referenced 1 times
+- [[Toyota Connected]] - referenced 1 times
+- [[trafilatura]] - referenced 1 times
+- [[Training Compute]] - referenced 1 times
+- [[transcription (linguistics)]] - referenced 1 times
+- [[Transcription software]] - referenced 1 times
+- [[Transformer (machine learning model)]] - referenced 1 times
+- [[transhumanism]] - referenced 1 times
+- [[Tribe Capital]] - referenced 1 times
+- [[Trust Region Policy Optimization]] - referenced 1 times
+- [[Trust Wallet]] - referenced 1 times
+- [[Truth Social]] - referenced 1 times
+- [[TruthfulQA]] - referenced 1 times
+- [[TSMC]] - referenced 1 times
+- [[Turing machine]] - referenced 1 times
+- [[Twilio]] - referenced 1 times
+- [[Twitch]] - referenced 1 times
+- [[TypeScript]] - referenced 1 times
+- [[Télécom Paris]] - referenced 1 times
+- [[Türkiye]] - referenced 1 times
+- [[U-Net]] - referenced 1 times
+- [[U.S. Chamber of Commerce]] - referenced 1 times
+- [[UBI]] - referenced 1 times
+- [[UC Berkeley]] - referenced 1 times
+- [[UC Santa Barbara]] - referenced 1 times
+- [[Ukraine]] - referenced 1 times
+- [[UNESCO]] - referenced 1 times
+- [[Uniswap]] - referenced 1 times
+- [[United Arab Emirates]] - referenced 1 times
+- [[United States Commerce Department]] - referenced 1 times
+- [[United States Department of Commerce]] - referenced 1 times
+- [[United States Department of Defense]] - referenced 1 times
+- [[United States House Judiciary Committee]] - referenced 1 times
+- [[UnitedMasters]] - referenced 1 times
+- [[Universal Basic Income]] - referenced 1 times
+- [[Universal Music Group]] - referenced 1 times
+- [[University College London]] - referenced 1 times
+- [[University of British Columbia]] - referenced 1 times
+- [[University of Cambridge]] - referenced 1 times
+- [[University of Illinois at Urbana-Champaign]] - referenced 1 times
+- [[Université Laval]] - referenced 1 times
+- [[Université Paris-Saclay]] - referenced 1 times
+- [[US export controls on semiconductors]] - referenced 1 times
+- [[US Library of Congress]] - referenced 1 times
+- [[USDC]] - referenced 1 times
+- [[USMLE]] - referenced 1 times
+- [[vancouver]] - referenced 1 times
+- [[vanishing gradient problem]] - referenced 1 times
+- [[variational autoencoder]] - referenced 1 times
+- [[venture capitalist]] - referenced 1 times
+- [[Veo]] - referenced 1 times
+- [[Verifiable Computation]] - referenced 1 times
+- [[Verifiable Credentials]] - referenced 1 times
+- [[Verily]] - referenced 1 times
+- [[Vertex AI Studio]] - referenced 1 times
+- [[Vicuna]] - referenced 1 times
+- [[video analysis]] - referenced 1 times
+- [[Video Generation]] - referenced 1 times
+- [[Vienna Center for Disarmament and Non-Proliferation]] - referenced 1 times
+- [[Vim]] - referenced 1 times
+- [[virtual-reality]] - referenced 1 times
+- [[Vision-Language Model]] - referenced 1 times
+- [[Vladlen Koltun]] - referenced 1 times
+- [[Voice cloning]] - referenced 1 times
+- [[VP8]] - referenced 1 times
+- [[VPC Service Controls]] - referenced 1 times
+- [[VRAM]] - referenced 1 times
+- [[Vukosi Marivate]] - referenced 1 times
+- [[WALL-E]] - referenced 1 times
+- [[Waymo]] - referenced 1 times
+- [[weak supervision]] - referenced 1 times
+- [[Webby Award]] - referenced 1 times
+- [[WebM]] - referenced 1 times
+- [[Weta Digital]] - referenced 1 times
+- [[Wharton School of the University of Pennsylvania]] - referenced 1 times
+- [[Wikipedia]] - referenced 1 times
+- [[will.i.am]] - referenced 1 times
+- [[Windows]] - referenced 1 times
+- [[Windsurf]] - referenced 1 times
+- [[Wolfram]] - referenced 1 times
+- [[word error rate]] - referenced 1 times
+- [[word2vec]] - referenced 1 times
+- [[WordNet]] - referenced 1 times
+- [[Workflow Automation]] - referenced 1 times
+- [[World Models]] - referenced 1 times
+- [[World Wide Web]] - referenced 1 times
+- [[World Wildlife Fund]] - referenced 1 times
+- [[X (formerly Twitter)]] - referenced 1 times
+- [[X Corp.]] - referenced 1 times
+- [[X-ray crystallography]] - referenced 1 times
+- [[x402]] - referenced 1 times
+- [[XVIII Airborne Corps]] - referenced 1 times
+- [[Yee Whye Teh]] - referenced 1 times
+- [[Yejin Choi]] - referenced 1 times
+- [[Yomiuri Shimbun]] - referenced 1 times
+- [[York University]] - referenced 1 times
+- [[Youdao]] - referenced 1 times
+- [[Yuga Labs]] - referenced 1 times
+- [[ZDNET]] - referenced 1 times
+- [[Zero Trust Architecture]] - referenced 1 times
+- [[Zero-knowledge]] - referenced 1 times
+- [[ZeroDev]] - referenced 1 times
+- [[ZKaggle]] - referenced 1 times
+- [[zkCNN]] - referenced 1 times
+- [[zkSync]] - referenced 1 times
+- [[Zora]] - referenced 1 times
+- [[Zoubin Ghahramani]] - referenced 1 times
+- [[École normale supérieure]] - referenced 1 times
+- [[École Polytechnique de Montréal]] - referenced 1 times
+

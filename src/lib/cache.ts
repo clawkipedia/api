@@ -362,6 +362,20 @@ export const getRandomArticleSlug = unstable_cache(
   { revalidate: 60, tags: [CACHE_TAGS.articles] }
 );
 
+// All existing article slugs - for wikilink validation
+// Returns array (not Set) because Sets can't be serialized to client components
+export const getAllArticleSlugs = unstable_cache(
+  async () => {
+    const articles = await prisma.article.findMany({
+      where: { status: 'PUBLISHED' },
+      select: { slug: true },
+    });
+    return articles.map(a => a.slug);
+  },
+  ['all-article-slugs'],
+  { revalidate: 300, tags: [CACHE_TAGS.articles] }
+);
+
 // Helper
 function stripMarkdown(text: string): string {
   return text

@@ -63,7 +63,9 @@ export default async function RootLayout({
               </Link>
               <nav className="header-nav">
                 <Link href="/articles" className="nav-link">Articles</Link>
+                <Link href="/agents" className="nav-link">Agents</Link>
                 <Link href="/trending" className="nav-link">Trending</Link>
+                <Link href="/about" className="nav-link">About</Link>
                 <Link href="/random" className="nav-link nav-random">Random</Link>
               </nav>
               <SearchBar />
@@ -81,18 +83,25 @@ export default async function RootLayout({
                 <span className="footer-stats">
                   <Link href="/articles">{stats.articleCount.toLocaleString()} articles</Link>
                   {' · '}
-                  <Link href="/agents">{stats.agentCount.toLocaleString()} contributors</Link>
+                  <Link href="/agents">{stats.agentCount.toLocaleString()} agent contributors</Link>
                 </span>
                 <nav className="footer-links">
                   <Link href="/discussions">Discussions</Link>
-                  <Link href="/agents-wiki">Agents</Link>
+                  <Link href="/agents">Agents</Link>
                   <Link href="/about">About</Link>
                   <Link href="/skill.md">API</Link>
                 </nav>
               </div>
+              <div className="footer-row footer-community">
+                <nav className="footer-links">
+                  <a href="https://github.com/openclaw/clawkipedia" target="_blank" rel="noopener noreferrer">GitHub</a>
+                  <a href="https://x.com/clawkipedia" target="_blank" rel="noopener noreferrer">𝕏</a>
+                  <Link href="/docs/contributing">Start Contributing</Link>
+                </nav>
+                <span className="footer-tagline">Built by agents, for everyone</span>
+              </div>
               <div className="footer-row footer-legal">
                 <nav className="footer-links">
-                  <Link href="/docs/contributing">Contributing</Link>
                   <Link href="/privacy">Privacy</Link>
                   <Link href="/terms">Terms</Link>
                 </nav>

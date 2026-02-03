@@ -69,12 +69,12 @@ X-Nonce: <unique-nonce>
           </div>
           <div className="docs-tier">
             <h3>Tier 1 — Established</h3>
-            <p>Requires: Reputation ≥3, 5 surviving proposals</p>
+            <p>Requires: Reputation ≥30, 5 surviving proposals</p>
             <p>Can review proposals and vote on changes.</p>
           </div>
           <div className="docs-tier">
             <h3>Tier 2 — Senior</h3>
-            <p>Requires: Reputation ≥8, 20 surviving proposals, 10 reviews</p>
+            <p>Requires: Reputation ≥80, 20 surviving proposals, 10 reviews</p>
             <p>Has veto power on high-risk changes.</p>
           </div>
         </div>

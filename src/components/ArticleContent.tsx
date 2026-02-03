@@ -1,14 +1,15 @@
 'use client';
 
 import Link from 'next/link';
-import React from 'react';
+import React, { useMemo } from 'react';
 
 interface ArticleContentProps {
   content: string;
+  existingSlugs?: string[];
 }
 
 // Parse all inline formatting in order of priority
-function parseInline(text: string): React.ReactNode {
+function parseInline(text: string, existingSlugsSet?: Set<string>): React.ReactNode {
   if (!text) return null;
   
   const result: React.ReactNode[] = [];
@@ -54,11 +55,26 @@ function parseInline(text: string): React.ReactNode {
     switch (earliestMatch.type) {
       case 'wikilink': {
         const slug = content.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-        result.push(
-          <Link key={keyCounter++} href={`/wiki/${slug}`} className="wiki-link">
-            {content}
-          </Link>
-        );
+        const articleExists = !existingSlugsSet || existingSlugsSet.has(slug);
+        
+        if (articleExists) {
+          result.push(
+            <Link key={keyCounter++} href={`/wiki/${slug}`} className="wiki-link">
+              {content}
+            </Link>
+          );
+        } else {
+          // Orphan link - article doesn't exist yet
+          result.push(
+            <span 
+              key={keyCounter++} 
+              className="wiki-link-orphan"
+              title={`Article "${content}" doesn't exist yet`}
+            >
+              {content}
+            </span>
+          );
+        }
         break;
       }
       case 'mdlink': {
@@ -80,10 +96,10 @@ function parseInline(text: string): React.ReactNode {
         break;
       }
       case 'bold':
-        result.push(<strong key={keyCounter++}>{parseInline(content)}</strong>);
+        result.push(<strong key={keyCounter++}>{parseInline(content, existingSlugsSet)}</strong>);
         break;
       case 'italic':
-        result.push(<em key={keyCounter++}>{parseInline(content)}</em>);
+        result.push(<em key={keyCounter++}>{parseInline(content, existingSlugsSet)}</em>);
         break;
       case 'code':
         result.push(<code key={keyCounter++}>{content}</code>);
@@ -97,7 +113,13 @@ function parseInline(text: string): React.ReactNode {
   return result.length === 1 ? result[0] : <>{result}</>;
 }
 
-export function ArticleContent({ content }: ArticleContentProps) {
+export function ArticleContent({ content, existingSlugs }: ArticleContentProps) {
+  // Convert array to Set for efficient lookups (arrays can be serialized from server components)
+  const existingSlugsSet = useMemo(
+    () => (existingSlugs ? new Set(existingSlugs) : undefined),
+    [existingSlugs]
+  );
+
   const lines = content.split('\n');
   const elements: React.ReactNode[] = [];
   let currentList: string[] = [];
@@ -111,7 +133,7 @@ export function ArticleContent({ content }: ArticleContentProps) {
       elements.push(
         <ul key={keyCounter++} className="article-list">
           {currentList.map((item, i) => (
-            <li key={i}>{parseInline(item)}</li>
+            <li key={i}>{parseInline(item, existingSlugsSet)}</li>
           ))}
         </ul>
       );
@@ -189,7 +211,7 @@ export function ArticleContent({ content }: ArticleContentProps) {
       flushList();
       elements.push(
         <blockquote key={keyCounter++} className="article-blockquote">
-          {parseInline(line.slice(2))}
+          {parseInline(line.slice(2), existingSlugsSet)}
         </blockquote>
       );
       continue;
@@ -211,7 +233,7 @@ export function ArticleContent({ content }: ArticleContentProps) {
     flushList();
     elements.push(
       <p key={keyCounter++} className="article-paragraph">
-        {parseInline(line)}
+        {parseInline(line, existingSlugsSet)}
       </p>
     );
   }

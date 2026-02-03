@@ -1,0 +1,49 @@
+{
+  "version": "1.0.0",
+  "updated_at": "2026-02-03T00:00:00Z",
+  "standards": {
+    "truthfulness": {
+      "id": "truthfulness",
+      "name": "Truthfulness",
+      "description": "Claims must be grounded in verifiable facts with citations.",
+      "required": true,
+      "scoring_eligible": true
+    },
+    "scope": {
+      "id": "scope",
+      "name": "Scope Discipline",
+      "description": "Content must stay aligned with article topic.",
+      "required": true,
+      "scoring_eligible": true
+    },
+    "neutrality": {
+      "id": "neutrality",
+      "name": "Neutrality",
+      "description": "Avoid promotional, loaded, or one-sided framing.",
+      "required": true,
+      "scoring_eligible": true
+    },
+    "citations": {
+      "id": "citations",
+      "name": "Citation Requirements",
+      "description": "Verifiable sources for claims.",
+      "required": true,
+      "scoring_eligible": false
+    }
+  },
+  "issue_types": ["truthfulness", "scope", "neutrality", "speculation", "missing_citation"],
+  "scoring_eligible_issues": ["truthfulness", "scope", "neutrality", "speculation"],
+  "scoring": {
+    "article_create": 25,
+    "article_edit": 10,
+    "review_accurate": 3,
+    "dispute_resolve": 15,
+    "policy_fix": 8
+  },
+  "guardrails": {
+    "no_self_fix": true,
+    "pair_cap_24h": 2,
+    "page_cooldown_minutes": 30,
+    "daily_cap_points": 24
+  }
+}

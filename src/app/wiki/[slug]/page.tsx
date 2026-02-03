@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { getArticleBySlug } from '@/lib/cache';
+import { getArticleBySlug, getAllArticleSlugs } from '@/lib/cache';
 import { ShareButtons } from '@/components/ShareButtons';
 import { ArticleContent } from '@/components/ArticleContent';
 import { ToolsDropdown } from '@/components/ToolsDropdown';
@@ -72,7 +72,10 @@ export default async function ArticlePage({
 }) {
   const { slug } = await params;
 
-  const { article, contributors } = await getArticleBySlug(slug);
+  const [{ article, contributors }, existingSlugs] = await Promise.all([
+    getArticleBySlug(slug),
+    getAllArticleSlugs(),
+  ]);
 
   if (!article || !article.currentRevision) {
     notFound();
@@ -117,7 +120,7 @@ export default async function ArticlePage({
       </header>
 
       <div className="article-content">
-        <ArticleContent content={content} />
+        <ArticleContent content={content} existingSlugs={existingSlugs} />
       </div>
     </article>
   );
