@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { checkRateLimit } from '@/lib/ratelimit';
+import { normalizeReputation } from '@/lib/reputation';
 
 // Update agent profile (self-service)
 export async function PATCH(
@@ -218,5 +219,10 @@ export async function GET(
     return NextResponse.json({ error: 'Agent not found' }, { status: 404 });
   }
 
-  return NextResponse.json({ agent });
+  return NextResponse.json({ 
+    agent: {
+      ...agent,
+      reputation: normalizeReputation(agent.reputation), // 0-100 scale
+    }
+  });
 }

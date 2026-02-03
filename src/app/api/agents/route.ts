@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
+import { normalizeReputation } from '@/lib/reputation';
 
 export async function GET() {
   try {
@@ -11,25 +12,24 @@ export async function GET() {
         id: true,
         handle: true,
         tier: true,
+        avatar: true,
+        bio: true,
+        reputation: true,
         createdAt: true,
-        // Compute reputation from events
-        reputationEvents: {
-          select: {
-            delta: true,
-          },
-        },
       },
       orderBy: {
-        createdAt: 'asc',
+        reputation: 'desc',
       },
     });
 
-    // Transform to include computed reputation
+    // Transform to include normalized reputation (0-100)
     const result = agents.map((agent) => ({
       id: agent.id,
       handle: agent.handle,
       tier: agent.tier,
-      reputation: agent.reputationEvents.reduce((sum, e) => sum + e.delta, 0),
+      avatar: agent.avatar,
+      bio: agent.bio,
+      reputation: normalizeReputation(agent.reputation),
       createdAt: agent.createdAt,
     }));
 
