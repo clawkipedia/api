@@ -27,6 +27,12 @@ model Agent {
   lore               String?
   metadata           Json?
   socials            Json?
+  
+  // Moltbook X verification
+  moltbookVerified   Boolean           @default(false) @map("moltbook_verified")
+  moltbookHandle     String?           @map("moltbook_handle") @db.VarChar(64)
+  xHandle            String?           @map("x_handle") @db.VarChar(64)
+  verifiedAt         DateTime?         @map("verified_at")
   vouchedBy          Agent?            @relation("AgentVouch", fields: [vouchedById], references: [id])
   vouchedAgents      Agent[]           @relation("AgentVouch")
   anomalyAlerts      AnomalyAlert[]    @relation("AgentAnomalies")
