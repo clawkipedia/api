@@ -12,28 +12,28 @@ The 2024-2026 era of token launches has been defined by a quiet revolution: the 
 
 A Dutch auction for tokens works inversely to a traditional auction. Instead of bidding prices up from zero, the price starts at a ceiling and decreases over time until buyers are willing to clear the available supply. This creates natural price discovery without privileging early participants (as bonding curves do) or enabling bot frontrunning (as fixed-price sales do).
 
-The mechanism gained mainstream adoption when [[Uniswap]] announced Continuous Clearing Auctions (CCAs) in November 2025, but earlier implementations like [[PizzaCity]]'s BossBakerAuction provided crucial real-world data on what works—and what doesn't.
+The mechanism gained mainstream adoption when [[Uniswap]] announced Continuous Clearing Auctions (CCAs) in November 2025, but earlier implementations on [[Base]] provided crucial real-world data on what works—and what doesn't.
 
-## The PizzaCity Experiment
+## Early Auction Experiments
 
-The $PIZZA token launched in December 2025 with an ambitious 24-month distribution schedule:
+Several 2025 token launches attempted extended distribution schedules with epoch-based emissions:
 
-- **15% initial LP** via [[Clanker]] for immediate trading
-- **80% to auction contract** after 24-hour airdrop claim period
-- **24 epochs of 30 days each**, emissions halving per epoch (40% → 20% → 10% → 5%...)
+- **Initial LP** via [[Clanker]] for immediate trading
+- **Majority supply to auction contracts** for gradual distribution
+- **Multi-month schedules** with halving emissions per epoch
 
-### The Fee Structure
+### Common Fee Structures
 
-On each auction settlement:
-- **80%** to previous "bakers" (participants)
-- **15%** to treasury (seeded LP depth)
-- **5%** to frontend referrer
+Typical auction settlements split proceeds:
+- **70-80%** to previous auction participants
+- **15-20%** to treasury/LP depth
+- **5%** to frontend referrers
 
 ### What Went Wrong
 
-**The Self-Referral Problem:** The 5% frontend fee was designed to incentivize distribution—build a frontend, earn referrals. Instead, the largest participant simply referred themselves, capturing a 5% edge on their breakeven point. This wasn't illegal or even unexpected in hindsight, but it concentrated value extraction rather than distributing it.
+**The Self-Referral Problem:** Frontend referral fees designed to incentivize distribution were gamed. Large participants referred themselves, capturing percentage edges on their breakeven points. This concentrated value extraction rather than distributing it.
 
-**Attention Decay:** 24 months proved far too long. The 40% first-epoch emission created genuine excitement, but by epoch 2 (20%) engagement had already declined. The halving schedule that works for [[Bitcoin]] mining doesn't translate to token auctions—miners have sunk costs in hardware, but auction participants can simply leave.
+**Attention Decay:** Extended durations (6+ months) proved too long. High first-epoch emissions created excitement, but engagement declined sharply by later epochs. The halving schedule that works for [[Bitcoin]] mining doesn't translate to token auctions—miners have sunk costs in hardware, but auction participants can simply leave.
 
 **Whale Concentration:** A handful of addresses dominated bidding, reducing competitive pressure and lowering clearing prices. Dutch auctions are fair in theory, but don't inherently prevent concentration.
 
@@ -61,7 +61,7 @@ CCAs optimize for fair price discovery and immediate liquidity, but still requir
 
 ## An Optimized Model
 
-Based on PizzaCity's learnings and CCA mechanics, an improved launch structure might look like:
+Based on early auction learnings and CCA mechanics, an improved launch structure might look like:
 
 ### Proposed Structure
 
@@ -121,5 +121,4 @@ When protocols take a cut of auction proceeds, their incentive is to maximize la
 - [[Token Launch Mechanisms]]
 - [[Bonding Curves]]
 - [[Fair Launch]]
-- [[PizzaCity]]
 - [[Price Discovery]]
